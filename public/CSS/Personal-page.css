@@ -1,0 +1,62 @@
+#wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+#sidebar {
+    position: relative;
+    width: 215px;
+    height: 100%;
+    padding-bottom: 89px;
+
+    background: rgba(179, 221, 217, 0.24);
+}
+
+.user-profile{
+    margin-top: 89px;
+}
+
+.profile-img {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    width: 50%;
+
+    border-radius: 50%;
+}
+
+.user-name {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+.user-menu{
+    margin-top: 80px;
+    justify-content: center;
+    text-align: center;
+}
+
+button.btn {
+    position: relative;
+    width: 75%;
+    height: 34px;
+    margin: 5px;
+
+    display: inline-block;
+    text-align: center;
+
+    background-color: rgba(133, 166, 163, 0.24);
+    border-radius: 13px;
+}
+
+button.active, button.btn:hover {
+    background: #85A6A3;
+    color: white;
+}

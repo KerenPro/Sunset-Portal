@@ -2,9 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--making a responsive webpage-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--linking stylesheet-->
+    <link href="../CSS/Personal-page.css" type="text/css" rel="stylesheet">
+    <!--linking bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>אזור אישי</title>
 </head>
 <body>
+<div class="container-fluid">
+    <div id="wrapper">
+        <div class="header"></div>
+        <div class="navbar"></div>
+        <div id="sidebar">
+            <Row>
+                <section class="user-profile">
+                    <div class="user-info">
+                        <img class="profile-img" src="../Assets/Images/ProfileImg.jpg" alt="user-img">
+                    </div>
+                    <h4 class="user-name">שלום, קרן</h4>
+                </section>
+            </Row>
+            <Row>
+                <section class="user-menu">
+                    <button class="btn active">ראשי</button>
+                    <button class="btn">השיעורים שלי</button>
+                    <button class="btn">ההזמנות שלי</button>
+                    <button class="btn">מזג אוויר</button>
+                </section>
+            </Row>
+        </div>
 
+        <div class="footer"></div>
+    </div>
+</div>
+
+<!--Script section-->
+<script type="text/javascript" src="../Javascript/Personal-page.js">
+    /*//load header from homepage
+    $("header").load( "../index.html header" );
+    //load navigation bar from homepage
+    $("navbar").load( "../index.html nav" );
+    //load footer from homepage
+    $("footer").load( "../index.html footer" );*/
+</script>
 </body>
 </html>
