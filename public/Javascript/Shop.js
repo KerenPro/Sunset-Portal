@@ -29,7 +29,7 @@ boardsDocRef.get().then( snap => {
             console.log(prodImg)
             recBoard.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recBoard.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recBoard.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recBoard.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
     });
@@ -47,7 +47,7 @@ menSuitsDocRef.get().then( snap => {
             let prodPrice = data[i].price;
             recMenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recMenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recMenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recMenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
@@ -66,7 +66,7 @@ womenSuitsDocRef.get().then( snap => {
             console.log(prodImg);
             recWomenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recWomenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
@@ -85,7 +85,7 @@ accessoriesDocRef.get().then( snap => {
             console.log(prodImg);
             recAccess.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recAccess.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recAccess.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recAccess.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
