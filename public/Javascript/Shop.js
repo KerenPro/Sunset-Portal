@@ -90,6 +90,9 @@ accessoriesDocRef.get().then( snap => {
         }}
 });
 
+/***********Render***************/
+
+
 /***********************************THIS HELPS ME **************************************/
 
 // stockRef.get().then((querySnapshot) => {
