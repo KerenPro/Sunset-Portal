@@ -18,18 +18,15 @@ const recAccess = document.getElementById("recAccess");
 //Board
 boardsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for loop");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if recommends");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
             console.log(prodImg)
             recBoard.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recBoard.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recBoard.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recBoard.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
     });
@@ -37,17 +34,14 @@ boardsDocRef.get().then( snap => {
 //Men's Suit
 menSuitsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
             recMenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recMenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recMenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recMenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
@@ -55,18 +49,14 @@ menSuitsDocRef.get().then( snap => {
 //Women's Suit
 womenSuitsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
-            console.log(prodImg);
             recWomenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recWomenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
@@ -74,18 +64,15 @@ womenSuitsDocRef.get().then( snap => {
 //Accessories
 accessoriesDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
             console.log(prodImg);
             recAccess.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recAccess.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recAccess.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "ILS";
+            recAccess.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
             break;
         }}
 });
