@@ -18,11 +18,8 @@ const recAccess = document.getElementById("recAccess");
 //Board
 boardsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for loop");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if recommends");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
@@ -37,11 +34,8 @@ boardsDocRef.get().then( snap => {
 //Men's Suit
 menSuitsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
@@ -55,15 +49,11 @@ menSuitsDocRef.get().then( snap => {
 //Women's Suit
 womenSuitsDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
-            console.log(prodImg);
             recWomenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
             recWomenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
             recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
@@ -74,11 +64,8 @@ womenSuitsDocRef.get().then( snap => {
 //Accessories
 accessoriesDocRef.get().then( snap => {
     let data = snap.data();
-    console.log(snap.id + " inside the then");
     for (let i in data){
-        console.log(snap.id + " inside the for");
         if (data[i].recommend === true){
-            console.log(snap.id + " inside the if");
             let prodName = data[i].productName;
             let prodImg = data[i].img;
             let prodPrice = data[i].price;
@@ -89,9 +76,6 @@ accessoriesDocRef.get().then( snap => {
             break;
         }}
 });
-
-/***********Render***************/
-
 
 /***********************************THIS HELPS ME **************************************/
 
