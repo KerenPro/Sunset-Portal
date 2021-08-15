@@ -27,6 +27,8 @@ document.getElementById("submit").addEventListener('click', (event) => {
         surfExp: surfExp
     }
     db.collection('Users').doc(`${clientId}`).set(newUser);
+    firebase.auth().createUserWithEmailAndPassword(email, pass);
+
     alert("ההרשמה עברה בהצלחה");
     return false;
 })

@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>הרשמה</title>
 </head>
 <body>
         <header>imported from homepage</header>
-        <h1>הרשמה למועדון</h1>
-        <form>
-            <label for="name">שם מלא:</label>
-            <input type="text" id="name" name="name" placeholder="שם פרטי ושם משפחה">
+        <div class="container form">
+            <Row><h1>הרשמה למועדון</h1></Row>
+            <form dir="rtl">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="שם פרטי ושם משפחה">
+                    <label for="name" >שם מלא</label>
+                </div>
 
-            <label for="id">תעודת זהות:</label>
-            <input type="text" id="id" name="id" maxlength="9">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="id" name="id" maxlength="9" placeholder="תעודת זהות">
+                    <label for="id">תעודת זהות</label>
+                </div>
 
-            <label for="pass">סיסמא:</label>
-            <input type="password" id="pass" name="pass">
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="pass" name="pass" maxlength="9" placeholder="סיסמא">
+                    <label for="pass">סיסמא</label>
+                </div>
 
-            <label for="address">כתובת:</label>
-            <input type="text" id="address" name="address" placeholder="כתובת מלאה">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="כתובת">
+                    <label for="address">כתובת מלאה</label>
+                </div>
 
-            <label for="phone">טלפון:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" placeholder="050-1231231">
 
-            <label for="email">אי-מייל:</label>
-            <input type="email" id="email" name="email">
+                <label for="phone">טלפון:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" placeholder="050-1231231">
 
-            <label for="surfExp">נסיון גלישה:</label>
-            <input type="number" id="surfExp" name="surfExp">
+                <label for="email">אי-מייל:</label>
+                <input type="email" id="email" name="email">
 
-            <input type="submit" id="submit" value="Submit">
-        </form>
+                <label for="surfExp">נסיון גלישה:</label>
+                <input type="number" id="surfExp" name="surfExp">
+
+                <input type="submit" id="submit" value="Submit">
+            </form>
+        </div>
 </body>
 <!-- Script & Script link -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
