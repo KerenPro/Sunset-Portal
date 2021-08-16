@@ -11,46 +11,70 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link href="../CSS/SignUp.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>הרשמה</title>
 </head>
 <body>
         <header>imported from homepage</header>
         <div class="container form">
-            <Row><h1>הרשמה למועדון</h1></Row>
-            <form dir="rtl">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="שם פרטי ושם משפחה">
-                    <label for="name" >שם מלא</label>
+            <row><h1 class="center">הרשמה למועדון</h1></row>
+            <div class="row rtl">
+                <div class="col-6">
+                    <form dir="rtl">
+                        <div class="form-fields-section">
+                            <div class="row form-field">
+                                <div class="col-2"><label for="name" class="form-label col-form-label">שם מלא</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control col-5" id="name" name="name"
+                                           placeholder="שם פרטי ושם משפחה">
+                                </div>
+                            </div>
+
+                            <div class="row form-field">
+                                <div class="col-2"><label for="id" class="form-label col-form-label">תעודת זהות</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" class="form-control col-5" id="id" name="id" maxlength="9">
+                                </div>
+                                <div class="col-1"><label for="pass" class="form-label col-form-label">סיסמא</label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="password" class="form-control col-5" id="pass" name="pass">
+                                </div>
+                            </div>
+
+
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="כתובת">
+                                <label for="address">כתובת מלאה</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="טלפון">
+                                <label for="phone">טלפון</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="אימייל">
+                                <label for="email">אימייל</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="surfExp" name="surfExp"
+                                       placeholder="נסיון גלישה">
+                                <label for="surfExp">נסיון גלישה</label>
+                            </div>
+
+                            <input type="submit" id="submit" class="btn center" value="Submit"></div>
+                    </form>
                 </div>
-
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="id" name="id" maxlength="9" placeholder="תעודת זהות">
-                    <label for="id">תעודת זהות</label>
+                <div class="col-6">
+                    <img id="signUp-img" class="center" src="../Assets/Images/logo.png" alt="surfing-waves">
                 </div>
-
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="pass" name="pass" maxlength="9" placeholder="סיסמא">
-                    <label for="pass">סיסמא</label>
-                </div>
-
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="address" name="address" placeholder="כתובת">
-                    <label for="address">כתובת מלאה</label>
-                </div>
-
-
-                <label for="phone">טלפון:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" placeholder="050-1231231">
-
-                <label for="email">אי-מייל:</label>
-                <input type="email" id="email" name="email">
-
-                <label for="surfExp">נסיון גלישה:</label>
-                <input type="number" id="surfExp" name="surfExp">
-
-                <input type="submit" id="submit" value="Submit">
-            </form>
+            </div>
         </div>
 </body>
 <!-- Script & Script link -->

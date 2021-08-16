@@ -1,0 +1,51 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+.wrapper {
+    padding-bottom: 2.5rem;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.rtl {
+    text-align: right;
+}
+
+/*img*/
+#signUp-img{
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    opacity: 80%;
+}
+
+/*Form*/
+.form {
+    width: 100%;
+
+    background-color: rgba(179, 221, 217, 0.19);
+    border-radius: 40px;
+    text-align: right;
+}
+
+.form h1 {
+    padding: 10px;
+    width: 75%;
+
+    background: #85A6A3;
+    border-radius: 13px;
+
+    text-align: center;
+    color: white;
+}
+
+.form-field {
+    padding: 5px;
+}
