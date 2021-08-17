@@ -18,6 +18,19 @@
     text-align: right;
 }
 
+/*Header*/
+header .menu_section{
+    position: relative;
+    top: -10px;
+    z-index: 0;
+}
+
+header .header_item{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 10px;
+}
+
 /*img*/
 #signUp-img{
     width: 80%;

@@ -13,11 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <link href="../CSS/SignUp.css" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet">
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>הרשמה</title>
 </head>
 <body>
-        <header>imported from homepage</header>
+        <header></header>
         <div class="container form">
             <row><h1 class="center">הרשמה למועדון</h1></row>
             <div class="row rtl">
@@ -46,33 +49,44 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="address" name="address" placeholder="כתובת">
-                                <label for="address">כתובת מלאה</label>
+                            <div class="row form-field">
+                                <div class="col-2"><label for="phone" class="form-label col-form-label">טלפון</label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" class="form-control col-5" id="phone" name="phone"
+                                           placeholder="050-1234567">
+                                </div>
                             </div>
 
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="טלפון">
-                                <label for="phone">טלפון</label>
+                            <div class="row form-field">
+                                <div class="col-3"><label for="address" class="form-label col-form-label">כתובת מלאה</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control col-5" id="address" name="address">
+                                </div>
                             </div>
 
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="אימייל">
-                                <label for="email">אימייל</label>
+                            <div class="row form-field">
+                                <div class="col-3"><label for="email" class="form-label col-form-label">אימייל</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="email" class="form-control col-5" id="email" name="email">
+                                </div>
                             </div>
 
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="surfExp" name="surfExp"
-                                       placeholder="נסיון גלישה">
-                                <label for="surfExp">נסיון גלישה</label>
+                            <div class="row form-field">
+                                <div class="col-3"><label for="surfExp" class="form-label col-form-label">נסיון גלישה</label>
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" class="form-control col-5" id="surfExp" name="surfExp">
+                                </div>
                             </div>
 
                             <input type="submit" id="submit" class="btn center" value="Submit"></div>
                     </form>
                 </div>
                 <div class="col-6">
-                    <img id="signUp-img" class="center" src="../Assets/Images/logo.png" alt="surfing-waves">
+                    <img id="signUp-img" class="center" src="../Assets/Images/logo-2.png" alt="surfing-waves">
                 </div>
             </div>
         </div>
@@ -104,4 +118,11 @@
 
 </script>
 <script src="../Javascript/SignUp.js"></script>
+<script>
+    //load navigation bar from homepage
+    $("header").load( "../index.html header, #change_class");
+
+    //load footer from homepage
+    //$("footer").load( "../index.html footer" );
+</script>
 </html>
