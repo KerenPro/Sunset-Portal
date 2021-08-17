@@ -4,7 +4,7 @@
     <!--making a responsive webpage-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Style sheet link -->
-    <link rel="stylesheet" href="../CSS/Shop.css">
+    <link rel="stylesheet" href="../CSS/surfboards.css">
     <!--jQuery import-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -16,32 +16,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>חנות</title>
+    <title>השכרת גלשן</title>
 </head>
 <body>
     <div class="container-fluid">
         <header class="header">imported from homepage</header>
-        <div class="row">
+        <div class="row" >
             <img class="shop-header" src="../Assets/Images/Shop/Surfing-Image-cropped.jpg" alt="surfing-header">
         </div>
 
         <main id="shop-options" class="row">
-            <section class="shop-section col">
-               <img class="shop-option-image center" src="../Assets/Images/Shop/waxing-surfboard.jpg">
-                <h1 class="shop-option-header center">עזרים</h1>
+            <section class="head">
+              <h1>הצגת מועדים פנויים להשכרת גלשן<h1>
             </section>
-            <section class="shop-section col">
-                <img class="shop-option-image center" src="../Assets/Images/Shop/surf-board.jpg">
-                <h1 class="shop-option-header center">גלשנים</h1>
-            </section>
-            <section class="shop-section col">
-                <img class="shop-option-image center" src="../Assets/Images/Shop/surfing-suit-men.jpg">
-                <h1 class="shop-option-header center">בגדי גברים</h1>
-            </section>
-            <section class="shop-section col">
-                <img class="shop-option-image center" src="../Assets/Images/Shop/surfing-suit-women.jpg">
-                <h1 class="shop-option-header center">בגדי נשים</h1>
-            </section>
+      <section class="calendar">  
+		  <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
+                    Create Events</button>  
+
+				<div id="divifm">
+                    <iframe id="ifmCalendar" 
+                    src="https://www.google.com/calendar/embed?
+                    height=550&amp;wkst=1&amp;bgcolor=%23FFFFFF&
+                    amp;src=24tn4fht2sssdssfdiqqlsedk%40group.calendar.google.com&
+                    amp;color=%238C500B&amp;ctz=Asia%2FCalcutta"
+                        style="border-width: 0" width="950" 
+                        height="520" frameborder="0" scrolling="no">
+                    </iframe>
+                </div>
+	</section>
         </main>
 
         <div id="staff-recommend">
@@ -49,25 +51,23 @@
                 <h1>המומלצים שלנו</h1>
             </div>
             <div id="recommends" class="row">
-                <div id="recBoard" class="col recs">
-                    <h1 class="rec-title"></h1>
-                    <span class="rec-img"></span>
-                    <h2 class="rec-price"></h2>
+                <div class="col recs">
+                    המלצה
                 </div>
-                <div id="recMenSuit" class="col recs">
-                    <h1 class="rec-title"></h1>
-                    <span class="rec-img"></span>
-                    <h2 class="rec-price"></h2>
+                <div class="col recs">
+                    המלצה
                 </div>
-                <div id="recWomenSuit" class="col recs">
-                    <h1 class="rec-title"></h1>
-                    <span class="rec-img"></span>
-                    <h2 class="rec-price"></h2>
+                <div class="col recs">
+                    המלצה
                 </div>
-                <div id="recAccess" class="col recs">
-                    <h1 class="rec-title"></h1>
-                    <span class="rec-img"></span>
-                    <h2 class="rec-price"></h2>
+                <div class="col recs">
+                    המלצה
+                </div>
+                <div class="col recs">
+                    המלצה
+                </div>
+                <div class="col recs">
+                    המלצה
                 </div>
             </div>
         </div>
@@ -99,6 +99,7 @@
         firebase.analytics();
         
     </script>
+    <script type="module" src="../Javascript/Shop.js"></script>
     <script>
         /*//load navigation bar from homepage
         $("header").load( "../index.html nav" );
@@ -108,5 +109,4 @@
     </script>
 
 </body>
-<script type="module" src="../Javascript/Shop.js"></script>
 </html>
