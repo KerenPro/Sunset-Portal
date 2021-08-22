@@ -27,16 +27,27 @@ body {
 }
 
 /*Header*/
-header .menu_section{
+nav .menu_section{
     position: relative;
-    top: -10px;
-    z-index: 0;
+    top: -20px;
+}
+
+nav .menu_item {
+
 }
 
 header .header_item{
-    display: flex;
-    flex-direction: row-reverse;
+    text-align: right;
+}
+
+header {
     padding: 10px;
+}
+
+header .logo {
+    width: 5%;
+    height: auto;
+    border-radius: 10px;
 }
 
 /*img*/
