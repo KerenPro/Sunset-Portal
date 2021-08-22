@@ -25,7 +25,7 @@ button{
     .logo{
         width: 60px;
         height: 45px;
-        background: url("../Includes/logo-2.png")
+        background: url("../Assets/Images/Homepage/logo-2.png")
 
     }
 
@@ -203,8 +203,8 @@ a:hover, a:active{color: #111111;}
     .feature h2 {line-height: 0;}
     .feature p {text-align: center; margin: auto; max-width: 200px;}
     .feature .feature_image {width:200px; height: 200px; margin:auto;  background-size: cover;}
-    .feature1 .feature_image {background-image: url("../Includes/wavesurf.jpg");}
-    .feature2 .feature_image {background-image: url("../Includes/sup.jpg");}
+    .feature1 .feature_image {background-image: url("../Assets/Images/Homepage/wavesurf.jpg");}
+    .feature2 .feature_image {background-image: url("../Assets/Images/Homepage/sup.jpg");}
 
     .dAt{
         float: left;
@@ -215,6 +215,6 @@ a:hover, a:active{color: #111111;}
     .wind{
         float: right;
     }
-    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Includes/wind.png");
+    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Assets/Images/Homepage/wind.png");
 
 
