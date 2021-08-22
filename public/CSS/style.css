@@ -67,7 +67,7 @@ a:hover, a:active{color: #111111;}
 
     -webkit-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
-    box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
+    box-shadow: 9px 10px 39px -2px (0,0,0,0.3);;
     
 }
 @media screen and (max-width: 720px){
@@ -163,7 +163,7 @@ a:hover, a:active{color: #111111;}
         white,
         white 3px, 
         rgba(0, 116, 217, 0.01) 3px,
-        rgba(0, 116, 217, 0.01) 5px
+        rgba(0, 116, 217, 0.01) 5px,
     );
 }
     .second_section_container{}
@@ -215,6 +215,6 @@ a:hover, a:active{color: #111111;}
     .wind{
         float: right;
     }
-    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Includes/wind.png");}
+    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Includes/wind.png");
 
 
