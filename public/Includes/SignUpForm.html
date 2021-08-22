@@ -22,7 +22,9 @@
 <body>
         <header></header>
         <div class="container form">
-            <row><h1 class="center">הרשמה למועדון</h1></row>
+            <div class="row">
+                <h1 class="form-header">הרשמה למועדון</h1>
+            </div>
             <div class="row rtl">
                 <div class="col-6">
                     <form dir="rtl">
@@ -39,15 +41,21 @@
                             <div class="row form-field">
                                 <div class="col-2"><label for="id" class="form-label col-form-label">תעודת זהות</label>
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" class="form-control col-5" id="id" name="id" maxlength="9">
-                                </div>
-                                <div class="col-1"><label for="pass" class="form-label col-form-label">סיסמא</label>
-                                </div>
-                                <div class="col-5">
-                                    <input type="password" class="form-control col-5" id="pass" name="pass">
+                                <div class="col-7">
+                                    <input type="text" class="form-control col-5" id="id" name="id"
+                                           >
                                 </div>
                             </div>
+
+                            <div class="row form-field">
+                                <div class="col-2"><label for="pass" class="form-label col-form-label">סיסמא</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="password" class="form-control col-5" id="pass" name="pass"
+                                          >
+                                </div>
+                            </div>
+
 
                             <div class="row form-field">
                                 <div class="col-2"><label for="phone" class="form-label col-form-label">טלפון</label>
