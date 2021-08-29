@@ -4,7 +4,15 @@ const db = firebase.firestore();
 //Using Date
 const today = new Date();
 
-document.getElementById("submit").addEventListener('click', (event) => {
+//Variables
+const submitBtn =  document.getElementById("submit");
+const form = document.getElementById("form");
+
+const redirectToHomepage = () => {
+    window.location.href="../index.html";
+}
+
+submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
     const signUpDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
@@ -30,6 +38,7 @@ document.getElementById("submit").addEventListener('click', (event) => {
     firebase.auth().createUserWithEmailAndPassword(email, pass);
 
     alert("ההרשמה עברה בהצלחה");
+    redirectToHomepage();
     return false;
 })
 
