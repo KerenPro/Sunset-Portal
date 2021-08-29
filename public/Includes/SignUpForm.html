@@ -14,20 +14,19 @@
     <!--Stylesheet-->
     <link href="../CSS/SignUp.css" rel="stylesheet">
     <link href="../CSS/style.css" rel="stylesheet">
-    <!--jQuery import-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>הרשמה</title>
 </head>
 <body>
         <header></header>
+        <nav></nav>
         <div class="container form">
             <div class="row">
                 <h1 class="form-header">הרשמה למועדון</h1>
             </div>
             <div class="row rtl">
                 <div class="col-6">
-                    <form dir="rtl">
+                    <form id="form" dir="rtl">
                         <div class="form-fields-section">
                             <div class="row form-field">
                                 <div class="col-2"><label for="name" class="form-label col-form-label">שם מלא</label>
@@ -90,7 +89,8 @@
                                 </div>
                             </div>
 
-                            <input type="submit" id="submit" class="btn center" value="Submit"></div>
+                            <input type="submit" id="submit" class="btn center" value="הרשמה">
+                        </div>
                     </form>
                 </div>
                 <div class="col-6">
@@ -128,7 +128,12 @@
 <script src="../Javascript/SignUp.js"></script>
 <script>
     //load navigation bar from homepage
-    //$("header").load( "../index.html header, #change_class");
+    $("header").load( "../index.html header", function () {
+        $("img").attr("src", "../Assets/Images/Homepage/logo-2.png");
+        $("#homepage-link").attr("href", "../index.html");
+        $("#signup-link").attr("href", "./SignUpForm.html")
+    });
+    $("nav").load("../index.html #change_class")
 
     //load footer from homepage
     //$("footer").load( "../index.html footer" );
