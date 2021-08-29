@@ -4,34 +4,54 @@ const db = firebase.firestore();
 //Using Date
 const today = new Date();
 
-document.getElementById("submit").addEventListener('click', (event) => {
-    event.preventDefault();
+//Variables
+const submitBtn = document.getElementById("submit");
+const form = document.getElementById("form");
 
-    const signUpDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
-    const clientId = document.getElementById("id").value;
-    const name = document.getElementById("name").value;
-    const pass = document.getElementById("pass").value;
-    const address = document.getElementById("address").value;
-    const phoneNum = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
-    const surfExp = document.getElementById("surfExp").value;
+const redirectToHomepage = () => {
+  window.location.href = "../index.html";
+  return false;
+};
 
-    const newUser = {
-        signUpDate: signUpDate,
-        clientId: clientId,
-        name: name,
-        pass: pass,
-        address: address,
-        phoneNum: phoneNum ,
-        email: email,
-        surfExp: surfExp
-    }
-    db.collection('Users').doc(`${clientId}`).set(newUser);
-    firebase.auth().createUserWithEmailAndPassword(email, pass);
+const submitFormFunc = () => {
+  const signUpDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
+  const clientId = document.getElementById("id").value;
+  const name = document.getElementById("name").value;
+  const pass = document.getElementById("pass").value;
+  const address = document.getElementById("address").value;
+  const phoneNum = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const surfExp = document.getElementById("surfExp").value;
 
-    alert("ההרשמה עברה בהצלחה");
-    return false;
-})
+  const newUser = {
+    signUpDate: signUpDate,
+    clientId: clientId,
+    name: name,
+    pass: pass,
+    address: address,
+    phoneNum: phoneNum,
+    email: email,
+    surfExp: surfExp,
+  };
+  db.collection("Users").doc(`${clientId}`).set(newUser);
+  firebase.auth().createUserWithEmailAndPassword(email, pass);
+
+  return false;
+};
+
+form.addEventListener(
+  "submit",
+  () => {
+    submitFormFunc();
+    alert("הרהשמה התקלה בהצלחה");
+  },
+  false
+);
+
+// submitForm.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   submitFormFunc();
+// });
 
 /****THIS HELPS ME ****/
 // Add a new document in collection "cities"
@@ -64,4 +84,3 @@ document.getElementById("submit").addEventListener('click', (event) => {
 // };
 // db.collection("data").doc("one").set(docData).then(() => {
 //     console.log("Document successfully written!");
-

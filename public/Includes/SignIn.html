@@ -1,65 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!--jQuery import-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <!--Google Font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        <!--Stylesheet-->
-        <link href="../CSS/SignUp.css" rel="stylesheet">
-        <link href="../CSS/style.css" rel="stylesheet">
+  <head>
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <link href="../CSS/SignIn.css" rel="stylesheet" />
+    <link href="../CSS/style.css" rel="stylesheet" />
 
-        <meta charset="UTF-8">
-        <title>התחברות</title>
-    </head>
-    <body>
-        <header></header>
-        <nav></nav>
+    <meta charset="UTF-8" />
+    <title>התחברות</title>
+  </head>
+  <body>
+    <header></header>
+    <nav></nav>
+    <div class="container">
+      <div class="form center">
+        <div class="row">
+          <h1 class="form-header">התחברות</h1>
+        </div>
+        <div class="row rtl">
+          <div class="col-12">
+            <form dir="rtl">
+              <div class="form-fields-section">
+                <div class="row form-field">
+                  <div class="col-2">
+                    <label for="email" class="form-label col-form-label center"
+                      >אי-מייל</label
+                    >
+                  </div>
+                  <div class="col-7">
+                    <input
+                      type="email"
+                      class="form-control col-5"
+                      id="email"
+                      name="email"
+                      placeholder="שם פרטי ושם משפחה"
+                    />
+                  </div>
+                </div>
 
-    </body>
-    <!-- Script & Script link -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+                <div class="row form-field">
+                  <div class="col-2">
+                    <label for="pass" class="form-label col-form-label center"
+                      >סיסמא</label
+                    >
+                  </div>
+                  <div class="col-7">
+                    <input
+                      type="password"
+                      class="form-control col-5"
+                      id="pass"
+                      name="pass"
+                      onclick="window.location.href='../index.html'"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row center">
+                <input type="submit" id="submit" class="btn" value="הרשמה" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Script & Script link -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
-    <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        let firebaseConfig = {
-            apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
-            authDomain: "sunset-portal.firebaseapp.com",
-            projectId: "sunset-portal",
-            storageBucket: "sunset-portal.appspot.com",
-            messagingSenderId: "861523328352",
-            appId: "1:861523328352:web:5319424c8a9ca6778ef205",
-            measurementId: "G-S8K9RDWCP8",
-            databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+      apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+      authDomain: "sunset-portal.firebaseapp.com",
+      projectId: "sunset-portal",
+      storageBucket: "sunset-portal.appspot.com",
+      messagingSenderId: "861523328352",
+      appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+      measurementId: "G-S8K9RDWCP8",
+      databaseURL:
+        "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <script src="../Javascript/SignIn.js"></script>
+  <script>
+    //load navigation bar from homepage
+    $("header").load("../index.html header", function () {
+      $("img").attr("src", "../Assets/Images/Homepage/logo-2.png");
+      $("#homepage-link").attr("href", "../index.html");
+      $("#signup-link").attr("href", "./SignUpForm.html");
+      $("#signin-link").attr("href", "./SignIn.html");
+    });
+    $("nav").load("../index.html #change_class");
 
-    </script>
-    <script src="../Javascript/SignUp.js"></script>
-    <script>
-        //load navigation bar from homepage
-        $("header").load( "../index.html header", function () {
-            $("img").attr("src", "../Assets/Images/Homepage/logo-2.png");
-            $("#homepage-link").attr("href", "../index.html");
-            $("#signup-link").attr("href", "./SignUpForm.html")
-        });
-        $("nav").load("../index.html #change_class")
-
-        //load footer from homepage
-        //$("footer").load( "../index.html footer" );
-    </script>
+    //load footer from homepage
+    //$("footer").load( "../index.html footer" );
+  </script>
 </html>

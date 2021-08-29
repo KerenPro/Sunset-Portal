@@ -1,10 +1,12 @@
 * {
-    margin:0;
+    margin: 0;
     padding: 0;
 }
+
 html {
     height: 100%;
 }
+
 body {
     height: 100%;
     margin: 0;
@@ -27,7 +29,7 @@ body {
 }
 
 /*Header*/
-nav .menu_section{
+nav .menu_section {
     position: relative;
     top: -20px;
 }
@@ -36,7 +38,7 @@ nav .menu_item {
 
 }
 
-header .header_item{
+header .header_item {
     text-align: right;
 }
 
@@ -51,7 +53,7 @@ header .logo {
 }
 
 /*img*/
-#signUp-img{
+#signUp-img {
     width: 80%;
     margin-bottom: 10px;
     border-radius: 10px;
