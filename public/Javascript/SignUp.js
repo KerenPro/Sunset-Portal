@@ -10,14 +10,14 @@ const form = document.getElementById("form");
 
 const redirectToHomepage = () => {
   window.location.href = "../index.html";
-  return false;
 };
 
-const submitFormFunc = () => {
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+
   const signUpDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
   const clientId = document.getElementById("id").value;
   const name = document.getElementById("name").value;
-  const pass = document.getElementById("pass").value;
   const address = document.getElementById("address").value;
   const phoneNum = document.getElementById("phone").value;
   const email = document.getElementById("email").value;
@@ -27,31 +27,30 @@ const submitFormFunc = () => {
     signUpDate: signUpDate,
     clientId: clientId,
     name: name,
-    pass: pass,
     address: address,
     phoneNum: phoneNum,
     email: email,
     surfExp: surfExp,
   };
-  db.collection("Users").doc(`${clientId}`).set(newUser);
-  firebase.auth().createUserWithEmailAndPassword(email, pass);
+
+  db.collection("Users")
+    .doc(`${email}`)
+    .set(newUser)
+    .then((email, pass) => {
+      const signUpEmail = document.getElementById("email").value;
+      const signUpPass = document.getElementById("pass").value;
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(signUpEmail, signUpPass)
+        .then((signUpUser) => {
+          let createdUser = signUpUser;
+          alert("ההרשמה עברה בהצלחה");
+          redirectToHomepage();
+        });
+    });
 
   return false;
-};
-
-form.addEventListener(
-  "submit",
-  () => {
-    submitFormFunc();
-    alert("הרהשמה התקלה בהצלחה");
-  },
-  false
-);
-
-// submitForm.addEventListener("click", (event) => {
-//   event.preventDefault();
-//   submitFormFunc();
-// });
+});
 
 /****THIS HELPS ME ****/
 // Add a new document in collection "cities"

@@ -33,54 +33,56 @@
   <body>
     <header></header>
     <nav></nav>
-    <div class="container">
-      <div class="form center">
-        <div class="row">
-          <h1 class="form-header">התחברות</h1>
-        </div>
-        <div class="row rtl">
-          <div class="col-12">
-            <form dir="rtl">
-              <div class="form-fields-section">
-                <div class="row form-field">
-                  <div class="col-2">
-                    <label for="email" class="form-label col-form-label center"
-                      >אי-מייל</label
-                    >
-                  </div>
-                  <div class="col-7">
-                    <input
-                      type="email"
-                      class="form-control col-5"
-                      id="email"
-                      name="email"
-                      placeholder="שם פרטי ושם משפחה"
-                    />
-                  </div>
+    <div class="container form">
+      <div class="row">
+        <h1 class="form-header">התחברות</h1>
+      </div>
+      <div class="row rtl">
+        <div class="col-12">
+          <form id="form" dir="rtl">
+            <div class="form-fields-section">
+              <div class="row form-field">
+                <div class="col-2">
+                  <label for="email" class="form-label col-form-label"
+                    >אימייל</label
+                  >
                 </div>
+                <div class="col-7">
+                  <input
+                    type="email"
+                    class="form-control col-5"
+                    id="email"
+                    name="email"
+                    placeholder="אימייל"
+                  />
+                </div>
+              </div>
 
-                <div class="row form-field">
-                  <div class="col-2">
-                    <label for="pass" class="form-label col-form-label center"
-                      >סיסמא</label
-                    >
-                  </div>
-                  <div class="col-7">
-                    <input
-                      type="password"
-                      class="form-control col-5"
-                      id="pass"
-                      name="pass"
-                      onclick="window.location.href='../index.html'"
-                    />
-                  </div>
+              <div class="row form-field">
+                <div class="col-2">
+                  <label for="pass" class="form-label col-form-label"
+                    >סיסמא</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="password"
+                    class="form-control col-5"
+                    id="pass"
+                    name="pass"
+                    placeholder="סיסמא"
+                  />
                 </div>
               </div>
-              <div class="row center">
-                <input type="submit" id="submit" class="btn" value="הרשמה" />
-              </div>
-            </form>
-          </div>
+
+              <input
+                type="submit"
+                id="submit"
+                class="btn center"
+                value="התחבר"
+              />
+            </div>
+          </form>
         </div>
       </div>
     </div>
