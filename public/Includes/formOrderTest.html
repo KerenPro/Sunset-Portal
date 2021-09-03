@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="UTF-8" />
     <title>הזמנה</title>
@@ -8,29 +8,48 @@
     <form>
       <legend>Cart</legend>
       <legend>Items</legend>
-      <label for="item1">Item1</label>
-      <input type="checkbox" id="item1" name="item1" />
-      <label for="item2">Item1</label>
-      <input type="checkbox" id="item2" name="item2" />
-      <label for="item3">Item1</label>
-      <input type="checkbox" id="item3" name="item3" />
+      <input type="checkbox" class="surf" id="surf" name="surf" value="surf" />
+      <label for="surf">גלשן</label>
+      <input type="checkbox" class="sap" id="sap" name="sap" value="sap" />
+      <label for="sap">סאפ</label>
+      <input
+        type="checkbox"
+        class="cloth"
+        id="cloth"
+        name="cloth"
+        value="cloth"
+      />
+      <label for="cloth">ביגוד ימי</label>
 
       <legend>Details</legend>
-      <label for="date">Date</label>
-      <input type="date" id="date" name="date" />
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" />
+      <label for="bday">Birthday</label>
+      <input type="date" id="bday" name="bday" />
+      <br />
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" /><br />
+      <label for="lname">Last name</label>
+      <input type="text" id="lname" name="lname" />
+      <br />
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" />
+      <br />
       <label for="phoneNum">Phone number</label>
       <input type="text" id="phoneNum" name="phoneNum" />
-
-      <legend>Payment</legend>
-      <label for="creditNum">Credit Card Number</label>
-      <input type="text" id="creditNum" name="creditNum" />
-      <label for="cvv">CVV Code</label>
-      <input type="text" id="cvv" name="cvv" />
-      <label for="exDate">Expiration Date</label>
-      <input type="date" id="exDate" name="exDate" />
-
+      <br />
+      <label for="tHealthy">Yes</label>
+      <input type="radio" id="tHealthy" name="healthy" />
+      <label for="fHealthy">No</label>
+      <input type="radio" id="fHealthy" name="healthy" />
+      <br />
+      <label for="issues">Any other issues?</label>
+      <textarea
+        type="textarea"
+        id="issues"
+        name="issues"
+        rows="4"
+        colls="10"
+      ></textarea>
+      <br />
       <input type="submit" id="submit" value="Submit" />
     </form>
   </body>
