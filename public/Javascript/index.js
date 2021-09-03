@@ -32,13 +32,8 @@ function getTime(){
 
 }
 
-
-
-
-
 document.getElementById("Date").innerHTML=getDate();
 document.getElementById("Time").innerHTML=getTime();
-
 
 var data;
 const xhr = new XMLHttpRequest();
@@ -54,6 +49,7 @@ xhr.onload = () =>{
 
     let ms = data.wind.speed;
     let kph = ms* 3.6;
+    kph = (Math.round(kph*100)/100).toFixed(2);
 
     
 
@@ -78,6 +74,8 @@ function convertWindDir (deg){
     let index = Math.round((deg % 360)/ 22.5)
     return compass[index];
 }
+
+
 
 
 
