@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>הזמנה</title>
-</head>
-<body>
-  <form>
-    <legend>Cart</legend>
-    <legend>Items</legend>
-    <label for="item1">Item1</label>
-    <input type="checkbox" id="item1" name="item1">
-    <label for="item2">Item1</label>
-    <input type="checkbox" id="item2" name="item2">
-    <label for="item3">Item1</label>
-    <input type="checkbox" id="item3" name="item3">
+  </head>
+  <body>
+    <form>
+      <legend>Cart</legend>
+      <legend>Items</legend>
+      <label for="item1">Item1</label>
+      <input type="checkbox" id="item1" name="item1" />
+      <label for="item2">Item1</label>
+      <input type="checkbox" id="item2" name="item2" />
+      <label for="item3">Item1</label>
+      <input type="checkbox" id="item3" name="item3" />
 
-    <legend>Details</legend>
-    <label for="date">Date</label>
-    <input type="date" id="date" name="date">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <label for="phoneNum">Phone number</label>
-    <input type="text" id="phoneNum" name="phoneNum">
+      <legend>Details</legend>
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" />
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <label for="phoneNum">Phone number</label>
+      <input type="text" id="phoneNum" name="phoneNum" />
 
-    <legend>Payment</legend>
-    <label for="creditNum">Credit Card Number</label>
-    <input type="text" id="creditNum" name="creditNum">
-    <label for="cvv">CVV Code</label>
-    <input type="text" id="cvv" name="cvv">
-    <label for="exDate">Expiration Date</label>
-    <input type="date" id="exDate" name="exDate">
+      <legend>Payment</legend>
+      <label for="creditNum">Credit Card Number</label>
+      <input type="text" id="creditNum" name="creditNum" />
+      <label for="cvv">CVV Code</label>
+      <input type="text" id="cvv" name="cvv" />
+      <label for="exDate">Expiration Date</label>
+      <input type="date" id="exDate" name="exDate" />
 
-    <input type="submit" id="submit" value="Submit">
-  </form>
-</body>
-<!-- Script & Script link -->
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+      <input type="submit" id="submit" value="Submit" />
+    </form>
+  </body>
+  <!-- Script & Script link -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
-<!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  let firebaseConfig = {
-    apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
-    authDomain: "sunset-portal.firebaseapp.com",
-    projectId: "sunset-portal",
-    storageBucket: "sunset-portal.appspot.com",
-    messagingSenderId: "861523328352",
-    appId: "1:861523328352:web:5319424c8a9ca6778ef205",
-    measurementId: "G-S8K9RDWCP8",
-    databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-
-</script>
-<script src="../Javascript/Order.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+      apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+      authDomain: "sunset-portal.firebaseapp.com",
+      projectId: "sunset-portal",
+      storageBucket: "sunset-portal.appspot.com",
+      messagingSenderId: "861523328352",
+      appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+      measurementId: "G-S8K9RDWCP8",
+      databaseURL:
+        "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <script src="../Javascript/addOrder.js"></script>
 </html>
