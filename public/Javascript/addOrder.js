@@ -22,17 +22,17 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const cloth = document.getElementById("cloth");
 
   if (surf.checked) {
-    items.push("surf");
+    items.push("גלישה");
     console.log("surf is chosen");
   }
 
   if (sap.checked) {
-    items.push("sap");
+    items.push("סאפ");
     console.log("sap is chosen");
   }
 
   if (cloth.checked) {
-    items.push("cloth");
+    items.push("ביגוד ימי");
     console.log("cloth is chosen");
   }
 
@@ -45,6 +45,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const trueHealthy = document.getElementById("tHealthy");
   const falseHealthy = document.getElementById("fHealthy");
   const issues = document.getElementById("issues").value;
+  const date = document.getElementById("date").value;
   const orderDateTime = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()} ; ${today.getHours()}:${today.getMinutes()}`;
   let isHealthy;
 
@@ -56,17 +57,18 @@ document.getElementById("submit").addEventListener("click", (event) => {
     console.log(isHealthy);
   }
 
-  console.log(firstName);
+  console.log(date);
   //Finalize order object
   const order = {
-    items: items,
+    itemTypes: items,
+    date: firebase.firestore.Timestamp.fromDate(new Date(date)),
     firstName: firstName,
     lastName: lastName,
     id: id,
-    birthday: birthday,
+    birthDate: birthday,
     phoneNumber: phoneNumber,
-    healthy: isHealthy,
-    issues: issues,
+    isHealthy: isHealthy,
+    knownIssues: issues,
     orderDateTime: orderDateTime,
   };
 
