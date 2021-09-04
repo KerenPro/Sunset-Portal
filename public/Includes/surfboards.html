@@ -22,7 +22,8 @@
 	
     <title>השכרת גלשן</title>
 </head>
-<body>
+<body onLoad="javascript:loadDoc()" onLoad= "javascript:color()">
+
 
     <div class="container-fluid">
         <header class="header">imported from homepage</header>
@@ -38,7 +39,6 @@
 			<section class="wheather-data">
 			
             <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
-			<button type="button" onclick="loadDoc()">Get waves height</button>
 			<br><br>
 			<table id="demo"></table>
 			<br></br>
@@ -123,7 +123,12 @@
         </div>
 
     
+
+
+ 
   </main>
+
+    
 
 	    <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -161,7 +166,7 @@
     </script>
 	
 	 <script src="../Javascript/surfboards.js"></script>
-
+	
 
 </body>
 
