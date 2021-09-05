@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>הזמנה</title>
+</head>
+<body>
+<form>
+    <legend>Cart</legend>
+    <legend>Items</legend>
+    <input type="checkbox" class="surf" id="surf" name="surf" value="surf"/>
+    <label for="surf">גלשן</label>
+    <input type="checkbox" class="sap" id="sap" name="sap" value="sap"/>
+    <label for="sap">סאפ</label>
+    <input
+            type="checkbox"
+            class="cloth"
+            id="cloth"
+            name="cloth"
+            value="cloth"
+    />
+    <label for="cloth">ביגוד ימי</label>
+
+    <legend>Details</legend>
+    <label for="bday">Birthday</label>
+    <input type="date" id="bday" name="bday"/>
+    <br/>
+    <label for="date">Date and Time for rent:</label>
+    <input type="datetime-local" id="date" name="date"/>
+    <br>
+    <label for="fname">First name:</label><br/>
+    <input type="text" id="fname" name="fname"/><br/>
+    <label for="lname">Last name</label>
+    <input type="text" id="lname" name="lname"/>
+    <br/>
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id"/>
+    <br/>
+    <label for="phoneNum">Phone number</label>
+    <input type="text" id="phoneNum" name="phoneNum"/>
+    <br/>
+
+    <input type="radio" id="tHealthy" name="healthy"/>
+    <label for="tHealthy">Healthy: Yes</label>
+
+    <input type="radio" id="fHealthy" name="healthy"/>
+    <label for="fHealthy">Healthy: No</label>
+    <br/>
+    <label for="issues">Any other issues?</label>
+    <textarea
+            type="textarea"
+            id="issues"
+            name="issues"
+            rows="4"
+            colls="10"
+    ></textarea>
+    <br/>
+    <input type="submit" id="submit" value="Submit"/>
+</form>
+</body>
+<!-- Script & Script link -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+
+<!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+        apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+        authDomain: "sunset-portal.firebaseapp.com",
+        projectId: "sunset-portal",
+        storageBucket: "sunset-portal.appspot.com",
+        messagingSenderId: "861523328352",
+        appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+        measurementId: "G-S8K9RDWCP8",
+        databaseURL:
+            "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
+<script src="../Javascript/addOrder.js"></script>
+</html>

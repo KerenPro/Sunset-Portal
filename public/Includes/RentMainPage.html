@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--making a responsive webpage-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Style sheet link -->
+    <link rel="stylesheet" href="../CSS/Shop.css">
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>חנות</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="header">imported from homepage</header>
+        <div class="row">
+            <img class="shop-header" src="../Assets/Images/Shop/Surfing-Image-cropped.jpg" alt="surfing-header">
+        </div>
+
+        <main id="shop-options" class="row">
+            <section class="shop-section col" id ="hover" onClick = parent.open("surfboards.html")>
+               <img class="shop-option-image center" src="../Assets/Images/Shop/waxing-surfboard.jpg">
+                <h1 class="shop-option-header center">גלשנים</h1>
+            </section>
+            <section class="shop-section col" id ="hover">
+                <img class="shop-option-image center" src="../Assets/Images/Shop/surf-board.jpg">
+                <h1 class="shop-option-header center">סאפים </h1>
+            </section>
+            <section class="shop-section col" id ="hover">
+                <img class="shop-option-image center" src="../Assets/Images/Shop/surfing-suit-men.jpg">
+                <h1 class="shop-option-header center">ביגוד ימי</h1>
+            </section>
+         
+        </main>
+
+        <div id="staff-recommend">
+            <div class="recommend-header row">
+                <h1>המומלצים שלנו</h1>
+            </div>
+            <div id="recommends" class="row">
+                <div id="recBoard" class="col recs">
+                    <h1 class="rec-title"></h1>
+                    <span class="rec-img"></span>
+                    <h2 class="rec-price"></h2>
+                </div>
+                <div id="recMenSuit" class="col recs">
+                    <h1 class="rec-title"></h1>
+                    <span class="rec-img"></span>
+                    <h2 class="rec-price"></h2>
+                </div>
+                <div id="recWomenSuit" class="col recs">
+                    <h1 class="rec-title"></h1>
+                    <span class="rec-img"></span>
+                    <h2 class="rec-price"></h2>
+                </div>
+                <div id="recAccess" class="col recs">
+                    <h1 class="rec-title"></h1>
+                    <span class="rec-img"></span>
+                    <h2 class="rec-price"></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Script & Script link -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+
+    <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        let firebaseConfig = {
+            apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+            authDomain: "sunset-portal.firebaseapp.com",
+            projectId: "sunset-portal",
+            storageBucket: "sunset-portal.appspot.com",
+            messagingSenderId: "861523328352",
+            appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+            measurementId: "G-S8K9RDWCP8",
+            databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        
+    </script>
+    <script>
+        /*//load navigation bar from homepage
+        $("header").load( "../index.html nav" );
+        //load footer from homepage
+        $("footer").load( "../index.html footer" );*/
+    </script>
+
+</body>
+<script type="module" src="../Javascript/Shop.js"></script>
+</html>
