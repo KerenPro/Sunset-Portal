@@ -1,4 +1,4 @@
-.head{
+.head,.third_section ,.form{
 
     position:relative;
     width: 100%;
@@ -9,9 +9,33 @@
 	font-family: system-ui;
 	margin:3px;
 	padding:10px;
+	
 }
 
-.shop-header {
+#demo{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border-radius:10px;
+  
+}
+	
+	.wheather-data{
+	background-image: url("../Assets/Images/waves1.jpg");
+	background-repeat: no-repeat;
+    background-size: 100%;
+	position:relative;
+    width: 100%;
+    opacity: 65%;
+    border-radius: 20px;
+	text-align: center;
+	font-family: system-ui;
+	margin:3px;
+	padding:10px;
+	}
+	
+
+.shop-header{
     position:relative;
     width: 100%;
     opacity: 80%;
@@ -64,7 +88,7 @@
     justify-content: center;
     padding-top: 20px;
 
-    font-family: 'Rubik', sans-serif;;
+    font-family: 'Rubik', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -111,3 +135,44 @@
 	
 	
 }
+
+table,td,th {
+  border : 1px solid black;
+  border-collapse: collapse ;
+  border-top-width:5px;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,td {
+  padding: 10px;
+
+}
+th{
+background-color:#B0D9D9;
+
+}
+
+#azhara1,#taarih-azmana1{
+	
+border : 5px solid white;
+height:65px;
+width:40%;
+ margin: auto;
+  border-bottom-color:#B0D9D9;
+  border-style:dotted;
+}
+
+#azhara2,#leida-border{
+	
+border : 5px solid white;
+height:65px;
+width:40%;
+ margin: auto;
+ border-top-color:#B0D9D9;
+   border-style:dotted;
+}
+
