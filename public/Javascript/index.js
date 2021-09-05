@@ -1,3 +1,4 @@
+console.log("got here");
 function getDate(){
     var now = new Date ();
     var day = now.getDate();

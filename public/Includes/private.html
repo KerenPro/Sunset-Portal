@@ -13,7 +13,7 @@
         <title>Sunset</title>
 
 </head>
-<body>
+<body onLoad="javascript:loadDoc()" onLoad= "javascript:color()">
         <header>
             <div class="header_item">
             <button> הרשמה</button>
@@ -58,7 +58,7 @@
                     </div>
                     <div id="classModal" class="modal1">
                         <div class="modal_content">
-                            <span class="close" id="classClose">&times;</span>
+                            <span class="close" id="closeClassModal">&times;</span>
                             <h2> שיעורים שנקבעו</h2>
                                 <table class="table">
                                     <thead>
@@ -67,19 +67,13 @@
                                             <th> תאריך</th>
                                             <th> שעה</th>
                                             <th> סוג שיעור</th>
+                                            <th> פרטי/קבוצתי</th>
+                                            <th> מספר משתתפים</th>
                                             <th> </th>
 
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr> 
-                                            <td>#</td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> <button class="update"> עדכון</button> <button class="cancel"> ביטול</button> </td>
-                                        </tr>
-                                     
+                                    <tbody id="classes">
                                     </tbody>
                                 </table>
                             
@@ -98,7 +92,7 @@
                     </div>
                     <div id="shopModal" class="modal1">
                         <div class="modal_content">
-                            <span class="close">&times;</span>
+                            <span class="close" id="closeRentalModal">&times;</span>
                             <h2> השכרות פעילות</h2>
                                 <table class="table">
                                     <thead>
@@ -118,21 +112,31 @@
 
                         </div>
 
-                    </div>
-                    <div id="cancelModal" class="modal2">
-                            <span class="close">&times;</span>
-                          
-                         <button onclick="saveCancellation()"> שמירה </button>
-                        </div>
-                    </div>
-
-                    <div id="updateModal" class="modal2">
+                    <div id="updateRentalModal" class="modal2">
                         <div class="modal_content">
-                            <span class="close" id="closeUpdate">&times;</span>
+                            <span class="close" id="closeRentalUpdate">&times;</span>
                             <h2> עדכון השכרה</h2>
+                              <section class="wheather-data">
+                              
+                              <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
+                              <br><br>
+                              <table id="demo"></table>
+                              <br></br>
+                              <button type="button" onclick="color()">Show relevant days</button>       
+                               
+                              </section>
                             <button onclick="saveUpdate()"> שמירה </button>
                         </div>
                     </div>
+                </div>
+
+                <div id="updateClassModal" class="modal2">
+                    <div class="modal_content">
+                        <span class="close" id="closeClassUpdate">&times;</span>
+                        <h2> עדכון השכרה</h2>
+                        <button onclick="saveUpdate()"> שמירה </button>
+                    </div>
+                </div>
                 </a>
             </div>
 

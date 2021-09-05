@@ -24,87 +24,121 @@ const db = firebase.firestore();
 
 
 async function getClasses() {
-    const classesRef = await db.collection("classes").get();
+    const classesRef = await db.collection("Classes").get();
+    console.log(classesRef.docs);
     return classesRef.docs;
-
-
 }
 
 async function getRentals() {
     //References to DB
     const ordersRef = await db.collection("Orders").get();
+    console.log(ordersRef.docs);
     return ordersRef.docs;
 }
 
-
-getRentals().then(newRentals => buildRentals(newRentals));
+getClasses().then(newClasses => buildClasses(newClasses));
 
 var classesUl = document.getElementById("classes");
-for (var lesson in classes) {
-    
-}
-
-
 
 var shopM = document.getElementById("shopM");
 var shopModal = document.getElementById("shopModal");
-var span1 = document.getElementsByClassName("close")[1];
-    
-var cancel_classM = document.getElementById("cancelModal");
-var span2 = document.getElementsByClassName ("close") [2];
+var closeRentalModal = document.getElementById("closeRentalModal");
+var closeClassModal = document.getElementById("closeClassModal");
 
-var update_classM = document.getElementById("updateModal");
-var closeUpdate = document.getElementById("closeUpdate");
+var updateRentalModal = document.getElementById("updateRentalModal");
+var closeRentalUpdate = document.getElementById("closeRentalUpdate");
+var closeClassUpdate = document.getElementById("closeClassUpdate");
+
+function buildClasses(newClasses) {
+    getRentals().then(newRentals => buildRentals(newRentals));
+
+    updateClassModal.onclick = function (event) {
+        event.stopPropagation();
+    }
+
+    closeClassUpdate.onclick = function (event) {
+        updateClassModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    classes = newClasses;
+var classTable = document.getElementById("classes");
+classes.forEach(lesson => {
+    classData = lesson.data();
+    console.log(classData);
+    var tr = document.createElement("tr");
+    var numberTd = document.createElement("td");
+    var numberText = document.createTextNode("#");
+    numberTd.appendChild(numberText);
+    tr.appendChild(numberTd);
+    var dateTd = document.createElement("td");
+    var dateText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleDateString("he-IL") : null);
+    dateTd.appendChild(dateText);
+    tr.appendChild(dateTd);
+    var timeTd = document.createElement("td");
+    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
+    timeTd.appendChild(timeText);
+    tr.appendChild(timeTd);
+    var itemTd = document.createElement("td");
+    var itemText = document.createTextNode(classData.classType);
+    itemTd.appendChild(itemText);
+    tr.appendChild(itemTd);
+    var groupTd = document.createElement("td");
+    var groupText = document.createTextNode(classData.classParticipants);
+    groupTd.appendChild(groupText);
+    tr.appendChild(groupTd);
+    var amountTd = document.createElement("td");
+    var amountText = document.createTextNode(classData.numOfParticipants);
+    amountTd.appendChild(amountText);
+    tr.appendChild(amountTd);
+    var buttonTd = document.createElement("td");
+    var changeButton = document.createElement("button");
+    changeButton.setAttribute("class", "update");
+    var changeButtonText = document.createTextNode("עדכון");
+    changeButton.appendChild(changeButtonText);
+    changeButton.onclick = function (event) {
+        shopModal.style.display = "none";
+        updateClassModal.style.display = "block";
+        event.stopPropagation();
+    }
+    buttonTd.appendChild(changeButton);
+    var cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancel_bu");
+    cancelButton.setAttribute("class", "cancel");
+    var cancelButtonText = document.createTextNode("ביטול");
+    cancelButton.appendChild(cancelButtonText);
+    cancelButton.onclick = function(event) {
+        db.collection("Classes").doc(lesson.id).delete();
+        //add toast deleted class successfully
+        classTable.innerHTML = '';
+        getClasses().then(newClasses => buildClasses(newClasses));
+    }
+    buttonTd.appendChild(cancelButton);
+    tr.appendChild(buttonTd);
+    classTable.appendChild(tr);
+});
+}
 
 function buildRentals(newRentals) {
     
     shopM.onclick = function() {
         shopModal.style.display = "block";
     }
-    span1.onclick = function(event) {
+    closeRentalModal.onclick = function(event) {
         shopModal.style.display = "none";
         event.stopPropagation();
     }
-
-    cancel_classM.onclick = function (event) {
-        swal({
-            title: "האם תרצה לקבוע השכרה חדשה?",
-            text: "בלחיצה על לא, הזמנתך תבוטל",
-            type: "question",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            cancelButtonText: "לא",
-            confirmButtonText: "כן",
-            closeOnConfirm: false,
-            closeOnCancel: false
-          },
-          function(isConfirm) {
-            if (isConfirm) {
-              swal("Deleted!", "Your imaginary file has been deleted.", "success");
-            } else {
-              swal("Cancelled", "Your imaginary file is safe :)", "error");
-              saveCancellation();
-            }
-          });
-        
-        event.stopPropagation();
-    }
     
-    span2.onclick = function (event) {
-        cancel_classM.style.display = "none";
+
+    updateRentalModal.onclick = function (event) {
         event.stopPropagation();
     }
 
-    update_classM.onclick = function (event) {
+    closeRentalUpdate.onclick = function (event) {
+        updateRentalModal.style.display = "none";
         event.stopPropagation();
     }
 
-    closeUpdate.onclick = function (event) {
-        update_classM.style.display = "none";
-        event.stopPropagation();
-    }
-
-    console.log(newRentals);
     rentals = newRentals;
 var rentalsTable = document.getElementById("rentals");
 rentals.forEach(rental => {
@@ -115,7 +149,7 @@ rentals.forEach(rental => {
     numberTd.appendChild(numberText);
     tr.appendChild(numberTd);
     var dateTd = document.createElement("td");
-    var dateText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleDateString("en-UK") : null);
+    var dateText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleDateString("he-IL") : null);
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
@@ -133,8 +167,7 @@ rentals.forEach(rental => {
     changeButton.appendChild(changeButtonText);
     changeButton.onclick = function (event) {
         shopModal.style.display = "none";
-        update_classM.style.display = "block";
-        currentlyUpdatingId = rental.id;
+        updateRentalModal.style.display = "block";
         event.stopPropagation();
     }
     buttonTd.appendChild(changeButton);
@@ -144,10 +177,10 @@ rentals.forEach(rental => {
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
     cancelButton.onclick = function(event) {
-        shopModal.style.display = "none";
-        cancel_classM.style.display = "block";
-        currentlyDeletingId = rental.id;
-        event.stopPropagation();
+        db.collection("Orders").doc(rental.id).delete();
+        // add toast deleted rental successfully
+        rentalsTable.innerHTML = '';
+        getRentals().then(newRentals => buildRentals(newRentals));
     }
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
@@ -156,13 +189,12 @@ rentals.forEach(rental => {
 
 var classM = document.getElementById("classM");
 var classesModal = document.getElementById("classModal");
-var span = document.getElementById("classClose");
 
 classM.onclick = function() {
     classesModal.style.display = "block";
 }
 
-span.onclick = function(event) {
+closeClassModal.onclick = function(event) {
     classesModal.style.display = "none";
     event.stopPropagation();
 }
@@ -181,11 +213,53 @@ window.onclick = function(event) {
 function saveCancellation() {
     //delete in db
     console.log(currentlyDeletingId);
-    cancel_classM.style.display = "none";
 }
 
 function saveUpdate() {
     //save in db
     console.log(currentlyUpdatingId);
-    update_classM.style.display = "none";
+    updateRentalModal.style.display = "none";
 }
+
+function cancelClass(id) {
+
+}
+
+ 
+ //send request to WHEATHER API//
+ function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      myFunction(this);
+    }
+    xhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he");
+    xhttp.send();
+  }
+  //sort in table 2 variebls from XML (from API) - waves height and date//
+  function myFunction(xml) {
+    const xmlDoc = xml.responseXML;
+    const x = xmlDoc.getElementsByTagName("weather");
+    let table="<tr><th>תאריך</th><th>גובה הגלים</th></tr>";
+    for (let i = 0; i <x.length; i++) { 
+      table += "<tr><td>" +
+      x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue +
+      "</td><td>" +
+      x[i].getElementsByTagName("swellHeight_m")[0].childNodes[0].nodeValue +
+      "</td></tr>";
+    }
+  
+    document.getElementById("demo").innerHTML = table;
+  }
+  //change date cell color in table to green due to condition of waves height and create an option in "date" select element//
+  function color(){
+     var tds = document.getElementById('demo').getElementsByTagName('td');
+     
+     for(i=0;i<tds.length;i++) {
+      if(tds[i].innerHTML >0.5 && tds[i].innerHTML<1){
+          tds[i-1].style.backgroundColor ="#90EE90";
+          var option = document.createElement("option");
+          option.value = tds[i-1].innerHTML;
+          option.text = tds[i-1].innerHTML;
+       }
+     }
+  }
