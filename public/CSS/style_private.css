@@ -98,7 +98,7 @@ a:hover, a:active{color: #111111;}
     -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
 
-    background-image: url("../Includes/logo-2.png");
+    background-image: url("../Assets/logo-2.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -210,8 +210,8 @@ a:hover, a:active{color: #111111;}
 .feature h2{line-height: 0;}
 .feature p {text-align: center; margin:auto; max-width: 200px;}
 .feature .feature_image {width:200px; height:200px; margin: auto;  background-size: cover;}
-.feature1 .feature_image {background-image: url(../includes/calendar.png);}
-.feature2 .feature_image {background-image: url(../Includes/surf.png);}
+.feature1 .feature_image {background-image: url(../Assets/calendar.png);}
+.feature2 .feature_image {background-image: url(../Assets/surf.png);}
 
 /*MODAL*/
 .modal1{
@@ -250,8 +250,16 @@ a:hover, a:active{color: #111111;}
 }
 .table{
     border: solid 1px #85a6a3;
-    word-spacing: 20px;
+    word-spacing: 5px;
     width: 100%;
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+
+}
+th{
+    color: white;
 }
 .modal2{
     display: none;
@@ -267,7 +275,4 @@ a:hover, a:active{color: #111111;}
   
 }
 
-.modal2 button {
-
-}
 

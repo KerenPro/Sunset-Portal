@@ -87,7 +87,7 @@ a:hover, a:active{color: #111111;}
     -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
 
-    background-image: url("../Includes/logo-2.png");
+    background-image: url("../Assets/logo-2.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -190,15 +190,16 @@ a:hover, a:active{color: #111111;}
 
     .third_section{  
         display: flex;      
-        border-radius: 30px;
+        border-radius: 50px;
         margin-top: 10px;
         margin-bottom: 20px;
-        margin-right: 350px;
-        margin-left: 350px;
+        margin-right: 0px;
+        margin-left: 130px;
+       
         background-color: #cff3ee;
         box-sizing: border-box;
-        width: 50%;
-        height: fit-content;
+        width: 80%;
+        height: 30px;
 
     }
      .third_section_container {}
@@ -224,16 +225,50 @@ a:hover, a:active{color: #111111;}
     .feature h2 {line-height: 0;}
     .feature p {text-align: center; margin: auto; max-width: 200px;}
     .feature .feature_image {width:200px; height: 200px; margin:auto;  background-size: cover;}
-    .feature1 .feature_image {background-image: url("../Includes/wavesurf.jpg");}
-    .feature2 .feature_image {background-image: url("../Includes/sup.jpg");}
+    .feature1 .feature_image {background-image: url("../Assets/wavesurf.jpg");}
+    .feature2 .feature_image {background-image: url("../Assets/sup.jpg");}
 
-    .dAt{
-       direction: rtl;
+    .data_main{
+        width: 100%;
+        float: left;
+        background-color: white;
+        height: auto;
+        padding: 60px 0px;
+        direction: rtl;
     
 
-        }
-    .wind{
+
     }
-    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Includes/wind.png");}
+    .section{
+        float: left;
+        width: 100%;
+       
+    }
+    .container{
+      
+        background-color: #B3DDD9;
+
+    }
+    .weather_info{
+        padding: 40px 20px;
+        background-color: #B3DDD9;
+  
+    }
+    .weather_text{
+        font-size: 20px;
+        color:aliceblue;
+    }
+    .weather_info h3{
+        font-size: 29px;
+        line-height: 25px;
+        padding-top: 25px;
+    }
+    
+
+
+
+    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Assets/wind.png");}
+
+    
 
 

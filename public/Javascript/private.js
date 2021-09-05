@@ -23,7 +23,10 @@ var currentlyUpdatingId;
 const db = firebase.firestore();
 
 
-function getClasses() {
+async function getClasses() {
+    const classesRef = await db.collection("classes").get();
+    return classesRef.docs;
+
 
 }
 
@@ -33,12 +36,14 @@ async function getRentals() {
     return ordersRef.docs;
 }
 
+
 getRentals().then(newRentals => buildRentals(newRentals));
 
 var classesUl = document.getElementById("classes");
 for (var lesson in classes) {
     
 }
+
 
 
 var shopM = document.getElementById("shopM");
@@ -62,6 +67,26 @@ function buildRentals(newRentals) {
     }
 
     cancel_classM.onclick = function (event) {
+        swal({
+            title: "האם תרצה לקבוע השכרה חדשה?",
+            text: "בלחיצה על לא, הזמנתך תבוטל",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            cancelButtonText: "לא",
+            confirmButtonText: "כן",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+          function(isConfirm) {
+            if (isConfirm) {
+              swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            } else {
+              swal("Cancelled", "Your imaginary file is safe :)", "error");
+              saveCancellation();
+            }
+          });
+        
         event.stopPropagation();
     }
     
@@ -94,7 +119,7 @@ rentals.forEach(rental => {
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString().split(" ")[0] : null);
+    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");

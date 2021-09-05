@@ -8,6 +8,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>  
+
         <title>Sunset</title>
 
 </head>
@@ -23,22 +25,22 @@
             <div class="flex_item menu_item dropdown">
                 <p> תפריט</p>
                 <div class="dropdown-content">
-                    <a href="./Html/private.html"><div class="menu_item menu_item_inside"><a href="./Html/private.html"><p> אזור אישי</p></a></div></a>
+                    <a href="../Includes/private.html"><div class="menu_item menu_item_inside"><a href="../Includes/private.html"><p> אזור אישי</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p>שיעורים</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p> השכרות</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div></a>
-                    <a href="./index.html"><div class="menu_item menu_item_inside"><a href="./index.html"><p> דף הבית</p></a></div></a>
+                    <a href="../index.html"><div class="menu_item menu_item_inside"><a href="../index.html"><p> דף הבית</p></a></div></a>
 
     
                 </div>
             </div>
-            <div class="flex_item menu_item menu_item_outside"><a href="./index.html"><p> דף הבית</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href=""><p>השכרות</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href="../Includes/private.html"><p> אזור אישי</p></a></div>
             <div class="flex_item menu_item menu_item_outside"><a href=""><p>שיעורים</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href="./Html/private.html"><p> אזור אישי</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href=""><p>השכרות</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href="../index.html"><p> דף הבית</p></a></div>
     
         </div>
         </header>
@@ -75,7 +77,7 @@
                                             <td> </td>
                                             <td> </td>
                                             <td> </td>
-                                            <td> <button class="cancel"> ביטול</button> <button class="update"> עדכון</button></td>
+                                            <td> <button class="update"> עדכון</button> <button class="cancel"> ביטול</button> </td>
                                         </tr>
                                      
                                     </tbody>
@@ -118,11 +120,9 @@
 
                     </div>
                     <div id="cancelModal" class="modal2">
-                        <div class="modal_content">
                             <span class="close">&times;</span>
-                            <h2> ביטול מועד</h2>
-                            <p> סיבת הביטול: <input type="text"> </p>
-                            <button onclick="saveCancellation()"> שמירה </button>
+                          
+                         <button onclick="saveCancellation()"> שמירה </button>
                         </div>
                     </div>
 
@@ -138,6 +138,7 @@
 
         </div>
 
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
     <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
