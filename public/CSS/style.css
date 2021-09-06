@@ -33,7 +33,8 @@ a:hover, a:active{color: #111111;}
 
 .header_item{
     direction: rtl;
-    padding-right: 160px;   
+    padding-right: 160px; 
+    padding-left: 1090px;  
 }
 /*GENERAL*/
 .section{}
@@ -175,6 +176,7 @@ a:hover, a:active{color: #111111;}
 /*SECOND*/
 .second_section{
     min-height: 700px;
+    padding-top: 40px;
     height: auto!important;
     background: repeating-linear-gradient(
         45deg,
@@ -186,23 +188,6 @@ a:hover, a:active{color: #111111;}
 }
     .second_section_container{}
 
-    /*THIRD*/
-
-    .third_section{  
-        display: flex;      
-        border-radius: 50px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        margin-right: 0px;
-        margin-left: 130px;
-       
-        background-color: #cff3ee;
-        box-sizing: border-box;
-        width: 80%;
-        height: 30px;
-
-    }
-     .third_section_container {}
     /*FEATURED*/
     .feature{
         min-width: 250px;
@@ -222,7 +207,7 @@ a:hover, a:active{color: #111111;}
     }
     
     
-    .feature h2 {line-height: 0;}
+    .feature h2 {line-height: 0; padding-top: 20px;}
     .feature p {text-align: center; margin: auto; max-width: 200px;}
     .feature .feature_image {width:200px; height: 200px; margin:auto;  background-size: cover;}
     .feature1 .feature_image {background-image: url("../Assets/wavesurf.jpg");}
@@ -231,37 +216,43 @@ a:hover, a:active{color: #111111;}
     .data_main{
         width: 100%;
         float: left;
-        background-color: white;
         height: auto;
-        padding: 60px 0px;
         direction: rtl;
+        padding: 30px 0px;
     
-
-
     }
+
     .section{
         float: left;
         width: 100%;
        
     }
     .container{
-      
         background-color: #B3DDD9;
-
+        border-radius: 60px;
+        padding: 2px 16px;
+        padding-top: 20px;
     }
+ 
     .weather_info{
-        padding: 40px 20px;
-        background-color: #B3DDD9;
+      direction: rtl;
+      background-color: #B3DDD9;
+      padding: 40px 20px;
+      text-align: center;
+      width:100%;
+
   
     }
+    
+
     .weather_text{
-        font-size: 20px;
-        color:aliceblue;
+        font-weight: normal;
+        color:black;
     }
     .weather_info h3{
-        font-size: 29px;
+        font-size: 20px;
         line-height: 25px;
-        padding-top: 25px;
+        padding-top: 15px;
     }
     
 

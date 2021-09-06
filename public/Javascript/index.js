@@ -53,13 +53,13 @@ xhr.onload = () =>{
     kph = (Math.round(kph*100)/100).toFixed(2);
 
     
-
+    document.getElementById("temp").innerHTML ="כעת: " + data.main.temp;
+    document.getElementById("feelsLike").innerHTML = "מרגיש כמו: " + data.main.feels_like;
     document.getElementById("windSpeed").innerHTML = windDir + " " + kph + " " + "קמ״ש"
     document.getElementById("sunrise").innerHTML ="זריחה:" + " " + sRise;
     document.getElementById("sunset").innerHTML = "שקיעה:" + " " + sSet;
-    document.getElementById("humidity").innerHTML = data.main.humidity + "%";
-    document.getElementById("temp").innerHTML = data.main.temp;
-    document.getElementById("feelsLike").innerHTML = data.main.feels_like;
+    document.getElementById("humidity").innerHTML = "לחות: " + data.main.humidity + "%";
+    
 };
 
 function convertTime(unixTime){

@@ -262,4 +262,4 @@ function cancelClass(id) {
           option.text = tds[i-1].innerHTML;
        }
      }
-  }
+  

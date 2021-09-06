@@ -4,17 +4,17 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./CSS/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./CSS/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        <title>Sunset</title>
+        <title>דף הבית</title>
     </head>
     <body>
         <header>
             <div class="header_item">
-            <button> הרשמה</button>
+            <button > הרשמה</button>
             <button> התחברות</button>
         </div>
         <a name= "top"></a>
@@ -23,22 +23,22 @@
             <div class="flex_item menu_item dropdown">
                 <p> תפריט</p>
                 <div class="dropdown-content">
-                    <a href="../Includes/private.html"><div class="menu_item menu_item_inside"><a href="../Includes/private.html"><p> אזור אישי</p></a></div></a>
+                    <a href="./Includes/private.html"><div class="menu_item menu_item_inside"><a href="./index.html"><p> אזור אישי</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p>שיעורים</p></a></div></a>
-                    <a href=""><div class="menu_item menu_item_inside"><a href=""><p> השכרות</p></a></div></a>
+                    <a href="./Includes/RentMainPage.html"><div class="menu_item menu_item_inside"><a href="./index.html"><p> השכרות</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div></a>
                     <a href=""><div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div></a>
-                    <a href="./index.html"><div class="menu_item menu_item_inside"><a href="../index.html"><p> דף הבית</p></a></div></a>
+                    <a href="./index.html"><div class="menu_item menu_item_inside"><a href="./index.html"><p> דף הבית</p></a></div></a>
 
     
                 </div>
             </div>
             <div class="flex_item menu_item menu_item_outside"><a href="./Includes/private.html"><p> אזור אישי</p></a></div>
             <div class="flex_item menu_item menu_item_outside"><a href=""><p>שיעורים</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href=""><p>השכרות</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href="./Includes/RentMainPage.html"><p>השכרות</p></a></div>
             <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
             <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
-            <div class="flex_item menu_item menu_item_outside"><a href="../index.html"><p> דף הבית</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href="./index.html"><p> דף הבית</p></a></div>
     
         </div> 
         </header>
@@ -68,38 +68,34 @@
         <div class="data_main section">
             <div class= "container">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-sm">
                         <div class="weather_info">
                             <h3 id="Date"> <strong class="weather_text"></strong></h3>
                             <h3 id="Time"> <strong class="weather_text"></strong></h3>
                         </div>
                     </div>
-                    <div class="col-xl-4 col=col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-sm">
                         <div class="weather_info">
-                            <h3 id="sunrise" class="weather_text"> </h3>
-                            <h3 id="sunset" class="weather_text"></h3>
-                            <h3 id="humidity" class="weather_text"></h3>
-                            <h3 id="temp" class="weather_text"></h3>
-                            <h3 id="feelsLike" class="weather_text"></h3>
+                            <h3 id="temp"><strong class="weather_text"></strong></h3>
+                            <h3 id="feelsLike"><strong class="weather_text"></strong></h3>
+                            <h3 id="sunrise"><strong class="weather_text"></strong></h3>
+                            <h3 id="sunset"><strong class="weather_text"></strong></h3>
+                            <h3 id="humidity"><strong class="weather_text"></strong></h3>
+                          
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                
+                    <div class="col-sm">
                         <div class="weather_info">
-                            <h3 id="windSpeed" class="wind_image weather_text"></h3>
-                            <h3 id="windSpeed" class="weather_text"></h3>
+                           <p class="wind_image"> <h3 id="windSpeed"><strong class="weather_text wind_image"></strong></h3> </p>
                         </div>
                     </div>
+                
 
 
                 </div>
             </div>
         </div>
-    
-      
-  
-    
-          
-
 
 
   <script src="Javascript/index.js">
