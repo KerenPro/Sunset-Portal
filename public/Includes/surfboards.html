@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he">
 <head>
@@ -15,14 +16,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-
+	<script src="https://apis.google.com/js/client:platform.js"></script>
     <meta charset="UTF-8">
 	      <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	 <style>
+      #info {
+        border: 1px solid black;
+        padding: 0.25em;
+        margin: 0.5em 0;
+      }
+    </style>
     <title>השכרת גלשן</title>
 </head>
-<body onLoad="javascript:loadDoc()" onLoad= "javascript:color()">
+<body >
 
 
     <div class="container-fluid">
@@ -42,18 +49,18 @@
 			<br><br>
 			<table id="demo"></table>
 			<br></br>
-			<button type="button" onclick="color()">Show relevant days</button>       
-         	
+			  
+         	   
 			</section>
 			
 			
 			<section class="form">
 				<h1>מילוי פרטים לסיום ושליחת ההזמנה</h1><br>
-				<form id="form-list">
+				<form id="order-form" >
 				<h2 id="taarih-azmana1"> מילוי פרטים</h2>
 					<label  for="taarih-azmana">תאריך הזמנה</label><br>
 					 <select name="taarih-azmana" id="taarih-azmana">
-						<option value="day1" id="day"></option>
+						
 					</select><br><br>
 					<label for="from">משעה:</label>
 					<select name="from" id="from">
@@ -67,7 +74,7 @@
 						<option value="15:00" id="day">15:00</option>
 					</select>
 					<label for="to">עד שעה:</label>
-					<select name="from" id="from">
+					<select name="to" id="to">
 						<option value="09:00" id="day">09:00</option>
 						<option value="10:00" id="day">10:00</option>
 						<option value="11:00" id="day">11:00</option>
@@ -78,7 +85,7 @@
 						<option value="16:00" id="day">16:00</option>
 						
 					</select><br><br>
-					<button type="button" onclick="">שריין ביומן בית העסק</button><br><br>    
+	  
 					<label for="parit">סוג פריט להשכרה:</label><br>
 					<input type="text" id="parit" name="parit"  value=" גלשן גלים" disabled ><br>
 					<label for="fname">שם פרטי:</label><br>
@@ -89,6 +96,7 @@
 					<input type="text" id="taz" name="taz" ><br>
 					<label for="phone">מספר טלפון</label><br>
 					<input type="text" id="phone" name="phone"><br>
+					<label id="errphone" style="color:red"></label><br>
 					<label for="leida">תאריך לידה </label><br>
 					<input type="date" id="leida" name="leida" ><br><br>
 					<p id="leida-border"> </p><br>
@@ -98,7 +106,7 @@
 					<label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
 					<input type="text" id="reshimat-migbalot" name="reshimat-migbalot" >
 					<p id="azhara2"></p><br>
-					<input type="submit" value="שלח הזמנה" disabled>
+					<input type="submit" value="שלח הזמנה" >
 				</form>
 			
 			</section>
@@ -113,6 +121,10 @@
 					</div>
 				</div>
             </div>
+			
+							 
+			<button id="rest" onclick="makeRequest();">Make Request</button>
+			<div id="info"></div>
 	      </section>
 	  
           <div id="staff-recommend">
@@ -179,13 +191,18 @@
 	<script>
         /*//load navigation bar from homepage
         $("header").load( "../index.html nav" );
-
         //load footer from homepage
         $("footer").load( "../index.html footer" );*/
     </script>
 	
 	 <script src="../Javascript/surfboards.js"></script>
-	
+	 
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad();"
+      onreadystatechange="if (this.readyState === 'complete') this.onload();">
+    </script>
+
+
 
 </body>
 
