@@ -360,25 +360,31 @@ a:active {
   text-decoration: none;
   cursor: pointer;
 }
+.table{
+    border: solid 1px #85a6a3;
+    word-spacing: 5px;
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
 
-.table {
-  border: solid 1px #85a6a3;
-  word-spacing: 20px;
-  width: 100%;
+}
+th{
+    color: white;
+}
+.modal2{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 120px;
+    padding-left: 200px;
+    left:0;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    overflow:auto;
+  
 }
 
-.modal2 {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 120px;
-  padding-left: 200px;
-  left: 0;
-  top: 0;
-  width: 70%;
-  height: 100%;
-  overflow: auto;
-}
 
-.modal2 button {
-}
