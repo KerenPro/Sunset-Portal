@@ -47,68 +47,96 @@
 			
             <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
 			<br><br>
+			<!--Table that will keep dynamic info from Weather API about swell height for next 7 days-->
 			<table id="demo"></table>
 			<br></br>
 			  
          	   
 			</section>
 			
-			
+			<!--form-->
 			<section class="form">
 				<h1>מילוי פרטים לסיום ושליחת ההזמנה</h1><br>
 				<form id="order-form" >
 				<h2 id="taarih-azmana1"> מילוי פרטים</h2>
+				<p id="explane"> ההשכרה היא לשעה בלבד , במידה ותרצו להרחיב מעבר יהיה ניתן לעשות זאת בתיאום עם המועדון ביום ההשכרה</p>
 					<label  for="taarih-azmana">תאריך הזמנה</label><br>
 					 <select name="taarih-azmana" id="taarih-azmana">
-						
-					</select><br><br>
-					<label for="from">משעה:</label>
+						<option value="" id="taarih-azmana"></option>
+					</select><br>
+					<label id="errtaarih-azmana" style="color:red"></label><br>
+					
+					<label for="from">שעת השכרה</label>
 					<select name="from" id="from">
-						<option value="08:00" id="day">08:00</option>
-						<option value="09:00" id="day">09:00</option>
-						<option value="10:00" id="day">10:00</option>
-						<option value="11:00" id="day">11:00</option>
-						<option value="12:00" id="day">12:00</option>
-						<option value="13:00" id="day">13:00</option>
-						<option value="14:00" id="day">14:00</option>
-						<option value="15:00" id="day">15:00</option>
-					</select>
-					<label for="to">עד שעה:</label>
-					<select name="to" id="to">
-						<option value="09:00" id="day">09:00</option>
-						<option value="10:00" id="day">10:00</option>
-						<option value="11:00" id="day">11:00</option>
-						<option value="12:00" id="day">12:00</option>
-						<option value="13:00" id="day">13:00</option>
-						<option value="14:00" id="day">14:00</option>
-						<option value="15:00" id="day">15:00</option>
-						<option value="16:00" id="day">16:00</option>
-						
-					</select><br><br>
-	  
+						<option value=" " id="from"></option>
+						<option value="9" id="day">08:00</option>
+						<option value="10" id="day">09:00</option>
+						<option value="11" id="day">10:00</option>
+						<option value="12" id="day">11:00</option>
+						<option value="13" id="day">12:00</option>
+						<option value="14" id="day">13:00</option>
+						<option value="15" id="day">14:00</option>
+						<option value="16" id="day">15:00</option>
+					</select><br>
+					<label id="errfrom" style="color:red"></label><br>
+					
+					<h5>יש לבחור מידה בהתאם למשקלך וגובה:</h5>
+					<p id="mida-info">  <b>S</b> (עד 50 ק"ג , עד גובה 1.6) <b>M</b> (עד 70 ק"ג , עד 1.8 ) <b>L</b> (עד 80 ק"ג , עד גובה 1.8) <b>XL</b> ( עד 120 ק"ג , עד גובה 2.1 )</p>
+					<label for="mida"> מידה </label><br>
+					<select name="mida" id="mida"><br><br>
+					    <option value="" id="size"></option>
+						<option value="S" id="size">S</option>
+						<option value="M" id="size">M</option>
+						<option value="L" id="size">L</option>
+						<option value="L" id="size">XL</option>
+					</select><br>
+					<label id="errmida" style="color:red"></label><br>
+					
 					<label for="parit">סוג פריט להשכרה:</label><br>
-					<input type="text" id="parit" name="parit"  value=" גלשן גלים" disabled ><br>
+					<input type="text" id="parit" name="parit"  value=" גלשן גלים" disabled ><br><br>
+					<label for="suite"><b> יש לסמן אם ברצונך להזמין גם חליפת גלישה</b> </label>
+					<input type="checkbox" id="suite" name="suite" ><br>
+					<label id="label-mida-suite" for="mida-suite"  style="display:none"> יש לבחור מידה עבור החליפה </label><br>
+					<select name="mida-suite" id="mida-suite" style="display:none" ><br><br>
+					    <option value="" id="size"></option>
+						<option value="S" id="size">S</option>
+						<option value="M" id="size">M</option>
+						<option value="L" id="size">L</option>
+						<option value="L" id="size">XL</option>
+					</select><br>
+					<label id="errmidasuite" style="color:red"></label><br>
 					<label for="fname">שם פרטי:</label><br>
 					<input type="text" id="fname" name="fname" ><br>
+					<label id="errfname" style="color:red"></label><br>
 					<label for="lname">שם משפחה</label><br>
 					<input type="text" id="lname" name="lname"><br>
+					<label id="errlname" style="color:red"></label><br>
 					<label for="taz">תעודת זהות</label><br>
 					<input type="text" id="taz" name="taz" ><br>
+					<label id="errtaz" style="color:red"></label><br>
 					<label for="phone">מספר טלפון</label><br>
 					<input type="text" id="phone" name="phone"><br>
 					<label id="errphone" style="color:red"></label><br>
 					<label for="leida">תאריך לידה </label><br>
-					<input type="date" id="leida" name="leida" ><br><br>
+					<input type="date" id="leida" name="leida" ><br>
+					<label id="errleida" style="color:red"></label><br><br>
 					<p id="leida-border"> </p><br>
 					<h2 id="azhara1" for="azhara">הצהרת בריאות </h2><br>
-					<input type="checkbox" id="azhara" name="vehicle1" value="Bike">
-					<label for="vehicle1"> הנני מאשר כי אני כשיר לעשות פעילות ספורטיבית ובאחריותי להודיע למועדון על מגבלות אם קיימות</label><br><br>
+					<input type="checkbox" id="azhara" name="azhara">
+					<label for="azhara"> הנני מאשר כי אני כשיר לעשות פעילות ספורטיבית ובאחריותי להודיע למועדון על מגבלות אם קיימות</label><br>
+					<label id="err-azhara" style="color:red"></label><br><br>
 					<label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
 					<input type="text" id="reshimat-migbalot" name="reshimat-migbalot" >
 					<p id="azhara2"></p><br>
+					<label for="calendar"> יש לסמן אם ברצונך לשמור את האירוע ביומן גוגל האישי שלך </label>
+					<input type="checkbox" id="calendar" ><br><br>
 					<input type="submit" value="שלח הזמנה" >
+					<!-- hidden input that will keep The id of event that created in user calendar-->
+		            <input type="text"  id="event-id" value="" hidden>
 				</form>
-			
+			<div id="price"><br>
+			<p id="price-exp">מחיר ההשכרה</p>
+			</div>
 			</section>
 			<section class="wheather-data">
 			  <div class="section page third_section">
@@ -122,8 +150,6 @@
 				</div>
             </div>
 			
-							 
-			<button id="rest" onclick="makeRequest();">Make Request</button>
 			<div id="info"></div>
 	      </section>
 	  
@@ -202,7 +228,21 @@
       onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
 
-
+	<!--show suite size element due to checkbox check/no-->
+	<script>
+			$(function () {
+					$("#suite").click(function () {
+						if ($(this).is(":checked")) {
+						  $('#mida-suite').show();
+						  $('#label-mida-suite').show();
+						} else {
+						   $('#mida-suite').hide();
+						   $('#label-mida-suite').hide();
+						}
+					});
+				});
+	
+	</script>
 
 </body>
 
