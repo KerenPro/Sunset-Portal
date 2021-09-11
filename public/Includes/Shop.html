@@ -6,8 +6,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <!-- Style sheet link -->
-    <link rel="stylesheet" href="../CSS/Shop.css" />
     <!--jQuery import-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -30,6 +28,9 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
       rel="stylesheet"
     />
+    <!-- Style sheet link -->
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/Shop.css" />
     <meta charset="UTF-8" />
     <title>חנות</title>
   </head>
@@ -119,5 +120,17 @@
       firebase.analytics();
     </script>
     <script src="../Javascript/Shop.js"></script>
+    <script>
+      //load navigation bar from homepage
+      $("header").load("../index.html header", function () {
+        $("#homepage-link").attr("href", "../index.html");
+        $("#signup-link").attr("href", "./SignUpForm.html");
+        $("#signin-link").attr("href", "./SignIn.html");
+      });
+      $("nav").load("../index.html #change_class");
+
+      //load footer from homepage
+      //$("footer").load( "../index.html footer" );
+    </script>
   </body>
 </html>

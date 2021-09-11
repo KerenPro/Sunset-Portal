@@ -21,6 +21,7 @@ body {
 /*Header Image*/
 .shop-header {
   position: relative;
+  margin-top: 100px;
   width: 100%;
   opacity: 80%;
   border-radius: 20px;
