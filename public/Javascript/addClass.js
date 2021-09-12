@@ -25,11 +25,13 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const falseHealthy = document.getElementById("fHealthy");
   const issues = document.getElementById("issues").value;
   const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const classDateTime = date + time;
   const classAddedDateTime = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()} ; ${today.getHours()}:${today.getMinutes()}`;
   const privateClass = document.getElementById("private");
   const groupClass = document.getElementById("group");
   const numOfParticipants = document.getElementById("numOfParticipants").value;
-
+  const endTime = time.stepUp();
   let isHealthy;
   let classType;
   let classParticipants;
@@ -60,7 +62,10 @@ document.getElementById("submit").addEventListener("click", (event) => {
   //Finalize order object
   const newClass = {
     classType: classType,
-    classDateTime: firebase.firestore.Timestamp.fromDate(new Date(date)),
+    classDateTime: firebase.firestore.Timestamp.fromDate(
+      new Date(classDateTime)
+    ),
+    endTime: endTime,
     firstName: firstName,
     lastName: lastName,
     id: id,
