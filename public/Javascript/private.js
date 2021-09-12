@@ -42,11 +42,16 @@ var classesUl = document.getElementById("classes");
 
 var shopM = document.getElementById("shopM");
 var shopModal = document.getElementById("shopModal");
+var classesModal = document.getElementById("classModal");
 var closeRentalModal = document.getElementById("closeRentalModal");
 var closeClassModal = document.getElementById("closeClassModal");
 
-var updateRentalModal = document.getElementById("updateRentalModal");
-var closeRentalUpdate = document.getElementById("closeRentalUpdate");
+var updateSurfRentalModal = document.getElementById("updateSurfRentalModal");
+var updateSupRentalModal = document.getElementById("updateSupRentalModal");
+var updateClothingRentalModal = document.getElementById("updateClothingRentalModal");
+var closeSurfRentalUpdate = document.getElementById("closeSurfRentalUpdate");
+var closeSupRentalUpdate = document.getElementById("closeSupRentalUpdate");
+var closeClothingRentalUpdate = document.getElementById("closeClothingRentalUpdate");
 var closeClassUpdate = document.getElementById("closeClassUpdate");
 
 function buildClasses(newClasses) {
@@ -97,7 +102,7 @@ classes.forEach(lesson => {
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
     changeButton.onclick = function (event) {
-        shopModal.style.display = "none";
+        classesModal.style.display = "none";
         updateClassModal.style.display = "block";
         event.stopPropagation();
     }
@@ -130,12 +135,30 @@ function buildRentals(newRentals) {
     }
     
 
-    updateRentalModal.onclick = function (event) {
+    updateSurfRentalModal.onclick = function (event) {
         event.stopPropagation();
     }
 
-    closeRentalUpdate.onclick = function (event) {
-        updateRentalModal.style.display = "none";
+    updateSupRentalModal.onclick = function (event) {
+        event.stopPropagation();
+    }
+
+    updateClothingRentalModal.onclick = function (event) {
+        event.stopPropagation();
+    }
+
+    closeSurfRentalUpdate.onclick = function (event) {
+        updateSurfRentalModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    closeSupRentalUpdate.onclick = function (event) {
+        updateSupRentalModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    closeClothingRentalUpdate.onclick = function (event) {
+        updateClothingRentalModal.style.display = "none";
         event.stopPropagation();
     }
 
@@ -167,8 +190,13 @@ rentals.forEach(rental => {
     changeButton.appendChild(changeButtonText);
     changeButton.onclick = function (event) {
         shopModal.style.display = "none";
-        updateRentalModal.style.display = "block";
-        event.stopPropagation();
+        if (rentalData.itemTypes.includes("גלישה")) {
+            updateSurfRentalModal.style.display = "block";
+        } else if (rentalData.itemTypes.includes("סאפ")) {
+            updateSupRentalModal.style.display = "block";
+        } else {
+            updateClothingRentalModal.style.display = "block";
+        }
     }
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
@@ -188,7 +216,6 @@ rentals.forEach(rental => {
 });
 
 var classM = document.getElementById("classM");
-var classesModal = document.getElementById("classModal");
 
 classM.onclick = function() {
     classesModal.style.display = "block";
@@ -215,12 +242,6 @@ function saveCancellation() {
     console.log(currentlyDeletingId);
 }
 
-function saveUpdate() {
-    //save in db
-    console.log(currentlyUpdatingId);
-    updateRentalModal.style.display = "none";
-}
-
 function cancelClass(id) {
 
 }
@@ -231,6 +252,7 @@ function cancelClass(id) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
       myFunction(this);
+      color();
     }
     xhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he");
     xhttp.send();
@@ -253,6 +275,7 @@ function cancelClass(id) {
   //change date cell color in table to green due to condition of waves height and create an option in "date" select element//
   function color(){
      var tds = document.getElementById('demo').getElementsByTagName('td');
+     var selectList = document.getElementById("taarih-azmana");
      
      for(i=0;i<tds.length;i++) {
       if(tds[i].innerHTML >0.5 && tds[i].innerHTML<1){
@@ -260,6 +283,142 @@ function cancelClass(id) {
           var option = document.createElement("option");
           option.value = tds[i-1].innerHTML;
           option.text = tds[i-1].innerHTML;
+          selectList.add(option);
        }
      }
-  
+     }
+
+     //connect to Google Calendar API with credantials(api key and client ID)//
+      //API key from the Google Develoepr Console - to handle any unauthenticated
+      // requests in the code.
+    
+      var apiKey = 'AIzaSyB4cxbY2LD7KADlNEX8Bd1NWOPQWqgZasQ';
+
+      //  client ID for a web application from the Google Developer Console.
+      // In your Developer Console project, add a JavaScript origin that corresponds to the domain
+      // where you will be running the script.
+      var clientId = '121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com';
+      var scopes = 'https://www.googleapis.com/auth/calendar';
+
+      // The Calendar entry to create//
+	  
+
+      function handleClientLoad() {
+        gapi.load('client', initClient);
+      }
+
+      function initClient() {
+        gapi.client.init({
+          apiKey: apiKey,
+          clientId: clientId,
+          scope: scopes
+        }).then();
+      }
+
+      function signIn() {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+	  
+		//API request//
+      function makeRequest(resource) {
+		  gapi.auth2.getAuthInstance().signIn({prompt:'select_account'}).then((res)=>{
+			console.log(res);
+			gapi.client.request({
+			  'path': '/calendar/v3/calendars/primary/events',
+			  'method': 'POST',
+			  'body': resource
+			}).then(function(resp) {
+				$('#event-id').val(""+ resp.result.id);
+				console.log("from resp api");
+				console.log(resp.result.id);
+			  writeResponse(resp.result);
+			});
+		  }).catch((res)=>{
+			 console.log("google login failed");
+			 console.log(res); 
+		  });
+      }
+		//This section code create a link to created event  //
+
+      function writeResponse(response) {
+        console.log(response);
+        var creator = response.creator.email;
+        var calendarEntry = response.htmlLink;
+        var infoDiv = document.getElementById('info');
+        var infoMsg = document.createElement('P');
+        infoMsg.appendChild(document.createTextNode('האירוע ' +
+            'נוצר בהצלחה ע"י ' + creator));
+        infoDiv.appendChild(infoMsg);
+        var entryLink = document.createElement('A');
+        entryLink.href = calendarEntry;
+        entryLink.appendChild(
+            document.createTextNode('צפה באירוע שנוצר ביומנך'));
+        infoDiv.appendChild(entryLink);
+      }
+
+      $(document).ready(function () {
+        loadDoc();
+            });
+
+            function saveUpdate () {
+                updateRentalModal.style.display = "none";
+    
+                    // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
+                    
+                    // שריון ביומן//
+                    //יצירת משתנים לשליחה ליומן//
+                    ///////////////////////
+                    //אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
+                    if($('#calendar').prop('checked') ){
+                     console.log("writing to google calendar");
+                      let summary = (" השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: ") + " " +$('#parit').val() + " " + ("מידה:") + " " + $('#mida').val() ;
+                      var supportDate   = document.getElementById("taarih-azmana");
+                      var eventStart = document.getElementById("from");  
+                      var eventEnd = ("0" + eventStart.value).slice(-2);
+                      var start = supportDate.value +"T"+  eventStart.options[eventStart.selectedIndex].text+":00.000+03:00";
+                      var end = supportDate.value +"T"+ eventEnd +":00:00.000+03:00";
+                      var resource = {
+                        "summary": summary,
+                        "location":  "Bat Yam, Israel",
+                        "end": {"dateTime": end},
+                         "start": {"dateTime": start }
+                     
+                      };
+                      console.log('start: ' + start)
+                      console.log('end: ' + end)
+                      makeRequest(resource);
+                    }
+                    else{
+                        console.log("no calendar use");
+                    }
+                    
+            
+                      //prepare data to send //
+                      const data = {};
+                      const items=[];
+                      
+                      items.push( "גלשן גלים");
+                      // check if customer wants also suite//
+                    //אם הוא לא מסומן "ללא חליפה" אז אני עושה : 
+                     items.push( "הערך של הסלקטור");
+                     data.itemTypes = items;
+                     
+                     data.calendarEventId= $('#event-id').val();
+                     
+                     
+                     
+                     //ajax request//
+                     
+                     
+                    $.ajax({
+                        url: "http://localhost:8000",
+                        method: "POST",
+                        data: data,
+                        dataType: "json",
+                        success: function (data) {
+                            alert ('ההזמנה התקבלה בהצלחה!')
+                            window.location.href = "";
+                        }	
+                        
+                    });
+                }
