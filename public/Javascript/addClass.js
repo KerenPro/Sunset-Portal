@@ -26,15 +26,20 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const issues = document.getElementById("issues").value;
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
-  const classDateTime = date + time;
-  const classAddedDateTime = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()} ; ${today.getHours()}:${today.getMinutes()}`;
+  const classDateTime = new Date(`${date} ; ${time}`);
+  const classAddedDateTime = `${today.toLocaleString()}`;
   const privateClass = document.getElementById("private");
   const groupClass = document.getElementById("group");
   const numOfParticipants = document.getElementById("numOfParticipants").value;
-  const endTime = time.stepUp();
+
   let isHealthy;
   let classType;
   let classParticipants;
+
+  //Add 1 hour to create end time
+  const timeDateObject = new Date(`${date} ${time}`);
+  timeDateObject.setHours(timeDateObject.getHours() + 1);
+  const endTime = `${timeDateObject.getHours()}:${timeDateObject.getMinutes()}`;
 
   if (surf.checked) {
     classType = "גלישה";
@@ -62,9 +67,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
   //Finalize order object
   const newClass = {
     classType: classType,
-    classDateTime: firebase.firestore.Timestamp.fromDate(
-      new Date(classDateTime)
-    ),
+    classDateTime: classDateTime,
     endTime: endTime,
     firstName: firstName,
     lastName: lastName,
@@ -79,6 +82,8 @@ document.getElementById("submit").addEventListener("click", (event) => {
 
   ClassesRef.add(newClass).then((docRef) => {
     alert("השיעור נוסף בהצלחה");
+    console.log(classDateTime);
+    console.log(endTime);
     //redirectToHomepage();
   });
   return false;

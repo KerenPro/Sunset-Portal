@@ -15,13 +15,14 @@ const redirectToHomepage = () => {
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const signUpDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
+  const signUpDate = today.toLocaleString();
   const clientId = document.getElementById("id").value;
   const name = document.getElementById("name").value;
   const address = document.getElementById("address").value;
   const phoneNum = document.getElementById("phone").value;
   const email = document.getElementById("email").value;
   const surfExp = document.getElementById("surfExp").value;
+  const bday = document.getElementById("bday").value;
 
   const newUser = {
     signUpDate: signUpDate,
@@ -31,6 +32,7 @@ submitBtn.addEventListener("click", (event) => {
     phoneNum: phoneNum,
     email: email,
     surfExp: surfExp,
+    birthday: bday,
   };
 
   db.collection("Users")
