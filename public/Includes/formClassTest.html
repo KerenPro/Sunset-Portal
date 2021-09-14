@@ -8,21 +8,9 @@
     <form>
       <legend>Class Details</legend>
       <legend>Type of class</legend>
-      <input
-        type="radio"
-        id="surf"
-        name="classType"
-        value="surf"
-        onclick="disableSap()"
-      />
+      <input type="radio" id="surf" name="classType" value="surf" />
       <label for="surf">גלשן</label>
-      <input
-        type="radio"
-        id="sap"
-        name="classType"
-        value="sap"
-        onclick="disableSurf()"
-      />
+      <input type="radio" id="sap" name="classType" value="sap" />
       <label for="sap">סאפ</label>
       <br />
       <legend>Participants</legend>
@@ -36,8 +24,11 @@
       <label for="numOfParticipants"></label>
 
       <legend>Personal Details</legend>
-      <label for="date">Date and Time of class:</label>
-      <input type="datetime-local" id="date" name="date" />
+      <label for="date">Date of class:</label>
+      <input type="date" id="date" name="date" />
+      <br />
+      <label for="time">Time of class:</label>
+      <input type="time" id="time" name="time" />
       <br />
       <label for="fname">First name:</label><br />
       <input type="text" id="fname" name="fname" /><br />

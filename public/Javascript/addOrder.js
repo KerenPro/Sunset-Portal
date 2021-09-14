@@ -4,6 +4,9 @@ const db = firebase.firestore();
 //References to DB
 const stockRef = db.collection("Stock");
 const ordersRef = db.collection("Orders");
+const boardsDocRef = stockRef.doc("Boards");
+const supDocRef = stockRef.doc("Sup");
+const clothingDocRef = stockRef.doc("Clothing");
 
 //Using Date
 const today = new Date();
@@ -11,6 +14,27 @@ const today = new Date();
 //Back to Homepage
 const redirectToHomepage = () => {
   window.location.href = "../index.html";
+};
+
+//Update Boards stock
+const updateBoardsStock = () => {
+  boardsDocRef.get().then((snap) => {
+    let data = snap.data();
+    for (let i in data) {
+      if (data[i].recommend === true) {
+        let prodName = data[i].productName;
+        let prodImg = data[i].img;
+        let prodPrice = data[i].price;
+        console.log(prodImg);
+        recBoard.getElementsByClassName("rec-title")[0].innerHTML = prodName;
+        recBoard.getElementsByClassName("rec-img")[0].innerHTML =
+          "<img class='rec-img' src='" + prodImg + "'>";
+        recBoard.getElementsByClassName("rec-price")[0].innerHTML =
+          prodPrice + "₪";
+        break;
+      }
+    }
+  });
 };
 
 document.getElementById("submit").addEventListener("click", (event) => {
@@ -72,12 +96,10 @@ document.getElementById("submit").addEventListener("click", (event) => {
     orderDateTime: orderDateTime,
   };
 
-  db.collection("Orders")
-    .add(order)
-    .then((docRef) => {
-      alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${docRef.id}`);
-      console.log("add order");
-      //redirectToHomepage();
-    });
+  ordersRef.add(order).then((docRef) => {
+    alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${docRef.id}`);
+    console.log("add order");
+    //redirectToHomepage();
+  });
   return false;
 });
