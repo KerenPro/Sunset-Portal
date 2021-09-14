@@ -25,14 +25,12 @@ const db = firebase.firestore();
 
 async function getClasses() {
     const classesRef = await db.collection("Classes").get();
-    console.log(classesRef.docs);
     return classesRef.docs;
 }
 
 async function getRentals() {
     //References to DB
     const ordersRef = await db.collection("Orders").get();
-    console.log(ordersRef.docs);
     return ordersRef.docs;
 }
 
@@ -70,7 +68,6 @@ function buildClasses(newClasses) {
 var classTable = document.getElementById("classes");
 classes.forEach(lesson => {
     classData = lesson.data();
-    console.log(classData);
     var tr = document.createElement("tr");
     var numberTd = document.createElement("td");
     var numberText = document.createTextNode("#");
@@ -81,7 +78,7 @@ classes.forEach(lesson => {
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
+    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -123,6 +120,18 @@ classes.forEach(lesson => {
     classTable.appendChild(tr);
 });
 }
+
+function openChangeModal(itemTypes) {
+    return () => { shopModal.style.display = "none";
+        if (itemTypes.includes("גלישה")){
+            updateSurfRentalModal.style.display="block";
+        } else if (itemTypes.includes("סאפ")){
+            updateSupRentalModal.style.display = "block";
+        } else{
+            updateClothingRentalModal.style.display = "block";
+        }
+    }
+    }
 
 function buildRentals(newRentals) {
     
@@ -166,6 +175,7 @@ function buildRentals(newRentals) {
 var rentalsTable = document.getElementById("rentals");
 rentals.forEach(rental => {
     rentalData = rental.data();
+    console.log(rentalData);
     var tr = document.createElement("tr");
     var numberTd = document.createElement("td");
     var numberText = document.createTextNode("#");
@@ -176,7 +186,7 @@ rentals.forEach(rental => {
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
+    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -185,19 +195,11 @@ rentals.forEach(rental => {
     tr.appendChild(itemTd);
     var buttonTd = document.createElement("td");
     var changeButton = document.createElement("button");
+    changeButton.setAttribute("id", "changeRental"+rental.id)
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = function (event) {
-        shopModal.style.display = "none";
-        if (rentalData.itemTypes.includes("גלישה")) {
-            updateSurfRentalModal.style.display = "block";
-        } else if (rentalData.itemTypes.includes("סאפ")) {
-            updateSupRentalModal.style.display = "block";
-        } else {
-            updateClothingRentalModal.style.display = "block";
-        }
-    }
+    changeButton.onclick = openChangeModal(rentalData.itemTypes);
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -322,15 +324,12 @@ function cancelClass(id) {
 		//API request//
       function makeRequest(resource) {
 		  gapi.auth2.getAuthInstance().signIn({prompt:'select_account'}).then((res)=>{
-			console.log(res);
 			gapi.client.request({
 			  'path': '/calendar/v3/calendars/primary/events',
 			  'method': 'POST',
 			  'body': resource
 			}).then(function(resp) {
 				$('#event-id').val(""+ resp.result.id);
-				console.log("from resp api");
-				console.log(resp.result.id);
 			  writeResponse(resp.result);
 			});
 		  }).catch((res)=>{
@@ -341,7 +340,6 @@ function cancelClass(id) {
 		//This section code create a link to created event  //
 
       function writeResponse(response) {
-        console.log(response);
         var creator = response.creator.email;
         var calendarEntry = response.htmlLink;
         var infoDiv = document.getElementById('info');

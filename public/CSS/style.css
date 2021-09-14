@@ -13,8 +13,10 @@ button{
     padding-left: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
-    min-width: 70px;
+    max-width: 70px;
+    font-size: 10px;
     font-weight: bold;
+    text-align: start;
     border: solid 1px #B3DDD9;
 
 }
@@ -33,8 +35,8 @@ a:hover, a:active{color: #111111;}
 
 .header_item{
     direction: rtl;
-    padding-right: 160px; 
-    padding-left: 1090px;  
+    padding-right: 150px; 
+    padding-left: 1100px;  
 }
 /*GENERAL*/
 .section{}
@@ -45,6 +47,18 @@ a:hover, a:active{color: #111111;}
     min-height: 800px;
     direction: rtl;
 }
+.gradient{
+    position: absolute;
+    width: 100%;
+    height: 800px;
+    padding: 0;
+    margin: 0;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.gradient_turq_white{
+    background: linear-gradient(65deg, #85A6A3, white);
+}
 
 
 .text_grad{
@@ -53,7 +67,14 @@ a:hover, a:active{color: #111111;}
     -webkit-text-fill-color: transparent;
 }
 
-.header_text{padding-top: 20px; min-width: 100%;}
+.text_grad_white{
+    background: -webkit-linear-gradient(65deg, white, rgba(255, 255, 255, 0.705));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header_text{padding-top: 40px; min-width: 100%;}
+.header_text h2{font-size: 80px; font-weight: bold;}
 /*MENU*/
 .menu_section{
     position: fixed;
@@ -188,6 +209,12 @@ a:hover, a:active{color: #111111;}
 }
     .second_section_container{}
 
+@media screen and (max-width: 1619px) {
+	.gradient_second_section {height: 1000.19px;}
+}
+@media screen and (max-width: 1079px) {
+	.gradient_second_section {height: 1450.19px;}
+}
     /*FEATURED*/
     .feature{
         min-width: 250px;
@@ -195,8 +222,8 @@ a:hover, a:active{color: #111111;}
         height: 400px;
         margin-right: 20px;
         margin-left: 20px;
-        margin-bottom: 0px;
-        padding-top: 5px;
+        margin-bottom: 40px;
+        padding-top: 10px;
 
         color: #85A6A3;
       
@@ -205,13 +232,25 @@ a:hover, a:active{color: #111111;}
         -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0, 0.3);
         box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     }
-    
-    
-    .feature h2 {line-height: 0; padding-top: 20px;}
-    .feature p {text-align: center; margin: auto; max-width: 200px;}
     .feature .feature_image {width:200px; height: 200px; margin:auto;  background-size: cover;}
-    .feature1 .feature_image {background-image: url("../Assets/wavesurf.jpg");}
-    .feature2 .feature_image {background-image: url("../Assets/sup.jpg");}
+    .feature1 .feature_image {background-image: url("../Assets/Glisha.png");}
+    .feature2 .feature_image {background-image: url("../Assets/sup.png");}
+    .feature3 .feature_image {background-image: url("../Assets/surf-board.png");}
+    
+    .feature h2 {line-height: 0; padding-top: 10px;}
+    .feature p {text-align: center; margin: auto; max-width: 100px;}
+
+    /*OFFERS*/
+    .offer{
+        min-width: 350px!important;
+        max-width: 500px!important;
+        background-color: rgba(255, 255, 255, .05)
+    }
+    .offer h3{margin-bottom: 50px; text-align: center;}
+    .offer p{max-width: 60%;};
+   
+
+
 
     .data_main{
         width: 100%;
@@ -230,8 +269,7 @@ a:hover, a:active{color: #111111;}
     .container{
         background-color: #B3DDD9;
         border-radius: 60px;
-        padding: 2px 16px;
-        padding-top: 20px;
+        padding-top: 10px;
     }
  
     .weather_info{
@@ -252,7 +290,7 @@ a:hover, a:active{color: #111111;}
     .weather_info h3{
         font-size: 20px;
         line-height: 25px;
-        padding-top: 15px;
+        padding-top: 10px;
     }
     
 
