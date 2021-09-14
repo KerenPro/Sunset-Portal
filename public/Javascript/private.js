@@ -25,14 +25,12 @@ const db = firebase.firestore();
 
 async function getClasses() {
     const classesRef = await db.collection("Classes").get();
-    console.log(classesRef.docs);
     return classesRef.docs;
 }
 
 async function getRentals() {
     //References to DB
     const ordersRef = await db.collection("Orders").get();
-    console.log(ordersRef.docs);
     return ordersRef.docs;
 }
 
@@ -70,7 +68,6 @@ function buildClasses(newClasses) {
 var classTable = document.getElementById("classes");
 classes.forEach(lesson => {
     classData = lesson.data();
-    console.log(classData);
     var tr = document.createElement("tr");
     var numberTd = document.createElement("td");
     var numberText = document.createTextNode("#");
@@ -81,7 +78,7 @@ classes.forEach(lesson => {
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
+    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -123,6 +120,18 @@ classes.forEach(lesson => {
     classTable.appendChild(tr);
 });
 }
+
+function openChangeModal(itemTypes) {
+    return () => { shopModal.style.display = "none";
+        if (itemTypes.includes("גלישה")){
+            updateSurfRentalModal.style.display="block";
+        } else if (itemTypes.includes("סאפ")){
+            updateSupRentalModal.style.display = "block";
+        } else{
+            updateClothingRentalModal.style.display = "block";
+        }
+    }
+    }
 
 function buildRentals(newRentals) {
     
@@ -166,6 +175,7 @@ function buildRentals(newRentals) {
 var rentalsTable = document.getElementById("rentals");
 rentals.forEach(rental => {
     rentalData = rental.data();
+    console.log(rentalData);
     var tr = document.createElement("tr");
     var numberTd = document.createElement("td");
     var numberText = document.createTextNode("#");
@@ -176,7 +186,7 @@ rentals.forEach(rental => {
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}).split(" ")[0] : null );
+    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -185,19 +195,11 @@ rentals.forEach(rental => {
     tr.appendChild(itemTd);
     var buttonTd = document.createElement("td");
     var changeButton = document.createElement("button");
+    changeButton.setAttribute("id", "changeRental"+rental.id)
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = function (event) {
-        shopModal.style.display = "none";
-        if (rentalData.itemTypes.includes("גלישה")) {
-            updateSurfRentalModal.style.display = "block";
-        } else if (rentalData.itemTypes.includes("סאפ")) {
-            updateSupRentalModal.style.display = "block";
-        } else {
-            updateClothingRentalModal.style.display = "block";
-        }
-    }
+    changeButton.onclick = openChangeModal(rentalData.itemTypes);
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -360,9 +362,22 @@ function cancelClass(id) {
         loadDoc();
             });
 
+            function saveSurfUpdate() {
+                updateSurfRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
+            function saveSupUpdate() {
+                updateSupRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
+            function saveClothingUpdate() {
+                updateClothingRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
             function saveUpdate () {
-                updateRentalModal.style.display = "none";
-    
                     // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
                     
                     // שריון ביומן//
@@ -406,19 +421,10 @@ function cancelClass(id) {
                      data.calendarEventId= $('#event-id').val();
                      
                      
-                     
-                     //ajax request//
-                     
-                     
-                    $.ajax({
-                        url: "http://localhost:8000",
-                        method: "POST",
-                        data: data,
-                        dataType: "json",
-                        success: function (data) {
-                            alert ('ההזמנה התקבלה בהצלחה!')
-                            window.location.href = "";
-                        }	
+                     set(ref(db, 'users/' + userId), {
+                        username: name,
+                        email: email,
+                        profile_picture : imageUrl
+                      });
                         
-                    });
                 }
