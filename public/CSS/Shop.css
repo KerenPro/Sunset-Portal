@@ -24,6 +24,10 @@ body {
   width: 50%;
 }
 
+nav {
+  margin-bottom: 100px;
+}
+
 /*Header Image*/
 .shop-header {
   position: relative;
@@ -145,4 +149,13 @@ body {
   text-align: center;
 
   color: #6a817e;
+}
+
+/*Hover*/
+.hover:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.hover {
+  border-radius: 20px;
 }
