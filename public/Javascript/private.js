@@ -324,12 +324,15 @@ function cancelClass(id) {
 		//API request//
       function makeRequest(resource) {
 		  gapi.auth2.getAuthInstance().signIn({prompt:'select_account'}).then((res)=>{
+			console.log(res);
 			gapi.client.request({
 			  'path': '/calendar/v3/calendars/primary/events',
 			  'method': 'POST',
 			  'body': resource
 			}).then(function(resp) {
 				$('#event-id').val(""+ resp.result.id);
+				console.log("from resp api");
+				console.log(resp.result.id);
 			  writeResponse(resp.result);
 			});
 		  }).catch((res)=>{
@@ -340,6 +343,7 @@ function cancelClass(id) {
 		//This section code create a link to created event  //
 
       function writeResponse(response) {
+        console.log(response);
         var creator = response.creator.email;
         var calendarEntry = response.htmlLink;
         var infoDiv = document.getElementById('info');
@@ -358,9 +362,22 @@ function cancelClass(id) {
         loadDoc();
             });
 
+            function saveSurfUpdate() {
+                updateSurfRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
+            function saveSupUpdate() {
+                updateSupRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
+            function saveClothingUpdate() {
+                updateClothingRentalModal.style.display = "none";
+                saveUpdate();
+            }
+
             function saveUpdate () {
-                updateRentalModal.style.display = "none";
-    
                     // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
                     
                     // שריון ביומן//
@@ -404,19 +421,10 @@ function cancelClass(id) {
                      data.calendarEventId= $('#event-id').val();
                      
                      
-                     
-                     //ajax request//
-                     
-                     
-                    $.ajax({
-                        url: "http://localhost:8000",
-                        method: "POST",
-                        data: data,
-                        dataType: "json",
-                        success: function (data) {
-                            alert ('ההזמנה התקבלה בהצלחה!')
-                            window.location.href = "";
-                        }	
+                     set(ref(db, 'users/' + userId), {
+                        username: name,
+                        email: email,
+                        profile_picture : imageUrl
+                      });
                         
-                    });
                 }
