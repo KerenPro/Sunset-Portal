@@ -147,7 +147,7 @@ function color(){
 
 $(document).ready(function () {
 	loadDoc();
-	//מה קורה לאחר לחיצה על "שלח הזמנה" //
+	// מבחינת הולידציות מה קורה לאחר לחיצה על "שלח הזמנה" //
 	$('#order-form').on('submit', function (event) {
 			event.preventDefault();
 			
@@ -204,7 +204,7 @@ $(document).ready(function () {
 				$('#errtaarih-azmana').html("");
 			}
 		
-			if($('#from').val() === ""){
+			if($("#from").val() === ""){
 				$('#errfrom').html("יש לבחור שעת התחלה");
 				isError = true;
 			}
@@ -231,7 +231,6 @@ $(document).ready(function () {
 				$('#err-azhara').html("");
 			}			
 					
-			////	/////
 				
 			if(isError){
 				
@@ -239,12 +238,7 @@ $(document).ready(function () {
 			}
 			
 			
-			
-			// אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
-			
-			// שריון ביומן//
-			//יצירת משתנים לשליחה ליומן//
-			///////////////////////
+			// אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסף במידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
 			//אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
 			if($('#calendar').prop('checked') ){
 			 console.log("writing to google calendar");
@@ -258,8 +252,7 @@ $(document).ready(function () {
 				"summary": summary,
 				"location":  "Bat Yam, Israel",
 				"end": {"dateTime": end},
-				 "start": {"dateTime": start }
-			 
+				 "start": {"dateTime": start }	 
 			  };
 			  console.log('start: ' + start)
 			  console.log('end: ' + end)
@@ -268,47 +261,41 @@ $(document).ready(function () {
 			else{
 				console.log("no calendar use");
 			}
-			
-	
-			  //prepare data to send //
-			  const data = {};
-			  const items=[];
-			  
-			  data.phoneNumber = $('#phone').val();
-			  items.push( "גלשן גלים");
-			  // check if customer wants also suite//
-			//אם הוא לא מסומן "ללא חליפה" אז אני עושה : 
-		     items.push( "הערך של הסלקטור");
-			 data.itemTypes = items;
-			 
-			 data.calendarEventId= $('#event-id').val();
-			 
-			 
-			 
-			 //ajax request//
-			 
-			 
-			$.ajax({
-				url: "http://localhost:8000",
-				method: "POST",
-				data: data,
-				dataType: "json",
-				success: function (data) {
-					alert ('ההזמנה התקבלה בהצלחה!')
-					window.location.href = "";
-				}	
-				
-			});
 			 
 		});
-		
-		
-	
-	
+			
 });
 
+//show price //
+function showPrice(){
+	const boardPrice = 80;
+	const suitPrice = 20;
+
+	if($('#mida-suite').val() === ""){
+		$('#final-price').html(boardPrice + " " + "₪");
+	
+	}
+	else{
+		$('#final-price').html(boardPrice+suitPrice + " " + "₪");
+	}
+
+	if(($('#mida-suite').val() === "")&& ($('#mida').val() === "")){
+		$('#final-price').html("0" + " " + "₪");
+	
+	}
+	if(($('#mida').val() === "")){
+		$('#final-price').html("0" + " " + "₪");
+	
+	}
+
+}
 
 
 
+
+
+
+
+	
 
 
