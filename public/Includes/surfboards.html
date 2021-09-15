@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="he">
 <head>
@@ -9,183 +8,160 @@
     <!--jQuery import-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!--Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-	<script src="https://apis.google.com/js/client:platform.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js"></script>
     <meta charset="UTF-8">
-	      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <style>
-      #info {
-        border: 1px solid black;
-        padding: 0.25em;
-        margin: 0.5em 0;
-      }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #info {
+            border: 1px solid black;
+            padding: 0.25em;
+            margin: 0.5em 0;
+        }
     </style>
     <title>השכרת גלשן</title>
 </head>
-<body >
+<body>
 
 
-    <div class="container-fluid">
-        <header class="header">imported from homepage</header>
-        <div class="row" >
-            <img class="shop-header" src="../Assets/Images/Shop/Surfing-Image-cropped.jpg" alt="surfing-header">
+<div class="container-fluid">
+    <header class="header">imported from homepage</header>
+    <div class="row">
+        <img class="shop-header" src="../Assets/Images/Shop/Surfing-Image-cropped.jpg" alt="surfing-header">
     </div>
 
-        <main id="shop-options" class="row">
-		
-            <section class="head">
-              <h1>השכרת גלשן<h1>
-            </section>
-			<section class="wheather-data">
-			
-            <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
-			<br><br>
-			<!--Table that will keep dynamic info from Weather API about swell height for next 7 days-->
-			<table id="demo"></table>
-			<br></br>
-			  
-         	   
-			</section>
-			
-			<!--form-->
-			<section class="form">
-				<h1>מילוי פרטים לסיום ושליחת ההזמנה</h1><br>
-				<form id="order-form" >
-				<h2 id="taarih-azmana1"> מילוי פרטים</h2>
-				<p id="explane"> ההשכרה היא לשעה בלבד , במידה ותרצו להרחיב מעבר יהיה ניתן לעשות זאת בתיאום עם המועדון ביום ההשכרה</p>
-					<label  for="taarih-azmana">תאריך הזמנה</label><br>
-					 <select name="taarih-azmana" id="taarih-azmana">
-						<option value="" id="taarih-azmana1"></option>
-					</select><br>
-					<label id="errtaarih-azmana" style="color:red"></label><br>
-					
-					<label for="from">שעת השכרה</label>
-					<select  id="from">
-						<option value="" id="from1"></option>
-						<option value="9" id="day1">08:00</option>
-						<option value="10" id="day2">09:00</option>
-						<option value="11" id="day3">10:00</option>
-						<option value="12" id="day4">11:00</option>
-						<option value="13" id="day5">12:00</option>
-						<option value="14" id="day6">13:00</option>
-						<option value="15" id="day7">14:00</option>
-						<option value="16" id="day8">15:00</option>
-					</select><br>
-					<label id="errfrom" style="color:red"></label><br>
-					
-					<h5>יש לבחור מידה בהתאם למשקלך וגובה:</h5>
-					<p id="mida-info">  <b>S</b> (עד 50 ק"ג , עד גובה 1.6) <b>M</b> (עד 70 ק"ג , עד 1.8 ) <b>L</b> (עד 80 ק"ג , עד גובה 1.8) <b>XL</b> ( עד 120 ק"ג , עד גובה 2.1 )</p>
-					<label for="mida"> מידה </label><br>
-					<select name="mida" id="mida" onchange="showPrice()"><br><br>
-					    <option value="" id="size"></option>
-						<option value="S" id="size1">S</option>
-						<option value="M" id="size2">M</option>
-						<option value="L" id="size3">L</option>
-						<option value="L" id="size4">XL</option>
-					</select><br>
-					<label id="errmida" style="color:red"></label><br>
-					
-					<label for="parit">סוג פריט להשכרה:</label><br>
-					<input type="text" id="parit" name="parit"  value=" גלשן גלים" disabled ><br><br>
-					<label for="suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
-					<select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
-					    <option value="" id="size5">ללא חליפה</option>
-						<option value="S" id="size6">S כולל חליפה מידה</option>
-						<option value="M" id="size7">M כולל חליפה מידה</option>
-						<option value="L" id="size8">L כולל חליפה מידה</option>
-						<option value="L" id="size9">XL כולל חליפה מידה</option>
-					</select><br>
-					<label id="errmidasuite" style="color:red"></label><br>
-					<label for="fname">שם פרטי</label><br>
-					<input type="text" id="fname" name="fname" ><br>
-					<label id="errfname" style="color:red"></label><br>
-					<label for="lname">שם משפחה</label><br>
-					<input type="text" id="lname" name="lname"><br>
-					<label id="errlname" style="color:red"></label><br>
-					<label for="taz">תעודת זהות</label><br>
-					<input type="text" id="taz" name="taz" maxlength="9" ><br>
-					<label id="errtaz" style="color:red"></label><br>
-					<label for="phone">מספר טלפון</label><br>
-					<input type="text" id="phone" name="phone" maxlength="10"><br>
-					<label id="errphone" style="color:red"></label><br>
-					<label for="leida">תאריך לידה </label><br>
-					<input type="date" id="leida" name="leida" ><br>
-					<label id="errleida" style="color:red"></label><br><br>
-					<p id="leida-border"> </p><br>
-					<h2 id="azhara1" for="azhara">הצהרת בריאות </h2><br>
-					<input type="checkbox" id="azhara" name="azhara">
-					<label for="azhara"> הנני מאשר כי אני כשיר לעשות פעילות ספורטיבית ובאחריותי להודיע למועדון על מגבלות אם קיימות</label><br>
-					<label id="err-azhara" style="color:red"></label><br><br>
-					<label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
-					<input type="text" id="reshimat-migbalot" name="reshimat-migbalot" >
-					<p id="azhara2"></p><br>
-					<label for="calendar" id="cal-label"> סמן לשמירה ביומן גוגל שלך
-						<input type="checkbox" id="calendar" ><br><br>
-						<img id="cal-image" src="../Assets/Images/google_calendar_logo.png" alt="" />
-					</label><br><br><br>
-					<input type="submit" value="שלח הזמנה" >
-					<!-- hidden input that will keep The id of event that created in user calendar-->
-		            <input type="text"  id="event-id" value="" hidden>
-				</form>
-			<div id="price">
-			<h2 id="price-exp">מחיר ההשכרה</h2><br>
-			<h1 id="final-price"> 0 ₪</h1>
-			</div>
-			</section>
-			<section class="wheather-data">
-			  <div class="section page third_section">
-				<a name="dateAndWeather"></a>
-			<div class="section_container third_section_container flex_container flex_center">
-				<div class="text header_text">
-					<div class="dAt">
-						<p id="Date"> </p>
-						<p id="Time"></p>
-					</div>
-				</div>
-            </div>
-			
-			<div id="info"></div>
-	      </section>
-	  
-          <div id="staff-recommend">
-            <div class="recommend-header row">
-                <h1>המומלצים שלנו</h1>
-            </div>
-            <div id="recommends" class="row">
-                <div class="col recs">
-                    המלצה
-                </div>
-                <div class="col recs">
-                    המלצה
-                </div>
-                <div class="col recs">
-                    המלצה
-                </div>
-                <div class="col recs">
-                    המלצה
-                </div>
-                <div class="col recs">
-                    המלצה
-                </div>
-                <div class="col recs">
-                    המלצה
-                </div>
-            </div>
-        </div>
+    <main id="shop-options" class="row">
 
- 
-  </main>
+        <section class="head">
+            <h1>השכרת גלשן<h1>
+        </section>
+        <section class="wheather-data">
 
-    
+            <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ
+                להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
+            <br><br>
+            <!--Table that will keep dynamic info from Weather API about swell height for next 7 days-->
+            <table id="demo"></table>
+            <br></br>
 
-	    <!-- Script & Script link -->
+
+        </section>
+
+        <!--form-->
+        <section class="form">
+            <h1>מילוי פרטים לסיום ושליחת ההזמנה</h1><br>
+            <form id="order-form">
+                <h2 id="details-header"> מילוי פרטים</h2>
+                <p id="explane"> ההשכרה היא לשעה בלבד , במידה ותרצו להרחיב מעבר יהיה ניתן לעשות זאת בתיאום עם המועדון ביום ההשכרה</p>
+                <label for="taarih-azmana">תאריך הזמנה</label><br>
+                <select name="taarih-azmana" id="taarih-azmana">
+                    <option value="" id="taarih-azmana1"></option>
+                </select><br>
+                <label id="errtaarih-azmana" style="color:red"></label><br>
+
+                <label for="from">שעת השכרה</label>
+                <select id="from">
+                    <option value="" id="from1"></option>
+                    <option value="9" id="day1">08:00</option>
+                    <option value="10" id="day2">09:00</option>
+                    <option value="11" id="day3">10:00</option>
+                    <option value="12" id="day4">11:00</option>
+                    <option value="13" id="day5">12:00</option>
+                    <option value="14" id="day6">13:00</option>
+                    <option value="15" id="day7">14:00</option>
+                    <option value="16" id="day8">15:00</option>
+                </select><br>
+                <label id="errfrom" style="color:red"></label><br>
+
+                <h5>יש לבחור מידה בהתאם למשקלך וגובה:</h5>
+                <p id="mida-info"><b>S</b> (עד 50 ק"ג , עד גובה 1.6) <b>M</b> (עד 70 ק"ג , עד 1.8 ) <b>L</b> (עד 80 ק"ג , עד גובה 1.8)
+                    <b>XL</b> ( עד 120 ק"ג , עד גובה 2.1 )</p>
+                <label for="mida"> מידה </label><br>
+                <select name="mida" id="mida" onchange="showPrice()"><br><br>
+                    <option value="" id="size"></option>
+                    <option value="S" id="size1">S</option>
+                    <option value="M" id="size2">M</option>
+                    <option value="L" id="size3">L</option>
+                    <option value="L" id="size4">XL</option>
+                </select><br>
+                <label id="errmida" style="color:red"></label><br>
+
+                <label for="parit">סוג פריט להשכרה:</label><br>
+                <input type="text" id="parit" name="parit" value=" גלשן גלים" disabled><br><br>
+                <label for="suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
+                <select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
+                    <option value="" id="size5">ללא חליפה</option>
+                    <option value="S" id="size6">S כולל חליפה מידה</option>
+                    <option value="M" id="size7">M כולל חליפה מידה</option>
+                    <option value="L" id="size8">L כולל חליפה מידה</option>
+                    <option value="L" id="size9">XL כולל חליפה מידה</option>
+                </select><br>
+                <label id="errmidasuite" style="color:red"></label><br>
+                <label for="fname">שם פרטי</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <label id="errfname" style="color:red"></label><br>
+                <label for="lname">שם משפחה</label><br>
+                <input type="text" id="lname" name="lname"><br>
+                <label id="errlname" style="color:red"></label><br>
+                <label for="taz">תעודת זהות</label><br>
+                <input type="text" id="taz" name="taz" maxlength="9"><br>
+                <label id="errtaz" style="color:red"></label><br>
+                <label for="phone">מספר טלפון</label><br>
+                <input type="text" id="phone" name="phone" maxlength="10"><br>
+                <label id="errphone" style="color:red"></label><br>
+                <label for="leida">תאריך לידה </label><br>
+                <input type="date" id="leida" name="leida"><br>
+                <label id="errleida" style="color:red"></label><br><br>
+                <p id="leida-border"></p><br>
+                <h2 id="azhara1" for="azhara">הצהרת בריאות </h2><br>
+                <input type="checkbox" id="azhara" name="azhara">
+                <label for="azhara"> הנני מאשר כי אני כשיר לעשות פעילות ספורטיבית ובאחריותי להודיע למועדון על מגבלות אם קיימות</label><br>
+                <label id="err-azhara" style="color:red"></label><br><br>
+                <label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
+                <textarea id="reshimat-migbalot" name="reshimat-migbalot" rows="2" cols="40"></textarea>
+                <p id="azhara2"></p><br>
+                <label for="calendar" id="cal-label"> סמן לשמירה ביומן גוגל שלך
+                    <input type="checkbox" id="calendar"><br><br>
+                    <img id="cal-image" src="../Assets/Images/google_calendar_logo.png" alt=""/>
+                </label><br><br><br>
+                <input type="submit" value="שלח הזמנה" id="submit">
+                <!-- hidden input that will keep The id of event that created in user calendar-->
+                <input type="text" id="event-id" value="" hidden>
+            </form>
+            <div id="price">
+                <h2 id="price-exp">מחיר ההשכרה</h2><br>
+                <h1 id="final-price"> 0 ₪</h1>
+            </div>
+        </section>
+        <section class="wheather-data">
+            <div class="section page third_section">
+                <a name="dateAndWeather"></a>
+                <div class="section_container third_section_container flex_container flex_center">
+                    <div class="text header_text">
+                        <div class="dAt">
+                            <p id="Date"></p>
+                            <p id="Time"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="info"></div>
+        </section>
+
+
+    </main>
+
+
+    <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
@@ -209,22 +185,24 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-        
-    </script>
-	
-	<script>
-        //load navigation bar from homepage
-        $("header").load( "../index.html nav" );
-        //load footer from homepage
-        $("footer").load( "../index.html footer" );
+
     </script>
 
-	
-	<script src="../Javascript/surfboards.js"></script>
-	 
+    <script>
+        //load navigation bar from homepage
+        $("header").load("../index.html nav");
+        //load footer from homepage
+        $("footer").load("../index.html footer");
+    </script>
+
+
+    <script src="../Javascript/surfboards.js"></script>
+    <!--
+    <script src="../Javascript/addRentalOrder.js"></script>
+-->
     <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad();"
-      onreadystatechange="if (this.readyState === 'complete') this.onload();">
+            onload="this.onload=function(){};handleClientLoad();"
+            onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
 
 
