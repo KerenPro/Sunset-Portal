@@ -62,60 +62,58 @@
 				<p id="explane"> ההשכרה היא לשעה בלבד , במידה ותרצו להרחיב מעבר יהיה ניתן לעשות זאת בתיאום עם המועדון ביום ההשכרה</p>
 					<label  for="taarih-azmana">תאריך הזמנה</label><br>
 					 <select name="taarih-azmana" id="taarih-azmana">
-						<option value="" id="taarih-azmana"></option>
+						<option value="" id="taarih-azmana1"></option>
 					</select><br>
 					<label id="errtaarih-azmana" style="color:red"></label><br>
 					
 					<label for="from">שעת השכרה</label>
-					<select name="from" id="from">
-						<option value=" " id="from"></option>
-						<option value="9" id="day">08:00</option>
-						<option value="10" id="day">09:00</option>
-						<option value="11" id="day">10:00</option>
-						<option value="12" id="day">11:00</option>
-						<option value="13" id="day">12:00</option>
-						<option value="14" id="day">13:00</option>
-						<option value="15" id="day">14:00</option>
-						<option value="16" id="day">15:00</option>
+					<select  id="from">
+						<option value="" id="from1"></option>
+						<option value="9" id="day1">08:00</option>
+						<option value="10" id="day2">09:00</option>
+						<option value="11" id="day3">10:00</option>
+						<option value="12" id="day4">11:00</option>
+						<option value="13" id="day5">12:00</option>
+						<option value="14" id="day6">13:00</option>
+						<option value="15" id="day7">14:00</option>
+						<option value="16" id="day8">15:00</option>
 					</select><br>
 					<label id="errfrom" style="color:red"></label><br>
 					
 					<h5>יש לבחור מידה בהתאם למשקלך וגובה:</h5>
 					<p id="mida-info">  <b>S</b> (עד 50 ק"ג , עד גובה 1.6) <b>M</b> (עד 70 ק"ג , עד 1.8 ) <b>L</b> (עד 80 ק"ג , עד גובה 1.8) <b>XL</b> ( עד 120 ק"ג , עד גובה 2.1 )</p>
 					<label for="mida"> מידה </label><br>
-					<select name="mida" id="mida"><br><br>
+					<select name="mida" id="mida" onchange="showPrice()"><br><br>
 					    <option value="" id="size"></option>
-						<option value="S" id="size">S</option>
-						<option value="M" id="size">M</option>
-						<option value="L" id="size">L</option>
-						<option value="L" id="size">XL</option>
+						<option value="S" id="size1">S</option>
+						<option value="M" id="size2">M</option>
+						<option value="L" id="size3">L</option>
+						<option value="L" id="size4">XL</option>
 					</select><br>
 					<label id="errmida" style="color:red"></label><br>
 					
 					<label for="parit">סוג פריט להשכרה:</label><br>
 					<input type="text" id="parit" name="parit"  value=" גלשן גלים" disabled ><br><br>
-					<label for="suite"><b> יש לסמן אם ברצונך להזמין גם חליפת גלישה</b> </label>
-					<input type="checkbox" id="suite" name="suite" ><br>
-					<label id="label-mida-suite" for="mida-suite"  style="display:none"> יש לבחור מידה עבור החליפה </label><br>
-					<select name="mida-suite" id="mida-suite" style="display:none" ><br><br>
-					    <option value="" id="size"></option>
-						<option value="S" id="size">S</option>
-						<option value="M" id="size">M</option>
-						<option value="L" id="size">L</option>
-						<option value="L" id="size">XL</option>
+					<label for="suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
+					<select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
+					    <option value="" id="size5">ללא חליפה</option>
+						<option value="S" id="size6">S כולל חליפה מידה</option>
+						<option value="M" id="size7">M כולל חליפה מידה</option>
+						<option value="L" id="size8">L כולל חליפה מידה</option>
+						<option value="L" id="size9">XL כולל חליפה מידה</option>
 					</select><br>
 					<label id="errmidasuite" style="color:red"></label><br>
-					<label for="fname">שם פרטי:</label><br>
+					<label for="fname">שם פרטי</label><br>
 					<input type="text" id="fname" name="fname" ><br>
 					<label id="errfname" style="color:red"></label><br>
 					<label for="lname">שם משפחה</label><br>
 					<input type="text" id="lname" name="lname"><br>
 					<label id="errlname" style="color:red"></label><br>
 					<label for="taz">תעודת זהות</label><br>
-					<input type="text" id="taz" name="taz" ><br>
+					<input type="text" id="taz" name="taz" maxlength="9" ><br>
 					<label id="errtaz" style="color:red"></label><br>
 					<label for="phone">מספר טלפון</label><br>
-					<input type="text" id="phone" name="phone"><br>
+					<input type="text" id="phone" name="phone" maxlength="10"><br>
 					<label id="errphone" style="color:red"></label><br>
 					<label for="leida">תאריך לידה </label><br>
 					<input type="date" id="leida" name="leida" ><br>
@@ -128,14 +126,17 @@
 					<label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
 					<input type="text" id="reshimat-migbalot" name="reshimat-migbalot" >
 					<p id="azhara2"></p><br>
-					<label for="calendar"> יש לסמן אם ברצונך לשמור את האירוע ביומן גוגל האישי שלך </label>
-					<input type="checkbox" id="calendar" ><br><br>
+					<label for="calendar" id="cal-label"> סמן לשמירה ביומן גוגל שלך
+						<input type="checkbox" id="calendar" ><br><br>
+						<img id="cal-image" src="../Assets/Images/google_calendar_logo.png" alt="" />
+					</label><br><br><br>
 					<input type="submit" value="שלח הזמנה" >
 					<!-- hidden input that will keep The id of event that created in user calendar-->
 		            <input type="text"  id="event-id" value="" hidden>
 				</form>
-			<div id="price"><br>
-			<p id="price-exp">מחיר ההשכרה</p>
+			<div id="price">
+			<h2 id="price-exp">מחיר ההשכרה</h2><br>
+			<h1 id="final-price"> 0 ₪</h1>
 			</div>
 			</section>
 			<section class="wheather-data">
@@ -179,9 +180,6 @@
             </div>
         </div>
 
-    
-
-
  
   </main>
 
@@ -215,34 +213,20 @@
     </script>
 	
 	<script>
-        /*//load navigation bar from homepage
+        //load navigation bar from homepage
         $("header").load( "../index.html nav" );
         //load footer from homepage
-        $("footer").load( "../index.html footer" );*/
+        $("footer").load( "../index.html footer" );
     </script>
+
 	
-	 <script src="../Javascript/surfboards.js"></script>
+	<script src="../Javascript/surfboards.js"></script>
 	 
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad();"
       onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
 
-	<!--show suite size element due to checkbox check/no-->
-	<script>
-			$(function () {
-					$("#suite").click(function () {
-						if ($(this).is(":checked")) {
-						  $('#mida-suite').show();
-						  $('#label-mida-suite').show();
-						} else {
-						   $('#mida-suite').hide();
-						   $('#label-mida-suite').hide();
-						}
-					});
-				});
-	
-	</script>
 
 </body>
 
