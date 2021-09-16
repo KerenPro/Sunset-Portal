@@ -12,6 +12,10 @@
   padding: 10px;
 }
 
+nav {
+  margin-bottom: 100px;
+}
+
 #demo {
   margin: auto;
   width: 50%;

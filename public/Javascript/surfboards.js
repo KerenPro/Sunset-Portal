@@ -320,7 +320,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
   event.preventDefault();
   //What items are checked
   const items = [];
-  const itemType = document.getElementById("parit").value;
+  const itemType = document.getElementById("mida").value;
   const suit = document.getElementById("mida-suite").value;
   //if the itemType isn't empty - push it to items array
   if (itemType) {
@@ -341,7 +341,6 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const date = document.getElementById("taarih-azmana").value;
   const time = document.getElementById("from").value;
   const orderDate = new Date(`${date} ; ${time}`);
-  const size = document.getElementById("mida").value;
   const orderDateTime = `${today.toLocaleString()}`;
   const finalPrice = document.getElementById("final-price").textContent;
   let isHealthy;
@@ -365,22 +364,21 @@ document.getElementById("submit").addEventListener("click", (event) => {
     isHealthy: isHealthy,
     knownIssues: issues,
     orderDateTime: orderDateTime,
-    size: size,
     finalPrice: finalPrice,
   };
 
-  const orderID = `${today.getDay()}${
+  const orderID = `${today.getDate()}${
     today.getMonth() + 1
   }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
   ordersRef
     .doc(orderID)
     .set(order)
     .then((orderID) => {
-      const orderIdPrint = `${today.getDay()}${
+      const orderIdPrint = `${today.getDate()}${
         today.getMonth() + 1
       }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
       alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
-      console.log("added order orderIdPrint");
+      console.log(`Added order: ${orderIdPrint}`);
       //redirectToHomepage();
     });
   return false;
