@@ -42,6 +42,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
   const time = document.getElementById("from").value;
   const orderDate = new Date(`${date} ; ${time}`);
   const size = document.getElementById("mida").value;
+  const finalPrice = document.getElementById("final-price").value;
   const orderDateTime = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()} ; ${today.getHours()}:${today.getMinutes()}`;
   let isHealthy;
 
@@ -65,6 +66,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
     knownIssues: issues,
     orderDateTime: orderDateTime,
     size: size,
+    finalPrice: finalPrice,
   };
 
   ordersRef.add(order).then((docRef) => {

@@ -69,16 +69,16 @@
                 <label id="errtaarih-azmana" style="color:red"></label><br>
 
                 <label for="from">שעת השכרה</label>
-                <select id="from">
+                <select id="from" name="from">
                     <option value="" id="from1"></option>
-                    <option value="9" id="day1">08:00</option>
-                    <option value="10" id="day2">09:00</option>
-                    <option value="11" id="day3">10:00</option>
-                    <option value="12" id="day4">11:00</option>
-                    <option value="13" id="day5">12:00</option>
-                    <option value="14" id="day6">13:00</option>
-                    <option value="15" id="day7">14:00</option>
-                    <option value="16" id="day8">15:00</option>
+                    <option value="08:00" id="day1">08:00</option>
+                    <option value="09:00" id="day2">09:00</option>
+                    <option value="10:00" id="day3">10:00</option>
+                    <option value="11:00" id="day4">11:00</option>
+                    <option value="12:00" id="day5">12:00</option>
+                    <option value="13:00" id="day6">13:00</option>
+                    <option value="14:00" id="day7">14:00</option>
+                    <option value="15:00" id="day8">15:00</option>
                 </select><br>
                 <label id="errfrom" style="color:red"></label><br>
 
@@ -88,22 +88,22 @@
                 <label for="mida"> מידה </label><br>
                 <select name="mida" id="mida" onchange="showPrice()"><br><br>
                     <option value="" id="size"></option>
-                    <option value="S" id="size1">S</option>
-                    <option value="M" id="size2">M</option>
-                    <option value="L" id="size3">L</option>
-                    <option value="L" id="size4">XL</option>
+                    <option value="גלשן גלים S" id="size1">S</option>
+                    <option value="גלשן גלים M" id="size2">M</option>
+                    <option value="גלשן גלים L" id="size3">L</option>
+                    <option value="גלשן גלים XL" id="size4">XL</option>
                 </select><br>
                 <label id="errmida" style="color:red"></label><br>
 
                 <label for="parit">סוג פריט להשכרה:</label><br>
-                <input type="text" id="parit" name="parit" value=" גלשן גלים" disabled><br><br>
-                <label for="suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
+                <input type="text" id="parit" name="parit" value="גלשן גלים" disabled><br><br>
+                <label for="mida-suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
                 <select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
                     <option value="" id="size5">ללא חליפה</option>
-                    <option value="S" id="size6">S כולל חליפה מידה</option>
-                    <option value="M" id="size7">M כולל חליפה מידה</option>
-                    <option value="L" id="size8">L כולל חליפה מידה</option>
-                    <option value="L" id="size9">XL כולל חליפה מידה</option>
+                    <option value="חליפה S" id="size6">S כולל חליפה מידה</option>
+                    <option value="חליפה M" id="size7">M כולל חליפה מידה</option>
+                    <option value="חליפה L" id="size8">L כולל חליפה מידה</option>
+                    <option value="חליפה XL" id="size9">XL כולל חליפה מידה</option>
                 </select><br>
                 <label id="errmidasuite" style="color:red"></label><br>
                 <label for="fname">שם פרטי</label><br>
@@ -197,9 +197,7 @@
 
 
     <script src="../Javascript/surfboards.js"></script>
-    <!--
-    <script src="../Javascript/addRentalOrder.js"></script>
--->
+
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad();"
             onreadystatechange="if (this.readyState === 'complete') this.onload();">
