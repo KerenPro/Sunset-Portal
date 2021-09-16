@@ -81,7 +81,7 @@ function color() {
   var selectList = document.getElementById("taarih-azmana");
 
   for (i = 0; i < tds.length; i++) {
-    if (tds[i].innerHTML <= 0.5 ) {
+    if (tds[i].innerHTML <= 0.5) {
       tds[i - 1].style.backgroundColor = "#90EE90";
       var option = document.createElement("option");
       option.value = tds[i - 1].innerHTML;
@@ -279,12 +279,12 @@ $(document).ready(function () {
 //show price //
 function showPrice() {
   stockRef.get().then((snap) => {
-    let boardPrice, suitPrice;
+    let supPrice, suitPrice;
     snap.forEach((doc) => {
-      if (doc.id === "Boards") {
-        boardPrice = doc.data().rentPrice;
-        console.log(boardPrice);
-        return boardPrice;
+      if (doc.id === "Sup") {
+        supPrice = doc.data().rentPrice;
+        console.log(supPrice);
+        return supPrice;
       }
       if (doc.id === "Clothing") {
         suitPrice = doc.data().rentPrice;
@@ -293,9 +293,9 @@ function showPrice() {
       }
     });
     if ($("#mida-suite").val() === "") {
-      $("#final-price").html(boardPrice + " " + "₪");
+      $("#final-price").html(supPrice + " " + "₪");
     } else {
-      $("#final-price").html(boardPrice + suitPrice + " " + "₪");
+      $("#final-price").html(supPrice + suitPrice + " " + "₪");
     }
     if ($("#mida-suite").val() === "" && $("#mida").val() === "") {
       $("#final-price").html("0" + " " + "₪");
