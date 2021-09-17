@@ -34,7 +34,6 @@
   </head>
   <body>
     <header></header>
-    <nav></nav>
     <div class="container form">
       <div class="row">
         <h1 class="form-header">הרשמה למועדון</h1>
@@ -218,13 +217,11 @@
   <script>
     //load navigation bar from homepage
     $("header").load("../index.html header", function () {
-      $("img").attr("src", "../Assets/Images/Homepage/logo-2.png");
-      $("#homepage-link").attr("href", "../index.html");
+      $(".homepage-link").attr("href", "../index.html");
       $("#signup-link").attr("href", "./SignUpForm.html");
+      $("#signin-link").attr("href", "./SignIn.html");
+      $(".rent-homepage-link").attr("href", "./RentMainPage.html");
+      $(".private-link").attr("href", "./private.html");
     });
-    $("nav").load("../index.html #change_class");
-
-    //load footer from homepage
-    //$("footer").load( "../index.html footer" );
   </script>
 </html>

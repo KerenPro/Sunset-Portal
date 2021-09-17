@@ -37,7 +37,6 @@
   <body>
     <div class="container-fluid">
       <header></header>
-      <nav></nav>
       <div class="row">
         <img
           class="shop-header"
@@ -57,7 +56,10 @@
           />
           <h1 class="shop-option-header center">גלשנים</h1>
         </section>
-        <section class="shop-section col hover">
+        <section
+          class="shop-section col hover"
+          onClick="parent.open('sups.html')"
+        >
           <img
             class="shop-option-image center"
             src="../Assets/Images/Shop/surf-board.jpg"
@@ -96,6 +98,16 @@
         </div>
       </div>
     </div>
+    <script>
+      //load navigation bar from homepage
+      $("header").load("../index.html header", function () {
+        $(".homepage-link").attr("href", "../index.html");
+        $("#signup-link").attr("href", "./SignUpForm.html");
+        $("#signin-link").attr("href", "./SignIn.html");
+        $(".rent-homepage-link").attr("href", "./RentMainPage.html");
+        $(".private-link").attr("href", "./private.html");
+      });
+    </script>
     <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
@@ -123,18 +135,6 @@
       firebase.analytics();
     </script>
     <script src="../Javascript/Shop.js"></script>
-    <script>
-      //load navigation bar from homepage
-      $("header").load("../index.html header", function () {
-        $("#homepage-link").attr("href", "../index.html");
-        $("#signup-link").attr("href", "./SignUpForm.html");
-        $("#signin-link").attr("href", "./SignIn.html");
-      });
-      $("nav").load("../index.html #change_class");
-
-      //load footer from homepage
-      //$("footer").load( "../index.html footer" );
-    </script>
   </body>
   <script type="module" src="../Javascript/Shop.js"></script>
 </html>
