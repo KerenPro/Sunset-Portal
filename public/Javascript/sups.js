@@ -369,14 +369,14 @@ document.getElementById("submit").addEventListener("click", (event) => {
 
   const orderID = `${today.getDate()}${
     today.getMonth() + 1
-  }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
+  }${today.getFullYear()}${today.getHours()}${today.getMinutes()}${today.getSeconds()}`;
   ordersRef
     .doc(orderID)
     .set(order)
     .then((orderID) => {
       const orderIdPrint = `${today.getDate()}${
         today.getMonth() + 1
-      }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
+      }${today.getFullYear()}${today.getHours()}${today.getMinutes()}${today.getSeconds()}`;
       alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
       console.log(`Added order: ${orderIdPrint}`);
       //redirectToHomepage();
