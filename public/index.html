@@ -14,10 +14,10 @@
 <body>
 <header>
     <div class="header_item">
-        <a href="Includes/SignUpForm.html">
+        <a id="signup-link" href="Includes/SignUpForm.html">
             <button> הרשמה</button>
         </a>
-        <a href="Includes/SignIn.html">
+        <a id="signin-link" href="Includes/SignIn.html">
             <button> התחברות</button>
         </a>
     </div>
@@ -28,13 +28,14 @@
             <p> תפריט</p>
             <div class="dropdown-content">
                 <a href="./Includes/private.html">
-                    <div class="menu_item menu_item_inside"><a href="Includes/private.html"><p> אזור אישי</p></a></div>
+                    <div class="menu_item menu_item_inside"><a class="private-link" href="Includes/private.html"><p> אזור אישי</p></a></div>
                 </a>
                 <a href="">
                     <div class="menu_item menu_item_inside"><a href=""><p>שיעורים</p></a></div>
                 </a>
                 <a href="./Includes/RentMainPage.html">
-                    <div class="menu_item menu_item_inside"><a href="./Includes/RentMainPage.html"><p> השכרות</p></a></div>
+                    <div class="menu_item menu_item_inside"><a class="rent-homepage-link" href="./Includes/RentMainPage.html"><p> השכרות</p>
+                    </a></div>
                 </a>
                 <a href="">
                     <div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div>
@@ -43,18 +44,21 @@
                     <div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div>
                 </a>
                 <a href="./index.html">
-                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> דף הבית</p></a></div>
+                    <div class="menu_item menu_item_inside"><a class="homepage-link" href="./index.html"><p> דף הבית</p></a></div>
                 </a>
 
 
             </div>
         </div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/private.html"><p> אזור אישי</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a class="private-link" href="./Includes/private.html"><p> אזור אישי</p></a>
+        </div>
         <div class="flex_item menu_item menu_item_outside"><a href=""><p>שיעורים</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/RentMainPage.html"><p>השכרות</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a class="rent-homepage-link" href="./Includes/RentMainPage.html"><p>השכרות</p>
+        </a>
+        </div>
         <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
         <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./index.html"><p> דף הבית</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a class="homepage-link" href="./index.html"><p> דף הבית</p></a></div>
 
     </div>
 </header>
@@ -65,21 +69,28 @@
         <div class="text header_text text_grad">
             <h2> השירותים שלנו</h2>
         </div>
-        <a href=""><div class="feature offer flex_feature_item feature1">
-            <h3> שיעורי גלישה</h3>
-            <p> שיעורי גלישת גלים נועדו להקנות לגולש המתחיל עקרונות בסיסיים שיכינו אותו לגלישה עצמאית בים. השיעורים מתבצעים באופן פרטי, אך ניתן לקבוע גם שיעורים קבוצתיים</p>
-            <div class="feature_image"></div>
-        </div></a>
-        <a href=""><div class="feature offer flex_feature_item feature2">
-            <h3> שיעורי סאפ</h3>
-            <p> גלשני סאפ הינם גלשני עמידה וחתירה. הגלישה מתבצעת בעמידה על הגלשן וחתירה עם משוט. מתאים לכל גיל ולא דורש יכולות מיוחדות.</p>
-            <div class="feature_image"></div>
-        </div></a>
-        <a href=""><div class="feature offer flex_feature_item feature3">
-            <h3> השכרת ציוד וביגוד</h3>
-            <p> אצלנו אפשר להשכיר ציוד וביגוד הנדרש לגלישה וחתירה באופן עצמאי</p>
-            <div class="feature_image"></div>
-        </div>
+        <a href="">
+            <div class="feature offer flex_feature_item feature1">
+                <h3> שיעורי גלישה</h3>
+                <p> שיעורי גלישת גלים נועדו להקנות לגולש המתחיל עקרונות בסיסיים שיכינו אותו לגלישה עצמאית בים. השיעורים מתבצעים באופן פרטי,
+                    אך ניתן לקבוע גם שיעורים קבוצתיים</p>
+                <div class="feature_image"></div>
+            </div>
+        </a>
+        <a href="">
+            <div class="feature offer flex_feature_item feature2">
+                <h3> שיעורי סאפ</h3>
+                <p> גלשני סאפ הינם גלשני עמידה וחתירה. הגלישה מתבצעת בעמידה על הגלשן וחתירה עם משוט. מתאים לכל גיל ולא דורש יכולות
+                    מיוחדות.</p>
+                <div class="feature_image"></div>
+            </div>
+        </a>
+        <a href="">
+            <div class="feature offer flex_feature_item feature3">
+                <h3> השכרת ציוד וביגוד</h3>
+                <p> אצלנו אפשר להשכיר ציוד וביגוד הנדרש לגלישה וחתירה באופן עצמאי</p>
+                <div class="feature_image"></div>
+            </div>
 
         </a>
     </div>
@@ -88,7 +99,7 @@
 <div class="data_main section">
     <div class="container">
         <div class="text header_text text_grad_white">
-        <h1 > מזג האוויר בחוף סאנסט</h1>
+            <h1> מזג האוויר בחוף סאנסט</h1>
         </div>
         <div class="row">
             <div class="col-sm">

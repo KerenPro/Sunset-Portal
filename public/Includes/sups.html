@@ -36,7 +36,6 @@
 
 <div class="container-fluid">
     <header></header>
-    <nav></nav>
 
     <main id="shop-options" class="row">
 
@@ -190,14 +189,12 @@
     <script>
         //load navigation bar from homepage
         $("header").load("../index.html header", function () {
-            $("#homepage-link").attr("href", "../index.html");
+            $(".homepage-link").attr("href", "../index.html");
             $("#signup-link").attr("href", "./SignUpForm.html");
             $("#signin-link").attr("href", "./SignIn.html");
+            $(".rent-homepage-link").attr("href", "./RentMainPage.html");
+            $(".private-link").attr("href", "./private.html");
         });
-        $("nav").load("../index.html #change_class");
-
-        //load footer from homepage
-        //$("footer").load( "../index.html footer" );
     </script>
 
     <script src="../Javascript/sups.js"></script>

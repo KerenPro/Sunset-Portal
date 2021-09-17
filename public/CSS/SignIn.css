@@ -46,20 +46,13 @@ body {
 }
 
 /*Header*/
-nav .menu_section {
-  position: relative;
-  top: -20px;
-}
-
-nav .menu_item {
-}
-
 header .header_item {
   text-align: right;
 }
 
 header {
   padding: 10px;
+  margin-bottom: 50px;
 }
 
 header .logo {
