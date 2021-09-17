@@ -30,7 +30,7 @@ async function getClasses() {
 
 async function getRentals() {
     //References to DB
-    const ordersRef = await db.collection("Orders").get();
+    var ordersRef = await db.collection("Orders").get();
     return ordersRef.docs;
 }
 
@@ -112,6 +112,8 @@ classes.forEach(lesson => {
     cancelButton.onclick = function(event) {
         db.collection("Classes").doc(lesson.id).delete();
         //add toast deleted class successfully
+        swal("השיעור בוטל בהצלחה", "", "success");
+
         classTable.innerHTML = '';
         getClasses().then(newClasses => buildClasses(newClasses));
     }
@@ -121,17 +123,21 @@ classes.forEach(lesson => {
 });
 }
 
-function openChangeModal(itemTypes) {
+function openChangeModal(itemTypes,rentalID) {
     return () => { shopModal.style.display = "none";
-        if (itemTypes.includes("גלישה")){
+        if (itemTypes[0].includes("גלשן") || (itemTypes[1] && itemTypes[1].includes("גלשן"))){
             updateSurfRentalModal.style.display="block";
-        } else if (itemTypes.includes("סאפ")){
+            updateSurfRentalModal.setAttribute("rentalID",rentalID);
+        } else if ((itemTypes[0].includes("סאפ") || (itemTypes[1] && itemTypes[1].includes("סאפ")))){
             updateSupRentalModal.style.display = "block";
+            updateSupRentalModal.setAttribute("rentalID",rentalID);
         } else{
             updateClothingRentalModal.style.display = "block";
+            updateClothingRentalModal.setAttribute("rentalID",rentalID);
         }
     }
     }
+
 
 function buildRentals(newRentals) {
     
@@ -175,18 +181,17 @@ function buildRentals(newRentals) {
 var rentalsTable = document.getElementById("rentals");
 rentals.forEach(rental => {
     rentalData = rental.data();
-    console.log(rentalData);
     var tr = document.createElement("tr");
     var numberTd = document.createElement("td");
     var numberText = document.createTextNode("#");
     numberTd.appendChild(numberText);
     tr.appendChild(numberTd);
     var dateTd = document.createElement("td");
-    var dateText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleDateString("he-IL") : null);
+    var dateText = document.createTextNode(rentalData['orderDate'] ? rentalData['orderDate'].toDate().toLocaleDateString("he-IL") : null);
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
+    var timeText = document.createTextNode(rentalData['orderDate'] ? rentalData['orderDate'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -199,7 +204,7 @@ rentals.forEach(rental => {
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = openChangeModal(rentalData.itemTypes);
+    changeButton.onclick = openChangeModal(rentalData.itemTypes,rental.id);
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -209,13 +214,19 @@ rentals.forEach(rental => {
     cancelButton.onclick = function(event) {
         db.collection("Orders").doc(rental.id).delete();
         // add toast deleted rental successfully
+        swal("ההשכרה בוטלה בהצלחה", "", "success");
+       
+   
         rentalsTable.innerHTML = '';
         getRentals().then(newRentals => buildRentals(newRentals));
     }
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     rentalsTable.appendChild(tr);
+
 });
+
+
 
 var classM = document.getElementById("classM");
 
@@ -299,7 +310,7 @@ function cancelClass(id) {
       //  client ID for a web application from the Google Developer Console.
       // In your Developer Console project, add a JavaScript origin that corresponds to the domain
       // where you will be running the script.
-      var clientId = '121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com';
+      var clientId = "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com"
       var scopes = 'https://www.googleapis.com/auth/calendar';
 
       // The Calendar entry to create//
@@ -364,67 +375,86 @@ function cancelClass(id) {
 
             function saveSurfUpdate() {
                 updateSurfRentalModal.style.display = "none";
-                saveUpdate();
+                saveUpdate(updateSurfRentalModal.getAttribute("rentalID"));
             }
 
             function saveSupUpdate() {
                 updateSupRentalModal.style.display = "none";
-                saveUpdate();
+                saveUpdate(updateSupRentalModal.getAttribute("rentalID"));
             }
 
             function saveClothingUpdate() {
                 updateClothingRentalModal.style.display = "none";
-                saveUpdate();
+                saveUpdate(updateClothingRentalModal.getAttribute("rentalID"));
             }
 
-            function saveUpdate () {
-                    // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
+            function saveUpdate (rentalID) {
+                var timeStamp = toTimeStamp();
+                var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
+                db.collection("Orders").doc(rentalID).update({orderDate:changeDate});
+                
+                var rentalsTable = document.getElementById("rentals");
+                rentalsTable.innerHTML = '';
+                swal("ההשכרה עודכנה בהצלחה", "", "success");
+                getRentals().then(newRentals => buildRentals(newRentals));
+
+                
+
+            }
+            function toTimeStamp(){
+                var subOne = (parseInt(document.getElementById("from").value) - 1).toString();
+                //var supportDate = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00";
+                var supportDate = document.getElementById("taarih-azmana").value+"T"+subOne+":00:00";
+                var changeDate1 = Date.parse(supportDate);
+                return changeDate1;
+            }
+
+
+
+
+                    // // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
                     
-                    // שריון ביומן//
-                    //יצירת משתנים לשליחה ליומן//
-                    ///////////////////////
-                    //אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
-                    if($('#calendar').prop('checked') ){
-                     console.log("writing to google calendar");
-                      let summary = (" השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: ") + " " +$('#parit').val() + " " + ("מידה:") + " " + $('#mida').val() ;
-                      var supportDate   = document.getElementById("taarih-azmana");
-                      var eventStart = document.getElementById("from");  
-                      var eventEnd = ("0" + eventStart.value).slice(-2);
-                      var start = supportDate.value +"T"+  eventStart.options[eventStart.selectedIndex].text+":00.000+03:00";
-                      var end = supportDate.value +"T"+ eventEnd +":00:00.000+03:00";
-                      var resource = {
-                        "summary": summary,
-                        "location":  "Bat Yam, Israel",
-                        "end": {"dateTime": end},
-                         "start": {"dateTime": start }
+                    // // שריון ביומן//
+                    // //יצירת משתנים לשליחה ליומן//
+                    // ///////////////////////
+                    // //אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
+                    // if($('#calendar').prop('checked') ){
+                    //  console.log("writing to google calendar");
+                    //   let summary = (" השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: ") + " " +$('#parit').val() + " " + ("מידה:") + " " + $('#mida').val() ;
+                    //   var supportDate   = document.getElementById("taarih-azmana");
+                    //   var eventStart = document.getElementById("from");  
+                    //   var eventEnd = ("0" + eventStart.value).slice(-2);
+                    //   var start = supportDate.value +"T"+  eventStart.options[eventStart.selectedIndex].text+":00.000+03:00";
+                    //   var end = supportDate.value +"T"+ eventEnd +":00:00.000+03:00";
+                    //   var resource = {
+                    //     "summary": summary,
+                    //     "location":  "Bat Yam, Israel",
+                    //     "end": {"dateTime": end},
+                    //      "start": {"dateTime": start }
                      
-                      };
-                      console.log('start: ' + start)
-                      console.log('end: ' + end)
-                      makeRequest(resource);
-                    }
-                    else{
-                        console.log("no calendar use");
-                    }
+                    //   };
+                    //   console.log('start: ' + start)
+                    //   console.log('end: ' + end)
+                    //   makeRequest(resource);
+                    // }
+                    // else{
+                    //     console.log("no calendar use");
+                    // }
                     
             
-                      //prepare data to send //
-                      const data = {};
-                      const items=[];
+                    //   //prepare data to send //
+                    //   const data = {};
+                    //   const items=[];
                       
-                      items.push( "גלשן גלים");
-                      // check if customer wants also suite//
-                    //אם הוא לא מסומן "ללא חליפה" אז אני עושה : 
-                     items.push( "הערך של הסלקטור");
-                     data.itemTypes = items;
+                    //   items.push( "גלשן גלים");
+                    //   // check if customer wants also suite//
+                    // //אם הוא לא מסומן "ללא חליפה" אז אני עושה : 
+                    //  items.push( "הערך של הסלקטור");
+                    //  data.itemTypes = items;
                      
-                     data.calendarEventId= $('#event-id').val();
+                    //  data.calendarEventId= $('#event-id').val();
                      
                      
-                     set(ref(db, 'users/' + userId), {
-                        username: name,
-                        email: email,
-                        profile_picture : imageUrl
-                      });
                         
-                }
+                
+            
