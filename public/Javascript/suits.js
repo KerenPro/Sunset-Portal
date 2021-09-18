@@ -223,7 +223,7 @@ $(document).ready(function () {
     } else {
       $("#errmidasuite").html("");
     }
-    document.getElementById("mida-suite").scrollIntoView();
+    
 
     if (isError) {
         document.getElementById("mida-suite").scrollIntoView();
@@ -266,6 +266,7 @@ $(document).ready(function () {
     }
 
     window.setTimeout(addOrder, 5000);
+    setProgressBar();
   });
 });
 
@@ -354,4 +355,28 @@ function addOrder() {
       //redirectToHomepage();
     });
   return false;
+}
+
+//progress bar// 
+/* Set Container */
+var container = $('div.pp');
+
+/* Set Function */
+function setProgressBar() {
+  /* Set Progess Bar */
+  var progressBar = $('<div class="progress-bar"/>');
+    
+  /* Append Progress Bar to Container and Queue Animation */
+  container.append(progressBar).queue('example', function() {
+    /* Animate Progress Bar */
+    progressBar.animate({ width: '100%' }, 5000, function() {
+      /* Run Next Queue */
+      container.dequeue('example');
+    });
+  });
+
+  /* Fall Back if Nothing is Animating */
+  if(!progressBar.prevAll(':animated').length) {
+    container.dequeue('example');
+  }
 }
