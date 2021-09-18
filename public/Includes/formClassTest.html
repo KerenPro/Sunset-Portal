@@ -12,21 +12,24 @@
     <label for="surf">גלשן</label>
     <input type="radio" id="sap" name="classType" value="sap"/>
     <label for="sap">סאפ</label>
-    <br>
+    <br/>
     <legend>Participants</legend>
     <input type="radio" id="private" name="classParticipants" value="surf"/>
     <label for="private">יחיד</label>
     <input type="radio" id="group" name="classParticipants" value="sap"/>
     <label for="group">קבוצתי</label>
-    <br>
+    <br/>
     <legend>Number of participant in group</legend>
     <input type="number" id="numOfParticipants" name="numOfParticipants"/>
     <label for="numOfParticipants"></label>
 
     <legend>Personal Details</legend>
-    <label for="date">Date and Time of class:</label>
-    <input type="datetime-local" id="date" name="date"/>
-    <br>
+    <label for="date">Date of class:</label>
+    <input type="date" id="date" name="date"/>
+    <br/>
+    <label for="time">Time of class:</label>
+    <input type="time" id="time" name="time"/>
+    <br/>
     <label for="fname">First name:</label><br/>
     <input type="text" id="fname" name="fname"/><br/>
     <label for="lname">Last name</label>
@@ -84,4 +87,5 @@
     firebase.analytics();
 </script>
 <script src="../Javascript/addClass.js"></script>
+<script src="../Javascript/freeClasses.js"></script>
 </html>

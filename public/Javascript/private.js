@@ -23,63 +23,160 @@ var currentlyUpdatingId;
 const db = firebase.firestore();
 
 
-function getClasses() {
-
+async function getClasses() {
+    const classesRef = await db.collection("Classes").get();
+    return classesRef.docs;
 }
 
 async function getRentals() {
     //References to DB
-    const ordersRef = await db.collection("Orders").get();
+    var ordersRef = await db.collection("Orders").get();
     return ordersRef.docs;
 }
 
-getRentals().then(newRentals => buildRentals(newRentals));
+getClasses().then(newClasses => buildClasses(newClasses));
 
 var classesUl = document.getElementById("classes");
-for (var lesson in classes) {
-    
-}
-
 
 var shopM = document.getElementById("shopM");
 var shopModal = document.getElementById("shopModal");
-var span1 = document.getElementsByClassName("close")[1];
-    
-var cancel_classM = document.getElementById("cancelModal");
-var span2 = document.getElementsByClassName ("close") [2];
+var classesModal = document.getElementById("classModal");
+var closeRentalModal = document.getElementById("closeRentalModal");
+var closeClassModal = document.getElementById("closeClassModal");
 
-var update_classM = document.getElementById("updateModal");
-var closeUpdate = document.getElementById("closeUpdate");
+var updateSurfRentalModal = document.getElementById("updateSurfRentalModal");
+var updateSupRentalModal = document.getElementById("updateSupRentalModal");
+var updateClothingRentalModal = document.getElementById("updateClothingRentalModal");
+var closeSurfRentalUpdate = document.getElementById("closeSurfRentalUpdate");
+var closeSupRentalUpdate = document.getElementById("closeSupRentalUpdate");
+var closeClothingRentalUpdate = document.getElementById("closeClothingRentalUpdate");
+var closeClassUpdate = document.getElementById("closeClassUpdate");
+
+function buildClasses(newClasses) {
+    getRentals().then(newRentals => buildRentals(newRentals));
+
+    updateClassModal.onclick = function (event) {
+        event.stopPropagation();
+    }
+
+    closeClassUpdate.onclick = function (event) {
+        updateClassModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    classes = newClasses;
+var classTable = document.getElementById("classes");
+classes.forEach(lesson => {
+    classData = lesson.data();
+    var tr = document.createElement("tr");
+    var numberTd = document.createElement("td");
+    var numberText = document.createTextNode("#");
+    numberTd.appendChild(numberText);
+    tr.appendChild(numberTd);
+    var dateTd = document.createElement("td");
+    var dateText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleDateString("he-IL") : null);
+    dateTd.appendChild(dateText);
+    tr.appendChild(dateTd);
+    var timeTd = document.createElement("td");
+    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
+    timeTd.appendChild(timeText);
+    tr.appendChild(timeTd);
+    var itemTd = document.createElement("td");
+    var itemText = document.createTextNode(classData.classType);
+    itemTd.appendChild(itemText);
+    tr.appendChild(itemTd);
+    var groupTd = document.createElement("td");
+    var groupText = document.createTextNode(classData.classParticipants);
+    groupTd.appendChild(groupText);
+    tr.appendChild(groupTd);
+    var amountTd = document.createElement("td");
+    var amountText = document.createTextNode(classData.numOfParticipants);
+    amountTd.appendChild(amountText);
+    tr.appendChild(amountTd);
+    var buttonTd = document.createElement("td");
+    var changeButton = document.createElement("button");
+    changeButton.setAttribute("class", "update");
+    var changeButtonText = document.createTextNode("עדכון");
+    changeButton.appendChild(changeButtonText);
+    changeButton.onclick = function (event) {
+        classesModal.style.display = "none";
+        updateClassModal.style.display = "block";
+        event.stopPropagation();
+    }
+    buttonTd.appendChild(changeButton);
+    var cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancel_bu");
+    cancelButton.setAttribute("class", "cancel");
+    var cancelButtonText = document.createTextNode("ביטול");
+    cancelButton.appendChild(cancelButtonText);
+    cancelButton.onclick = function(event) {
+        db.collection("Classes").doc(lesson.id).delete();
+        //add toast deleted class successfully
+        swal("השיעור בוטל בהצלחה", "", "success");
+
+        classTable.innerHTML = '';
+        getClasses().then(newClasses => buildClasses(newClasses));
+    }
+    buttonTd.appendChild(cancelButton);
+    tr.appendChild(buttonTd);
+    classTable.appendChild(tr);
+});
+}
+
+function openChangeModal(itemTypes,rentalID) {
+    return () => { shopModal.style.display = "none";
+        if (itemTypes[0].includes("גלשן") || (itemTypes[1] && itemTypes[1].includes("גלשן"))){
+            updateSurfRentalModal.style.display="block";
+            updateSurfRentalModal.setAttribute("rentalID",rentalID);
+        } else if ((itemTypes[0].includes("סאפ") || (itemTypes[1] && itemTypes[1].includes("סאפ")))){
+            updateSupRentalModal.style.display = "block";
+            updateSupRentalModal.setAttribute("rentalID",rentalID);
+        } else{
+            updateClothingRentalModal.style.display = "block";
+            updateClothingRentalModal.setAttribute("rentalID",rentalID);
+        }
+    }
+    }
+
 
 function buildRentals(newRentals) {
     
     shopM.onclick = function() {
         shopModal.style.display = "block";
     }
-    span1.onclick = function(event) {
+    closeRentalModal.onclick = function(event) {
         shopModal.style.display = "none";
         event.stopPropagation();
     }
-
-    cancel_classM.onclick = function (event) {
-        event.stopPropagation();
-    }
     
-    span2.onclick = function (event) {
-        cancel_classM.style.display = "none";
+
+    updateSurfRentalModal.onclick = function (event) {
         event.stopPropagation();
     }
 
-    update_classM.onclick = function (event) {
+    updateSupRentalModal.onclick = function (event) {
         event.stopPropagation();
     }
 
-    closeUpdate.onclick = function (event) {
-        update_classM.style.display = "none";
+    updateClothingRentalModal.onclick = function (event) {
         event.stopPropagation();
     }
 
-    console.log(newRentals);
+    closeSurfRentalUpdate.onclick = function (event) {
+        updateSurfRentalModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    closeSupRentalUpdate.onclick = function (event) {
+        updateSupRentalModal.style.display = "none";
+        event.stopPropagation();
+    }
+
+    closeClothingRentalUpdate.onclick = function (event) {
+        updateClothingRentalModal.style.display = "none";
+        event.stopPropagation();
+    }
+
     rentals = newRentals;
 var rentalsTable = document.getElementById("rentals");
 rentals.forEach(rental => {
@@ -90,11 +187,11 @@ rentals.forEach(rental => {
     numberTd.appendChild(numberText);
     tr.appendChild(numberTd);
     var dateTd = document.createElement("td");
-    var dateText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleDateString("en-UK") : null);
+    var dateText = document.createTextNode(rentalData['orderDate'] ? rentalData['orderDate'].toDate().toLocaleDateString("he-IL") : null);
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(rentalData['date'] ? rentalData['date'].toDate().toLocaleTimeString().split(" ")[0] : null);
+    var timeText = document.createTextNode(rentalData['orderDate'] ? rentalData['orderDate'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
@@ -103,15 +200,11 @@ rentals.forEach(rental => {
     tr.appendChild(itemTd);
     var buttonTd = document.createElement("td");
     var changeButton = document.createElement("button");
+    changeButton.setAttribute("id", "changeRental"+rental.id)
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = function (event) {
-        shopModal.style.display = "none";
-        update_classM.style.display = "block";
-        currentlyUpdatingId = rental.id;
-        event.stopPropagation();
-    }
+    changeButton.onclick = openChangeModal(rentalData.itemTypes,rental.id);
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -119,25 +212,29 @@ rentals.forEach(rental => {
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
     cancelButton.onclick = function(event) {
-        shopModal.style.display = "none";
-        cancel_classM.style.display = "block";
-        currentlyDeletingId = rental.id;
-        event.stopPropagation();
+        db.collection("Orders").doc(rental.id).delete();
+        // add toast deleted rental successfully
+        swal("ההשכרה בוטלה בהצלחה", "", "success");
+       
+   
+        rentalsTable.innerHTML = '';
+        getRentals().then(newRentals => buildRentals(newRentals));
     }
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     rentalsTable.appendChild(tr);
+
 });
 
+
+
 var classM = document.getElementById("classM");
-var classesModal = document.getElementById("classModal");
-var span = document.getElementById("classClose");
 
 classM.onclick = function() {
     classesModal.style.display = "block";
 }
 
-span.onclick = function(event) {
+closeClassModal.onclick = function(event) {
     classesModal.style.display = "none";
     event.stopPropagation();
 }
@@ -156,11 +253,208 @@ window.onclick = function(event) {
 function saveCancellation() {
     //delete in db
     console.log(currentlyDeletingId);
-    cancel_classM.style.display = "none";
 }
 
-function saveUpdate() {
-    //save in db
-    console.log(currentlyUpdatingId);
-    update_classM.style.display = "none";
+function cancelClass(id) {
+
 }
+
+ 
+ //send request to WHEATHER API//
+ function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      myFunction(this);
+      color();
+    }
+    xhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he");
+    xhttp.send();
+  }
+  //sort in table 2 variebls from XML (from API) - waves height and date//
+  function myFunction(xml) {
+    const xmlDoc = xml.responseXML;
+    const x = xmlDoc.getElementsByTagName("weather");
+    let table="<tr><th>תאריך</th><th>גובה הגלים</th></tr>";
+    for (let i = 0; i <x.length; i++) { 
+      table += "<tr><td>" +
+      x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue +
+      "</td><td>" +
+      x[i].getElementsByTagName("swellHeight_m")[0].childNodes[0].nodeValue +
+      "</td></tr>";
+    }
+  
+    document.getElementById("demo").innerHTML = table;
+  }
+  //change date cell color in table to green due to condition of waves height and create an option in "date" select element//
+  function color(){
+     var tds = document.getElementById('demo').getElementsByTagName('td');
+     var selectList = document.getElementById("taarih-azmana");
+     
+     for(i=0;i<tds.length;i++) {
+      if(tds[i].innerHTML >0.5 && tds[i].innerHTML<1){
+          tds[i-1].style.backgroundColor ="#90EE90";
+          var option = document.createElement("option");
+          option.value = tds[i-1].innerHTML;
+          option.text = tds[i-1].innerHTML;
+          selectList.add(option);
+       }
+     }
+     }
+
+     //connect to Google Calendar API with credantials(api key and client ID)//
+      //API key from the Google Develoepr Console - to handle any unauthenticated
+      // requests in the code.
+    
+      var apiKey = 'AIzaSyB4cxbY2LD7KADlNEX8Bd1NWOPQWqgZasQ';
+
+      //  client ID for a web application from the Google Developer Console.
+      // In your Developer Console project, add a JavaScript origin that corresponds to the domain
+      // where you will be running the script.
+      var clientId = "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com"
+      var scopes = 'https://www.googleapis.com/auth/calendar';
+
+      // The Calendar entry to create//
+	  
+
+      function handleClientLoad() {
+        gapi.load('client', initClient);
+      }
+
+      function initClient() {
+        gapi.client.init({
+          apiKey: apiKey,
+          clientId: clientId,
+          scope: scopes
+        }).then();
+      }
+
+      function signIn() {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+	  
+		//API request//
+      function makeRequest(resource) {
+		  gapi.auth2.getAuthInstance().signIn({prompt:'select_account'}).then((res)=>{
+			console.log(res);
+			gapi.client.request({
+			  'path': '/calendar/v3/calendars/primary/events',
+			  'method': 'POST',
+			  'body': resource
+			}).then(function(resp) {
+				$('#event-id').val(""+ resp.result.id);
+				console.log("from resp api");
+				console.log(resp.result.id);
+			  writeResponse(resp.result);
+			});
+		  }).catch((res)=>{
+			 console.log("google login failed");
+			 console.log(res); 
+		  });
+      }
+		//This section code create a link to created event  //
+
+      function writeResponse(response) {
+        console.log(response);
+        var creator = response.creator.email;
+        var calendarEntry = response.htmlLink;
+        var infoDiv = document.getElementById('info');
+        var infoMsg = document.createElement('P');
+        infoMsg.appendChild(document.createTextNode('האירוע ' +
+            'נוצר בהצלחה ע"י ' + creator));
+        infoDiv.appendChild(infoMsg);
+        var entryLink = document.createElement('A');
+        entryLink.href = calendarEntry;
+        entryLink.appendChild(
+            document.createTextNode('צפה באירוע שנוצר ביומנך'));
+        infoDiv.appendChild(entryLink);
+      }
+
+      $(document).ready(function () {
+        loadDoc();
+            });
+
+            function saveSurfUpdate() {
+                updateSurfRentalModal.style.display = "none";
+                saveUpdate(updateSurfRentalModal.getAttribute("rentalID"));
+            }
+
+            function saveSupUpdate() {
+                updateSupRentalModal.style.display = "none";
+                saveUpdate(updateSupRentalModal.getAttribute("rentalID"));
+            }
+
+            function saveClothingUpdate() {
+                updateClothingRentalModal.style.display = "none";
+                saveUpdate(updateClothingRentalModal.getAttribute("rentalID"));
+            }
+
+            function saveUpdate (rentalID) {
+                var timeStamp = toTimeStamp();
+                var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
+                db.collection("Orders").doc(rentalID).update({orderDate:changeDate});
+                
+                var rentalsTable = document.getElementById("rentals");
+                rentalsTable.innerHTML = '';
+                swal("ההשכרה עודכנה בהצלחה", "", "success");
+                getRentals().then(newRentals => buildRentals(newRentals));
+
+                
+
+            }
+            function toTimeStamp(){
+                var subOne = (parseInt(document.getElementById("from").value) - 1).toString();
+                //var supportDate = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00";
+                var supportDate = document.getElementById("taarih-azmana").value+"T"+subOne+":00:00";
+                var changeDate1 = Date.parse(supportDate);
+                return changeDate1;
+            }
+
+
+
+
+                    // // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסףב מידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
+                    
+                    // // שריון ביומן//
+                    // //יצירת משתנים לשליחה ליומן//
+                    // ///////////////////////
+                    // //אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
+                    // if($('#calendar').prop('checked') ){
+                    //  console.log("writing to google calendar");
+                    //   let summary = (" השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: ") + " " +$('#parit').val() + " " + ("מידה:") + " " + $('#mida').val() ;
+                    //   var supportDate   = document.getElementById("taarih-azmana");
+                    //   var eventStart = document.getElementById("from");  
+                    //   var eventEnd = ("0" + eventStart.value).slice(-2);
+                    //   var start = supportDate.value +"T"+  eventStart.options[eventStart.selectedIndex].text+":00.000+03:00";
+                    //   var end = supportDate.value +"T"+ eventEnd +":00:00.000+03:00";
+                    //   var resource = {
+                    //     "summary": summary,
+                    //     "location":  "Bat Yam, Israel",
+                    //     "end": {"dateTime": end},
+                    //      "start": {"dateTime": start }
+                     
+                    //   };
+                    //   console.log('start: ' + start)
+                    //   console.log('end: ' + end)
+                    //   makeRequest(resource);
+                    // }
+                    // else{
+                    //     console.log("no calendar use");
+                    // }
+                    
+            
+                    //   //prepare data to send //
+                    //   const data = {};
+                    //   const items=[];
+                      
+                    //   items.push( "גלשן גלים");
+                    //   // check if customer wants also suite//
+                    // //אם הוא לא מסומן "ללא חליפה" אז אני עושה : 
+                    //  items.push( "הערך של הסלקטור");
+                    //  data.itemTypes = items;
+                     
+                    //  data.calendarEventId= $('#event-id').val();
+                     
+                     
+                        
+                
+            

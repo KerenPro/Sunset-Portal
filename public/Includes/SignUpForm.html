@@ -10,6 +10,10 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
     <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -25,13 +29,11 @@
     />
     <!--Stylesheet-->
     <link href="../CSS/SignUp.css" rel="stylesheet" />
-    <link href="../CSS/style.css" rel="stylesheet" />
     <meta charset="UTF-8" />
     <title>הרשמה</title>
   </head>
   <body>
     <header></header>
-    <nav></nav>
     <div class="container form">
       <div class="row">
         <h1 class="form-header">הרשמה למועדון</h1>
@@ -41,7 +43,7 @@
           <form id="form" dir="rtl">
             <div class="form-fields-section">
               <div class="row form-field">
-                <div class="col-2">
+                <div class="col-3">
                   <label for="name" class="form-label col-form-label"
                     >שם מלא</label
                   >
@@ -49,7 +51,7 @@
                 <div class="col-7">
                   <input
                     type="text"
-                    class="form-control col-5"
+                    class="form-control"
                     id="name"
                     name="name"
                     placeholder="שם פרטי ושם משפחה"
@@ -58,23 +60,34 @@
               </div>
 
               <div class="row form-field">
-                <div class="col-2">
+                <div class="col-3">
                   <label for="id" class="form-label col-form-label"
                     >תעודת זהות</label
                   >
                 </div>
                 <div class="col-7">
+                  <input type="text" class="form-control" id="id" name="id" />
+                </div>
+              </div>
+
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="bday" class="form-label col-form-label"
+                    >יום הולדת</label
+                  >
+                </div>
+                <div class="col-7">
                   <input
-                    type="text"
-                    class="form-control col-5"
-                    id="id"
-                    name="id"
+                    type="date"
+                    class="form-control"
+                    id="bday"
+                    name="bday"
                   />
                 </div>
               </div>
 
               <div class="row form-field">
-                <div class="col-2">
+                <div class="col-3">
                   <label for="pass" class="form-label col-form-label"
                     >סיסמא</label
                   >
@@ -82,7 +95,7 @@
                 <div class="col-7">
                   <input
                     type="password"
-                    class="form-control col-5"
+                    class="form-control"
                     id="pass"
                     name="pass"
                   />
@@ -90,7 +103,7 @@
               </div>
 
               <div class="row form-field">
-                <div class="col-2">
+                <div class="col-3">
                   <label for="phone" class="form-label col-form-label"
                     >טלפון</label
                   >
@@ -98,7 +111,7 @@
                 <div class="col-5">
                   <input
                     type="text"
-                    class="form-control col-5"
+                    class="form-control"
                     id="phone"
                     name="phone"
                     placeholder="050-1234567"
@@ -115,7 +128,7 @@
                 <div class="col-9">
                   <input
                     type="text"
-                    class="form-control col-5"
+                    class="form-control"
                     id="address"
                     name="address"
                   />
@@ -131,7 +144,7 @@
                 <div class="col-9">
                   <input
                     type="email"
-                    class="form-control col-5"
+                    class="form-control"
                     id="email"
                     name="email"
                   />
@@ -147,7 +160,7 @@
                 <div class="col-2">
                   <input
                     type="number"
-                    class="form-control col-5"
+                    class="form-control"
                     id="surfExp"
                     name="surfExp"
                   />
@@ -204,13 +217,11 @@
   <script>
     //load navigation bar from homepage
     $("header").load("../index.html header", function () {
-      $("img").attr("src", "../Assets/Images/Homepage/logo-2.png");
-      $("#homepage-link").attr("href", "../index.html");
+      $(".homepage-link").attr("href", "../index.html");
       $("#signup-link").attr("href", "./SignUpForm.html");
+      $("#signin-link").attr("href", "./SignIn.html");
+      $(".rent-homepage-link").attr("href", "./RentMainPage.html");
+      $(".private-link").attr("href", "./private.html");
     });
-    $("nav").load("../index.html #change_class");
-
-    //load footer from homepage
-    //$("footer").load( "../index.html footer" );
   </script>
 </html>
