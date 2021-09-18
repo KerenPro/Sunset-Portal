@@ -1,0 +1,127 @@
+.head,
+.third_section,
+.form {
+    position: relative;
+    width: 100%;
+    opacity: 80%;
+    border-radius: 20px;
+    background-color: #b0d9d9;
+    text-align: center;
+    font-family: system-ui;
+    margin: 3px;
+    padding: 10px;
+}
+
+header {
+    margin-bottom: 100px;
+}
+
+#demo {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #b0d9d9;
+    font-weight: bold;
+}
+
+.wheather-data {
+    background-image: url("../Assets/Images/waves1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    width: 100%;
+    opacity: 65%;
+    border-radius: 20px;
+    text-align: center;
+    font-family: system-ui;
+    margin: 3px;
+    padding: 10px;
+}
+
+.shop-header {
+    position: relative;
+    width: 100%;
+    opacity: 80%;
+    border-radius: 20px;
+    margin: 3px;
+    padding: 10px;
+    margin-right: 30px;
+}
+
+.calendar {
+    margin: 10px;
+    padding: 10px;
+}
+
+
+#hover:hover {
+    opacity: 0.3;
+}
+
+#hover {
+    border-radius: 20px;
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-top-width: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+th {
+    background-color:white;
+}
+
+#azhara1,
+#taarih-azmana1,
+#details-header {
+    border: 5px solid white;
+    height: 65px;
+    width: 40%;
+    margin: auto;
+    border-bottom-color: #b0d9d9;
+    border-style: dotted;
+}
+
+#azhara2,
+#leida-border {
+    border: 5px solid white;
+    height: 65px;
+    width: 40%;
+    margin: auto;
+    border-top-color: #b0d9d9;
+    border-style: dotted;
+}
+
+#cal-image {
+    width: 100px;
+    height: 100px;
+    margin: -40px;
+}
+
+#price {
+    border: #85b7e0 10px solid;
+    margin: auto;
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+#price-exp{
+
+color:black;
+
+}
