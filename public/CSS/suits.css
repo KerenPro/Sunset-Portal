@@ -55,9 +55,7 @@ header {
 }
 
 
-#hover:hover {
-    opacity: 0.3;
-}
+
 
 #hover {
     border-radius: 20px;
@@ -125,3 +123,42 @@ th {
 color:black;
 
 }
+
+.sup{
+
+    width: 250px;
+    height: 250px;
+}
+
+
+  a:link, a:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(56, 109, 189);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration:double;
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(116, 155, 214);
+    color: white;
+  }
+
+  .progress-bar {
+    height: 20px;
+    background-color: rgb(43, 108, 151);
+    width: 0px;
+    text-align: center;       
+    border: 2px solid gray;
+    margin-top: 10px;
+  }
+  
+  .pp{
+    width : auto;
+    background-color: #9fafa8;
+    margin-left: auto;
+    margin-right: auto;
+  }
