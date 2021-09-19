@@ -2,49 +2,15 @@
 const db = firebase.firestore();
 
 //References to DB
-const ordersRef = db.collection("Orders");
+const stockRef = db.collection("Stock");
 
-//Using Date
-const today = new Date();
+const item = document.getElementById("item1");
 
-document.getElementById("submit").addEventListener('click', (event) => {
-    event.preventDefault();
-    const item = {
-        product: "Board",
-        price: 245,
-        recommend: false
-    };
-    const orderDate = `${today.getDay()}/${today.getMonth()}/${today.getFullYear()}`;
-    const orderTime = `${today.getHours()}:${today.getMinutes()}`;
-    const orderPlacedTime = `${orderDate} ; ${orderTime}`;
-    const clientId = 204631337;
-    const rentDate = document.getElementById("date").value;
-    const clientName = document.getElementById("name").value;
-    const clientNumber = document.getElementById("phoneNum").value;
-    const paymentCardNum = document.getElementById("creditNum").value;
-    const cvvNum = document.getElementById("cvv").value;
-    const expDate = document.getElementById("exDate").value;
-    const payment = {
-        card: paymentCardNum,
-        cvv: cvvNum,
-        expirationDate: expDate
-    };
 
-    const order = {
-        orderPlacedTime: orderPlacedTime,
-        clientId: clientId,
-        items: item,
-        clientName: clientName,
-        rentDate: rentDate ,
-        clientNumber: clientNumber,
-        payment: payment
-    }
-    db.collection('Orders').add(order);
-    alert("Order has been added successfully");
-    return false;
-})
 
-/****THIS HELPS ME ****/
+
+
+/*****I NEED THIS****/
 // Add a new document in collection "cities"
 // db.collection("cities").doc("LA").set({
 //     name: "Los Angeles",
@@ -57,7 +23,8 @@ document.getElementById("submit").addEventListener('click', (event) => {
 //     .catch((error) => {
 //         console.error("Error writing document: ", error);
 //     });
-//
+
+//Data types
 // var docData = {
 //     stringExample: "Hello world!",
 //     booleanExample: true,

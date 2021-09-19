@@ -4,10 +4,6 @@
     padding: 0;
 }
 
-body{
-
-}
-
 .wrapper {
     padding-bottom: 2.5rem;
 }
@@ -140,16 +136,4 @@ body{
 
     color: #6a817e;
 
-}
-
-#hover:hover {
-	
-	opacity:0.3;
-	
-}
-#hover{
-	
-	border-radius:20px;
-	
-	
 }

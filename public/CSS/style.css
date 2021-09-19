@@ -22,6 +22,13 @@ button{
         z-index: 150;
     }
 
+    .logo{
+        width: 60px;
+        height: 45px;
+        background: url("../Assets/Images/Homepage/logo-2.png")
+
+    }
+
 
 a:link, a:visited{color:#111111; text-decoration: none;}
 a:hover, a:active{color: #111111;}
@@ -55,12 +62,12 @@ a:hover, a:active{color: #111111;}
     height: 50px;
     width: 100%;
     padding-right: 50px;
-    padding-left: 650px;
+    padding-left: 50px;
     background-color: #B3DDD9;  
 
     -webkit-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
-    box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);;
+    box-shadow: 9px 10px 39px -2px (0,0,0,0.3);;
     
 }
 @media screen and (max-width: 720px){
@@ -122,7 +129,7 @@ a:hover, a:active{color: #111111;}
     .menu_item_outside {display: none;}
 }
 /*FLEX*/
-.flex_container {display: flex; flex-wrap: wrap; align-items: center;}
+.flex_container {display: flex; flex-wrap: wrap; align-items:center;}
 .flex_header_container{justify-content: center;}
 .flex_header_item{
     min-width: 350px;
@@ -141,7 +148,7 @@ a:hover, a:active{color: #111111;}
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
-.flex_center {justify-content: center;}
+.flex_center {justify-content:center;}
 
 /*HEADER*/
 .header_quote {border-radius: 5px; padding: 10px;}
@@ -156,10 +163,24 @@ a:hover, a:active{color: #111111;}
         white,
         white 3px, 
         rgba(0, 116, 217, 0.01) 3px,
-        rgba(0, 116, 217, 0.01) 3px,
+        rgba(0, 116, 217, 0.01) 5px,
     );
 }
     .second_section_container{}
+
+    /*THIRD*/
+
+    .third_section{        
+        border-radius: 30px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 200px;
+        margin-left: 200px;
+        background-color: #cff3ee;
+        box-sizing: border-box;
+
+    }
+     .third_section_container {}
     /*FEATURED*/
     .feature{
         min-width: 250px;
@@ -167,19 +188,33 @@ a:hover, a:active{color: #111111;}
         height: 400px;
         margin-right: 20px;
         margin-left: 20px;
-        margin-bottom: 40px;
-        padding-top: 10px;
+        margin-bottom: 0px;
+        padding-top: 5px;
 
         color: #85A6A3;
       
 
-        -webkit-box-shadow: 9px 10px 39px -2px rgba (0,0,0, 0.3);
-        -moz-box-shadow: 9px 10px 39px -2px rgba (0,0,0, 0.3);
-        box-shadow: 9px 10px 39px -2px rgba (0,0,0, 0.3);;
+        -webkit-box-shadow: 9px 10px 39px -2px rgba(0,0,0, 0.3);
+        -moz-box-shadow: 9px 10px 39px -2px rgba(0,0,0, 0.3);
+        box-shadow: 9px 10px 39px -2px rgba(0,0,0,0.3);
     }
+    
+    
     .feature h2 {line-height: 0;}
     .feature p {text-align: center; margin: auto; max-width: 200px;}
     .feature .feature_image {width:200px; height: 200px; margin:auto;  background-size: cover;}
-    .feature1 .feature_image {background-image: url("https://www.lasdunassurfresort.com/wp-content/uploads/2021/06/carissa-moore-olas.jpeg");}
-    .feature2 .feature_image {background-image: url("https://cdn.shopify.com/s/files/1/0051/3576/1442/products/medium_8db25705-8c10-44a7-b40f-10de66094b5a.jpg?v=1624202986");}
+    .feature1 .feature_image {background-image: url("../Assets/Images/Homepage/wavesurf.jpg");}
+    .feature2 .feature_image {background-image: url("../Assets/Images/Homepage/sup.jpg");}
+
+    .dAt{
+        float: left;
+        font-size: 30px;
+        font-weight: bold;
+
+        }
+    .wind{
+        float: right;
+    }
+    .wind_image {width: 30px; height: 30px; margin: auto; background-size: cover; background-image: url("../Assets/Images/Homepage/wind.png");
+
 
