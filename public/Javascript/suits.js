@@ -137,6 +137,7 @@ function makeRequest(resource) {
           body: resource,
         })
         .then(function (resp) {
+          setProgressBar();
           $("#event-id").val("" + resp.result.id);
           console.log("from resp api");
           console.log(resp.result.id);
@@ -145,7 +146,6 @@ function makeRequest(resource) {
         .then((res) => {
           //window.setTimeout(addOrder, 10000);
           addOrder();
-          setProgressBar();
         });
     })
     .catch((res) => {
