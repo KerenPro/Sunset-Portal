@@ -262,7 +262,7 @@ $(document).ready(function () {
       console.log("no calendar use");
     }
 
-    window.setTimeout(addOrder, 5000);
+    window.setTimeout(addOrder, 10000);
     setProgressBar();
   });
 });
@@ -360,7 +360,7 @@ function setProgressBar() {
   /* Append Progress Bar to Container and Queue Animation */
   container.append(progressBar).queue("example", function () {
     /* Animate Progress Bar */
-    progressBar.animate({ width: "100%" }, 5000, function () {
+    progressBar.animate({ width: "100%" }, 10000, function () {
       /* Run Next Queue */
       container.dequeue("example");
     });
