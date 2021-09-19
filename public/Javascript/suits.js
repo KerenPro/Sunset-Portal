@@ -144,7 +144,6 @@ function makeRequest(resource) {
           writeResponse(resp.result);
         })
         .then((res) => {
-          //window.setTimeout(addOrder, 10000);
           addOrder();
         });
     })
