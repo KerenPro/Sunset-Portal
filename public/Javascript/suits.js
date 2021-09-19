@@ -141,6 +141,11 @@ function makeRequest(resource) {
           console.log("from resp api");
           console.log(resp.result.id);
           writeResponse(resp.result);
+        })
+        .then((res) => {
+          //window.setTimeout(addOrder, 10000);
+          addOrder();
+          setProgressBar();
         });
     })
     .catch((res) => {
@@ -261,9 +266,6 @@ $(document).ready(function () {
     } else {
       console.log("no calendar use");
     }
-
-    window.setTimeout(addOrder, 10000);
-    setProgressBar();
   });
 });
 
