@@ -1,164 +1,159 @@
 .head,
 .third_section,
 .form {
-    position: relative;
-    width: 100%;
-    opacity: 80%;
-    border-radius: 20px;
-    background-color: #b0d9d9;
-    text-align: center;
-    font-family: system-ui;
-    margin: 3px;
-    padding: 10px;
+  position: relative;
+  width: 100%;
+  opacity: 80%;
+  border-radius: 20px;
+  background-color: #b0d9d9;
+  text-align: center;
+  font-family: system-ui;
+  margin: 3px;
+  padding: 10px;
 }
 
 header {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 #demo {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #b0d9d9;
-    font-weight: bold;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #b0d9d9;
+  font-weight: bold;
 }
 
 .wheather-data {
-    background-image: url("../Assets/Images/waves1.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    position: relative;
-    width: 100%;
-    opacity: 65%;
-    border-radius: 20px;
-    text-align: center;
-    font-family: system-ui;
-    margin: 3px;
-    padding: 10px;
+  background-image: url("../Assets/Images/waves1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  width: 100%;
+  opacity: 65%;
+  border-radius: 20px;
+  text-align: center;
+  font-family: system-ui;
+  margin: 3px;
+  padding: 10px;
 }
 
 .shop-header {
-    position: relative;
-    width: 100%;
-    opacity: 80%;
-    border-radius: 20px;
-    margin: 3px;
-    padding: 10px;
-    margin-right: 30px;
+  position: relative;
+  width: 100%;
+  opacity: 80%;
+  border-radius: 20px;
+  margin: 3px;
+  padding: 10px;
+  margin-right: 30px;
 }
 
 .calendar {
-    margin: 10px;
-    padding: 10px;
+  margin: 10px;
+  padding: 10px;
 }
 
-
-
-
 #hover {
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 table,
 td,
 th {
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-top-width: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-top-width: 5px;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 th,
 td {
-    padding: 10px;
+  padding: 10px;
 }
 
 th {
-    background-color:white;
+  background-color: white;
 }
 
 #azhara1,
 #taarih-azmana1,
 #details-header {
-    border: 5px solid white;
-    height: 65px;
-    width: 40%;
-    margin: auto;
-    border-bottom-color: #b0d9d9;
-    border-style: dotted;
+  border: 5px solid white;
+  height: 65px;
+  width: 40%;
+  margin: auto;
+  border-bottom-color: #b0d9d9;
+  border-style: dotted;
 }
 
 #azhara2,
 #leida-border {
-    border: 5px solid white;
-    height: 65px;
-    width: 40%;
-    margin: auto;
-    border-top-color: #b0d9d9;
-    border-style: dotted;
+  border: 5px solid white;
+  height: 65px;
+  width: 40%;
+  margin: auto;
+  border-top-color: #b0d9d9;
+  border-style: dotted;
 }
 
 #cal-image {
-    width: 100px;
-    height: 100px;
-    margin: -40px;
+  width: 100px;
+  height: 100px;
+  margin: -40px;
 }
 
 #price {
-    border: #85b7e0 10px solid;
-    margin: auto;
-    width: 30%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 20px;
+  border: #85b7e0 10px solid;
+  margin: auto;
+  width: 30%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
 }
-#price-exp{
-
-color:black;
-
+#price-exp {
+  color: black;
 }
 
-.sup{
-
-    width: 250px;
-    height: 250px;
+.sup {
+  width: 250px;
+  height: 250px;
 }
 
+.suits-link:link,
+.suits-link:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(56, 109, 189);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: double;
+  display: inline-block;
+  font-weight: bold;
+}
 
-  a:link, a:visited {
-    background-color: white;
-    color: black;
-    border: 2px solid rgb(56, 109, 189);
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration:double;
-    display: inline-block;
-    font-weight: bold;
-  }
-  
-  a:hover, a:active {
-    background-color: rgb(116, 155, 214);
-    color: white;
-  }
+.suits-link:hover,
+.suits-link:active {
+  background-color: rgb(116, 155, 214);
+  color: white;
+}
 
-  .progress-bar {
-    height: 20px;
-    background-color: rgb(43, 108, 151);
-    width: 0px;
-    text-align: center;       
-    border: 2px solid gray;
-    margin-top: 10px;
-  }
-  
-  .pp{
-    width : auto;
-    background-color: #9fafa8;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.progress-bar {
+  height: 20px;
+  background-color: rgb(43, 108, 151);
+  width: 0px;
+  text-align: center;
+  border: 2px solid gray;
+  margin-top: 10px;
+}
+
+.pp {
+  width: auto;
+  background-color: #9fafa8;
+  margin-left: auto;
+  margin-right: auto;
+}
