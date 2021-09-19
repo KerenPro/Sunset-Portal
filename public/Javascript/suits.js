@@ -265,6 +265,11 @@ $(document).ready(function () {
     } else {
       console.log("no calendar use");
     }
+
+    const addCalendar = document.getElementById("calendar");
+    if (!addCalendar.checked) {
+      addOrder();
+    }
   });
 });
 
