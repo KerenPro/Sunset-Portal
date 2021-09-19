@@ -1,3 +1,4 @@
+console.log("got here");
 function getDate(){
     var now = new Date ();
     var day = now.getDate();
@@ -32,13 +33,8 @@ function getTime(){
 
 }
 
-
-
-
-
 document.getElementById("Date").innerHTML=getDate();
 document.getElementById("Time").innerHTML=getTime();
-
 
 var data;
 const xhr = new XMLHttpRequest();
@@ -54,15 +50,16 @@ xhr.onload = () =>{
 
     let ms = data.wind.speed;
     let kph = ms* 3.6;
+    kph = (Math.round(kph*100)/100).toFixed(2);
 
     
-
+    document.getElementById("temp").innerHTML ="כעת: " + data.main.temp;
+    document.getElementById("feelsLike").innerHTML = "מרגיש כמו: " + data.main.feels_like;
     document.getElementById("windSpeed").innerHTML = windDir + " " + kph + " " + "קמ״ש"
     document.getElementById("sunrise").innerHTML ="זריחה:" + " " + sRise;
     document.getElementById("sunset").innerHTML = "שקיעה:" + " " + sSet;
-    document.getElementById("humidity").innerHTML = data.main.humidity + "%";
-    document.getElementById("temp").innerHTML = data.main.temp;
-    document.getElementById("feelsLike").innerHTML = data.main.feels_like;
+    document.getElementById("humidity").innerHTML = "לחות: " + data.main.humidity + "%";
+    
 };
 
 function convertTime(unixTime){
@@ -78,6 +75,8 @@ function convertWindDir (deg){
     let index = Math.round((deg % 360)/ 22.5)
     return compass[index];
 }
+
+
 
 
 

@@ -2,15 +2,45 @@
 const db = firebase.firestore();
 
 //References to DB
-const stockRef = db.collection("Stock");
+const userRef = db.collection("Users");
 
-const item = document.getElementById("item1");
+//Variables
+const submitBtn = document.getElementById("submit");
 
+const redirectToHomepage = () => {
+  window.location.href = "../index.html";
+};
 
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault();
 
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("pass").value;
 
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, pass)
+    .then((userCredential) => {
+      // Signed in
+      let user = userCredential.user;
+      userRef
+        .doc(`${email}`)
+        .get()
+        .then((doc) => {
+          const userName = doc.data().name;
+          alert(`ברוכים הבאים, ${userName}`);
+          redirectToHomepage();
+        });
+    })
+    .catch((error) => {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+    });
 
-/*****I NEED THIS****/
+  return false;
+});
+
+/****THIS HELPS ME ****/
 // Add a new document in collection "cities"
 // db.collection("cities").doc("LA").set({
 //     name: "Los Angeles",
@@ -41,4 +71,3 @@ const item = document.getElementById("item1");
 // };
 // db.collection("data").doc("one").set(docData).then(() => {
 //     console.log("Document successfully written!");
-// });

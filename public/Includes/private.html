@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style_private.css">
+    <!--jQuery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
+    <script src="https://apis.google.com/js/client:platform.js"></script>
+
+    <title>אזור אישי</title>
+
+</head>
+<body>
+<header>
+    <div class="header_item">
+        <a href="SignUpForm.html">
+            <button> הרשמה</button>
+        </a>
+        <a href="SignIn.html">
+            <button> התחברות</button>
+        </a>
+    </div>
+    <a name="top"></a>
+    <div id="change_class" class="flex_container section menu_section">
+        <div class="flex_item branding"><p></p></div>
+        <div class="flex_item menu_item dropdown">
+            <p> תפריט</p>
+            <div class="dropdown-content">
+                <a href="./Includes/private.html">
+                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> אזור אישי</p></a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href=""><p>שיעורים</p></a></div>
+                </a>
+                <a href="./Includes/RentMainPage.html">
+                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> השכרות</p></a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div>
+                </a>
+                <a href="./index.html">
+                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> דף הבית</p></a></div>
+                </a>
+
+
+            </div>
+        </div>
+        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/private.html"><p> אזור אישי</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href=""><p>שיעורים</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/RentMainPage.html"><p>השכרות</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href="./index.html"><p> דף הבית</p></a></div>
+
+    </div>
+</header>
+<div class="section page first_section" id="card1">
+    <a name="private"></a>
+    <div class="section_container first_section_container flex_container flex_center">
+        <div class="text header_text text_grad_blue_turq">
+            <h1> אזור אישי</h1>
+        </div>
+        <a href="#link1" id="classM">
+            <div class="feature flex_feature_item feature1">
+                <div class="feature_image"></div>
+                <h2> שיעורים</h2>
+                <p> כאן ניתן לראות שיעורים שנקבעו ולעדכן/לבטל מועד</p>
+            </div>
+            <div id="classModal" class="modal1">
+                <div class="modal_content">
+                    <span class="close" id="closeClassModal">&times;</span>
+                    <h2> שיעורים שנקבעו</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th> תאריך</th>
+                            <th> שעה</th>
+                            <th> סוג שיעור</th>
+                            <th> פרטי/קבוצתי</th>
+                            <th> מספר משתתפים</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="classes">
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </div>
+
+
+        </a>
+        <a href="#link2" id="shopM" class="flip">
+            <div class="feature flex_feature_item feature2">
+                <div class="feature_image"></div>
+                <h2> השכרות</h2>
+                <p> כאן ניתן לראות ציוד/ביגוד ששוריין ולעדכן/לבטל שריון</p>
+            </div>
+            <div id="shopModal" class="modal1">
+                <div class="modal_content">
+                    <span class="close" id="closeRentalModal">&times;</span>
+                    <h2> השכרות פעילות</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th> תאריך</th>
+                            <th> שעה</th>
+                            <th> פריט להשכרה</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="rentals">
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+                <div id="updateSurfRentalModal" class="modal2">
+                    <div class="modal_content">
+                        <span class="close" id="closeSurfRentalUpdate">&times;</span>
+                        <h2> עדכון השכרת גלשן</h2>
+                        <section class="wheather-data">
+
+                            <h4>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים
+                                אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h4>
+                            <br><br>
+                            <table id="demo"></table>
+                            <br></br>
+                            <label for="taarih-azmana">תאריך הזמנה</label><br>
+                            <select name="taarih-azmana" id="taarih-azmana">
+                                <option value="" id="taarih-azmana"></option>
+                            </select><br>
+                            <label id="errtaarih-azmana" style="color:red"></label><br>
+
+                            <label for="from">שעת השכרה</label>
+                            <select name="from" id="from">
+                                <option value=" " id="from"></option>
+                                <option value="9" id="day">08:00</option>
+                                <option value="10" id="day">09:00</option>
+                                <option value="11" id="day">10:00</option>
+                                <option value="12" id="day">11:00</option>
+                                <option value="13" id="day">12:00</option>
+                                <option value="14" id="day">13:00</option>
+                                <option value="15" id="day">14:00</option>
+                                <option value="16" id="day">15:00</option>
+                            </select><br>
+                            <label id="errfrom" style="color:red"></label><br>
+                            <label for="calendar"> יש לסמן אם ברצונך לשמור את האירוע ביומן גוגל האישי שלך </label>
+                            <input type="checkbox" id="calendar"><br><br>
+                        </section>
+                        <button onclick="saveSurfUpdate()"> שמירה</button>
+                    </div>
+                </div>
+                <div id="updateSupRentalModal" class="modal2">
+                    <div class="modal_content">
+                        <span class="close" id="closeSupRentalUpdate">&times;</span>
+                        <h2> עדכון השכרת סאפ</h2>
+                        <section class="wheather-data">
+
+                            <h4>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים
+                                אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h4>
+                            <br><br>
+                            <table id="demo"></table>
+                            <br></br>
+                            <label for="taarih-azmana">תאריך הזמנה</label><br>
+                            <select name="taarih-azmana" id="taarih-azmana">
+                                <option value="" id="taarih-azmana"></option>
+                            </select><br>
+                            <label id="errtaarih-azmana" style="color:red"></label><br>
+
+                            <label for="from">שעת השכרה</label>
+                            <select name="from" id="from">
+                                <option value=" " id="from"></option>
+                                <option value="9" id="day">08:00</option>
+                                <option value="10" id="day">09:00</option>
+                                <option value="11" id="day">10:00</option>
+                                <option value="12" id="day">11:00</option>
+                                <option value="13" id="day">12:00</option>
+                                <option value="14" id="day">13:00</option>
+                                <option value="15" id="day">14:00</option>
+                                <option value="16" id="day">15:00</option>
+                            </select><br>
+                            <label id="errfrom" style="color:red"></label><br>
+                            <label for="calendar"> יש לסמן אם ברצונך לשמור את האירוע ביומן גוגל האישי שלך </label>
+                            <input type="checkbox" id="calendar"><br><br>
+                        </section>
+                        <button onclick="saveSupUpdate()"> שמירה</button>
+                    </div>
+                </div>
+                <div id="updateClothingRentalModal" class="modal2">
+                    <div class="modal_content">
+                        <span class="close" id="closeClothingRentalUpdate">&times;</span>
+                        <h2> עדכון השכרת ביגוד</h2>
+                        <section class="wheather-data">
+
+                            <h4>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים
+                                אשר בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h4>
+                            <br><br>
+                            <table id="demo"></table>
+                            <br></br>
+                            <label for="taarih-azmana">תאריך הזמנה</label><br>
+                            <select name="taarih-azmana" id="taarih-azmana">
+                                <option value="" id="taarih-azmana"></option>
+                            </select><br>
+                            <label id="errtaarih-azmana" style="color:red"></label><br>
+
+                            <label for="from">שעת השכרה</label>
+                            <select name="from" id="from">
+                                <option value=" " id="from"></option>
+                                <option value="9" id="day">08:00</option>
+                                <option value="10" id="day">09:00</option>
+                                <option value="11" id="day">10:00</option>
+                                <option value="12" id="day">11:00</option>
+                                <option value="13" id="day">12:00</option>
+                                <option value="14" id="day">13:00</option>
+                                <option value="15" id="day">14:00</option>
+                                <option value="16" id="day">15:00</option>
+                            </select><br>
+                            <label id="errfrom" style="color:red"></label><br>
+                            <label for="calendar"> יש לסמן אם ברצונך לשמור את האירוע ביומן גוגל האישי שלך </label>
+                            <input type="checkbox" id="calendar"><br><br>
+                        </section>
+                        <button onclick="saveClothingUpdate()"> שמירה</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="updateClassModal" class="modal2">
+                <div class="modal_content">
+                    <span class="close" id="closeClassUpdate">&times;</span>
+                    <h2> עדכון השכרה</h2>
+                    <button onclick="saveUpdate()"> שמירה</button>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+<!-- Script & Script link -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+
+<!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+<script src="../Javascript/private.js" rel="script">
+</script>
+
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad();"
+        onreadystatechange="if (this.readyState === 'complete') this.onload();">
+</script>
+
+</body>
+</html>

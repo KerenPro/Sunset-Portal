@@ -4,77 +4,65 @@ const db = firebase.firestore();
 //References to DB
 const stockRef = db.collection("Stock");
 const boardsDocRef = stockRef.doc("Boards");
-const menSuitsDocRef = stockRef.doc("men-suits");
-const womenSuitsDocRef = stockRef.doc("women-suits");
-const accessoriesDocRef = stockRef.doc("accessories");
+const supDocRef = stockRef.doc("Sup");
+const clothingDocRef = stockRef.doc("Clothing");
 
 /*** Recommendations **/
 //Variables for Recommendations
 const recBoard = document.getElementById("recBoard");
-const recMenSuit = document.getElementById("recMenSuit");
-const recWomenSuit = document.getElementById("recWomenSuit");
-const recAccess = document.getElementById("recAccess");
+const recSup = document.getElementById("recSup");
+const recClothing = document.getElementById("recClothing");
 
 //Board
-boardsDocRef.get().then( snap => {
-    let data = snap.data();
-    for (let i in data){
-        if (data[i].recommend === true){
-            let prodName = data[i].productName;
-            let prodImg = data[i].img;
-            let prodPrice = data[i].price;
-            console.log(prodImg)
-            recBoard.getElementsByClassName("rec-title")[0].innerHTML= prodName;
-            recBoard.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recBoard.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
-            break;
-        }}
-    });
-
-//Men's Suit
-menSuitsDocRef.get().then( snap => {
-    let data = snap.data();
-    for (let i in data){
-        if (data[i].recommend === true){
-            let prodName = data[i].productName;
-            let prodImg = data[i].img;
-            let prodPrice = data[i].price;
-            recMenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
-            recMenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recMenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
-            break;
-        }}
+boardsDocRef.get().then((snap) => {
+  let data = snap.data();
+  for (let i in data) {
+    if (data[i].recommend === true) {
+      let prodName = data[i].productName;
+      let prodImg = data[i].img;
+      let prodPrice = data[i].price;
+      console.log(prodImg);
+      recBoard.getElementsByClassName("rec-title")[0].innerHTML = prodName;
+      recBoard.getElementsByClassName("rec-img")[0].innerHTML =
+        "<img class='rec-img' src='" + prodImg + "'>";
+      recBoard.getElementsByClassName("rec-price")[0].innerHTML =
+        prodPrice + "₪";
+      break;
+    }
+  }
 });
 
-//Women's Suit
-womenSuitsDocRef.get().then( snap => {
-    let data = snap.data();
-    for (let i in data){
-        if (data[i].recommend === true){
-            let prodName = data[i].productName;
-            let prodImg = data[i].img;
-            let prodPrice = data[i].price;
-            recWomenSuit.getElementsByClassName("rec-title")[0].innerHTML= prodName;
-            recWomenSuit.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recWomenSuit.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
-            break;
-        }}
+supDocRef.get().then((snap) => {
+  let data = snap.data();
+  for (let i in data) {
+    if (data[i].recommend === true) {
+      let prodName = data[i].productName;
+      let prodImg = data[i].img;
+      let prodPrice = data[i].price;
+      recSup.getElementsByClassName("rec-title")[0].innerHTML = prodName;
+      recSup.getElementsByClassName("rec-img")[0].innerHTML =
+        "<img class='rec-img' src='" + prodImg + "'>";
+      recSup.getElementsByClassName("rec-price")[0].innerHTML = prodPrice + "₪";
+      break;
+    }
+  }
 });
 
-//Accessories
-accessoriesDocRef.get().then( snap => {
-    let data = snap.data();
-    for (let i in data){
-        if (data[i].recommend === true){
-            let prodName = data[i].productName;
-            let prodImg = data[i].img;
-            let prodPrice = data[i].price;
-            console.log(prodImg);
-            recAccess.getElementsByClassName("rec-title")[0].innerHTML= prodName;
-            recAccess.getElementsByClassName("rec-img")[0].innerHTML= "<img class='rec-img' src=\'"+prodImg+"\'>";
-            recAccess.getElementsByClassName("rec-price")[0].innerHTML= prodPrice + "₪";
-            break;
-        }}
+clothingDocRef.get().then((snap) => {
+  let data = snap.data();
+  for (let i in data) {
+    if (data[i].recommend === true) {
+      let prodName = data[i].productName;
+      let prodImg = data[i].img;
+      let prodPrice = data[i].price;
+      recClothing.getElementsByClassName("rec-title")[0].innerHTML = prodName;
+      recClothing.getElementsByClassName("rec-img")[0].innerHTML =
+        "<img class='rec-img' src='" + prodImg + "'>";
+      recClothing.getElementsByClassName("rec-price")[0].innerHTML =
+        prodPrice + "₪";
+      break;
+    }
+  }
 });
 
 /***********************************THIS HELPS ME **************************************/

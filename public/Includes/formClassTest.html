@@ -2,32 +2,34 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
-    <title>הזמנה</title>
+    <title>שיעור</title>
 </head>
 <body>
 <form>
-    <legend>Cart</legend>
-    <legend>Items</legend>
-    <input type="checkbox" class="surf" id="surf" name="surf" value="surf"/>
+    <legend>Class Details</legend>
+    <legend>Type of class</legend>
+    <input type="radio" id="surf" name="classType" value="surf"/>
     <label for="surf">גלשן</label>
-    <input type="checkbox" class="sap" id="sap" name="sap" value="sap"/>
+    <input type="radio" id="sap" name="classType" value="sap"/>
     <label for="sap">סאפ</label>
-    <input
-            type="checkbox"
-            class="cloth"
-            id="cloth"
-            name="cloth"
-            value="cloth"
-    />
-    <label for="cloth">ביגוד ימי</label>
-
-    <legend>Details</legend>
-    <label for="bday">Birthday</label>
-    <input type="date" id="bday" name="bday"/>
     <br/>
-    <label for="date">Date and Time for rent:</label>
-    <input type="datetime-local" id="date" name="date"/>
-    <br>
+    <legend>Participants</legend>
+    <input type="radio" id="private" name="classParticipants" value="surf"/>
+    <label for="private">יחיד</label>
+    <input type="radio" id="group" name="classParticipants" value="sap"/>
+    <label for="group">קבוצתי</label>
+    <br/>
+    <legend>Number of participant in group</legend>
+    <input type="number" id="numOfParticipants" name="numOfParticipants"/>
+    <label for="numOfParticipants"></label>
+
+    <legend>Personal Details</legend>
+    <label for="date">Date of class:</label>
+    <input type="date" id="date" name="date"/>
+    <br/>
+    <label for="time">Time of class:</label>
+    <input type="time" id="time" name="time"/>
+    <br/>
     <label for="fname">First name:</label><br/>
     <input type="text" id="fname" name="fname"/><br/>
     <label for="lname">Last name</label>
@@ -84,5 +86,6 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 </script>
-<script src="../Javascript/addOrder.js"></script>
+<script src="../Javascript/addClass.js"></script>
+<script src="../Javascript/freeClasses.js"></script>
 </html>

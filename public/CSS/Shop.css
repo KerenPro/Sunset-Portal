@@ -1,7 +1,15 @@
 /*General Options*/
 * {
-    margin:0;
+    margin: 0;
     padding: 0;
+}
+
+body {
+    background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(133, 166, 163, 0.5) 100%
+    ) no-repeat fixed;
 }
 
 .wrapper {
@@ -15,16 +23,21 @@
     width: 50%;
 }
 
+header {
+    margin-bottom: 100px;
+}
+
 /*Header Image*/
 .shop-header {
     position: relative;
+    margin-top: 100px;
     width: 100%;
     opacity: 80%;
     border-radius: 20px;
 }
 
 /*Shop options sections*/
-#shop-options{
+#shop-options {
     position: relative;
     width: 100%;
     margin: 0;
@@ -38,7 +51,7 @@
     height: 377px;
     margin: 10px;
 
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 4px 4px rgba(133, 166, 163, 0.75);
 }
 
@@ -56,14 +69,14 @@
     justify-content: center;
     padding-top: 20px;
 
-    font-family: 'Rubik', sans-serif;;
+    font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 45px;
     line-height: 57px;
     text-align: center;
 
-    color: #85A6A3;
+    color: #85a6a3;
 }
 
 /*Recommendations Section*/
@@ -71,7 +84,7 @@
     padding: 10px;
 }
 
-.recommend-header{
+.recommend-header {
     position: relative;
     text-align: right;
     margin-bottom: 10px;
@@ -93,7 +106,7 @@
     min-height: 56vh;
     display: flex;
     flex-direction: column;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 4px 4px rgba(133, 166, 163, 0.75);
 }
 
@@ -102,7 +115,7 @@
     justify-content: center;
     padding-top: 20px;
 
-    font-family: 'Rubik', sans-serif;;
+    font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -115,8 +128,8 @@
 .rec-img {
     position: relative;
     justify-content: center;
-    width: 400px; /* width of container */
-    height: 300px; /* height of container */
+    width: 600px; /* width of container */
+    height: 500px; /* height of container */
     object-fit: contain;
     padding: 10px;
     border-radius: 20px;
@@ -127,7 +140,7 @@
     justify-content: center;
     padding-top: 20px;
     margin-top: auto;
-    font-family: 'Rubik', sans-serif;;
+    font-family: "Rubik", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -135,5 +148,14 @@
     text-align: center;
 
     color: #6a817e;
+}
 
+/*Hover*/
+.hover:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.hover {
+    border-radius: 20px;
 }
