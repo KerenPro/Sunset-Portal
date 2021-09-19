@@ -141,6 +141,10 @@ function makeRequest(resource) {
           console.log("from resp api");
           console.log(resp.result.id);
           writeResponse(resp.result);
+        })
+        .then((id) => {
+          console.log(id);
+          addOrder();
         });
     })
     .catch((res) => {
@@ -262,7 +266,7 @@ $(document).ready(function () {
       console.log("no calendar use");
     }
 
-    window.setTimeout(addOrder, 10000);
+    //window.setTimeout(addOrder, 10000);
     setProgressBar();
   });
 });
@@ -334,6 +338,7 @@ function addOrder() {
   const orderID = `${today.getDate()}${
     today.getMonth() + 1
   }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
+
   ordersRef
     .doc(orderID)
     .set(order)
