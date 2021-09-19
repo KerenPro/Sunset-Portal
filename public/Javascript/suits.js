@@ -81,8 +81,7 @@ function color() {
   var selectList = document.getElementById("taarih-azmana");
 
   for (i = 0; i < tds.length; i++) {
-    if (tds[i].innerHTML >0) {
-     
+    if (tds[i].innerHTML > 0) {
       var option = document.createElement("option");
       option.value = tds[i - 1].innerHTML;
       option.text = tds[i - 1].innerHTML;
@@ -202,7 +201,7 @@ $(document).ready(function () {
     } else {
       $("#errtaz").html("");
     }
-    
+
     if ($("#taarih-azmana").val() === "") {
       $("#errtaarih-azmana").html("יש לבחור תאריך השכרה");
       isError = true;
@@ -223,12 +222,10 @@ $(document).ready(function () {
     } else {
       $("#errmidasuite").html("");
     }
-    
 
     if (isError) {
-        document.getElementById("mida-suite").scrollIntoView();
+      document.getElementById("mida-suite").scrollIntoView();
       return;
-      
     }
 
     // אם הולדיציות תקינות תתבצע שליחת הזמנה ובנוסף במידה והמשתמש יבחר שריון ביומן גוגל האישי שלו//
@@ -275,21 +272,15 @@ function showPrice() {
   stockRef.get().then((snap) => {
     let supPrice, suitPrice;
     snap.forEach((doc) => {
-      if (doc.id === "Sup") {
-        supPrice = doc.data().rentPrice;
-        console.log(supPrice);
-        return supPrice;
-      }
       if (doc.id === "Clothing") {
         suitPrice = doc.data().rentPrice;
-        console.log(suitPrice);
         return suitPrice;
       }
     });
     if ($("#mida-suite").val() === "") {
       $("#final-price").html("0" + " " + "₪");
     } else {
-      $("#final-price").html(  suitPrice + " " + "₪");
+      $("#final-price").html(suitPrice + " " + "₪");
     }
   });
 }
@@ -357,26 +348,26 @@ function addOrder() {
   return false;
 }
 
-//progress bar// 
+//progress bar//
 /* Set Container */
-var container = $('div.pp');
+var container = $("div.pp");
 
 /* Set Function */
 function setProgressBar() {
   /* Set Progess Bar */
   var progressBar = $('<div class="progress-bar"/>');
-    
+
   /* Append Progress Bar to Container and Queue Animation */
-  container.append(progressBar).queue('example', function() {
+  container.append(progressBar).queue("example", function () {
     /* Animate Progress Bar */
-    progressBar.animate({ width: '100%' }, 5000, function() {
+    progressBar.animate({ width: "100%" }, 5000, function () {
       /* Run Next Queue */
-      container.dequeue('example');
+      container.dequeue("example");
     });
   });
 
   /* Fall Back if Nothing is Animating */
-  if(!progressBar.prevAll(':animated').length) {
-    container.dequeue('example');
+  if (!progressBar.prevAll(":animated").length) {
+    container.dequeue("example");
   }
 }
