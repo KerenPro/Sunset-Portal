@@ -142,6 +142,9 @@ function makeRequest(resource) {
           console.log("from resp api");
           console.log(resp.result.id);
           writeResponse(resp.result);
+        })
+        .then((res) => {
+          addOrder();
         });
     })
     .catch((res) => {
@@ -273,7 +276,10 @@ $(document).ready(function () {
     } else {
       console.log("no calendar use");
     }
-    window.setTimeout(addOrder, 10000);
+    const addCalendar = document.getElementById("calendar");
+    if (!addCalendar.checked) {
+      addOrder();
+    }
   });
 });
 
