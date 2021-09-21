@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Style sheet link -->
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/sups.css">
+    <link rel="stylesheet" href="../CSS/suits.css">
     <!--jQuery import-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -29,7 +29,7 @@
             margin: 0.5em 0;
         }
     </style>
-    <title>השכרת סאפ</title>
+    <title>השכרת ביגוד ימי</title>
 </head>
 <body>
 
@@ -40,12 +40,11 @@
     <main id="shop-options" class="row">
 
         <section class="head">
-            <h1>השכרת סאפ<h1>
+            <h1>השכרת ביגוד ימי</h1>
         </section>
         <section class="wheather-data">
 
-            <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ
-                להשכיר סאפ בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
+            <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, אנו מאפשרים להשכיר רק ביגוד ימי לאלו שיש להם ציוד משלהם</h3>
             <br><br>
             <!--Table that will keep dynamic info from Weather API about swell height for next 7 days-->
             <table id="demo"></table>
@@ -79,29 +78,15 @@
                     <option value="16" id="day8">15:00</option>
                 </select><br>
                 <label id="errfrom" style="color:red"></label><br>
-
-                <h5>יש לבחור מידה בהתאם למשקלך וגובה:</h5>
-                <p id="mida-info"><b>S</b> (עד 50 ק"ג , עד גובה 1.6) <b>M</b> (עד 70 ק"ג , עד 1.8 ) <b>L</b> (עד 80 ק"ג , עד גובה 1.8)
-                    <b>XL</b> ( עד 120 ק"ג , עד גובה 2.1 )</p>
-                <label for="mida"> מידה </label><br>
-                <select name="mida" id="mida" onchange="showPrice()"><br><br>
-                    <option value="" id="size"></option>
-                    <option value=" סאפ S" id="size1">S</option>
-                    <option value=" סאפ M" id="size2">M</option>
-                    <option value=" סאפ L" id="size3">L</option>
-                    <option value=" סאפ XL" id="size4">XL</option>
-                </select><br>
-                <label id="errmida" style="color:red"></label><br>
-
                 <label for="parit">סוג פריט להשכרה:</label><br>
-                <input type="text" id="parit" name="parit" value="סאפ" disabled><br><br>
-                <label for="mida-suite"><b> יש לסמן מידה אם ברצונך להשכיר גם חליפת גלישה</b> </label><br>
+                <input type="text" id="parit" name="parit" value="חליפת גלישה" disabled><br><br>
+                <label for="mida-suite"><b> יש לסמן מידה</b> </label><br>
                 <select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
-                    <option value="" id="size5">ללא חליפה</option>
-                    <option value="חליפה S" id="size6">S כולל חליפה מידה</option>
-                    <option value="חליפה M" id="size7">M כולל חליפה מידה</option>
-                    <option value="חליפה L" id="size8">L כולל חליפה מידה</option>
-                    <option value="חליפה XL" id="size9">XL כולל חליפה מידה</option>
+                    <option value="" id="size5"></option>
+                    <option value="חליפה S" id="size6">S </option>
+                    <option value="חליפה M" id="size7">M </option>
+                    <option value="חליפה L" id="size8">L</option>
+                    <option value="חליפה XL" id="size9">XL </option>
                 </select><br>
                 <label id="errmidasuite" style="color:red"></label><br>
                 <label for="fname">שם פרטי</label><br>
@@ -116,16 +101,6 @@
                 <label for="phone">מספר טלפון</label><br>
                 <input type="text" id="phone" name="phone" maxlength="10"><br>
                 <label id="errphone" style="color:red"></label><br>
-                <label for="leida">תאריך לידה </label><br>
-                <input type="date" id="leida" name="leida"><br>
-                <label id="errleida" style="color:red"></label><br><br>
-                <p id="leida-border"></p><br>
-                <h2 id="azhara1" for="azhara">הצהרת בריאות </h2><br>
-                <input type="checkbox" id="azhara" name="azhara">
-                <label for="azhara"> הנני מאשר כי אני כשיר לעשות פעילות ספורטיבית ובאחריותי להודיע למועדון על מגבלות אם קיימות</label><br>
-                <label id="err-azhara" style="color:red"></label><br><br>
-                <label for="reshimat-migbalot">הצהרה במידה וקיימות מגבלות:</label><br><br>
-                <textarea id="reshimat-migbalot" name="reshimat-migbalot" rows="2" cols="40"></textarea>
                 <p id="azhara2"></p><br>
                 <label for="calendar" id="cal-label"> סמן לשמירה ביומן גוגל שלך
                     <input type="checkbox" id="calendar"><br><br>
@@ -134,11 +109,14 @@
                 <input type="submit" value="שלח הזמנה" id="submit">
                 <!-- hidden input that will keep The id of event that created in user calendar-->
                 <input type="text" id="event-id" value="" hidden>
+                
             </form>
             <div id="price">
                 <h2 id="price-exp">מחיר ההשכרה</h2><br>
                 <h1 id="final-price"> 0 ₪</h1>
-            </div>
+            </div><br>
+            <div class="pp"></div><br>
+        
         </section>
         <section class="wheather-data">
             <div class="section page third_section">
@@ -152,7 +130,12 @@
                     </div>
                 </div>
 
-                <div id="info"></div>
+                
+                <div id="info"></div><br>
+             
+
+             <a class="suits-link" href="sups.html" target="_blank">לחץ כאן אם ברצונך להשכיר סאפ</a><br><br>
+                <a class="suits-link" href="surfboards.html" target="_blank">לחץ כאן אם ברצונך להשכיר גלשן גלים</a>
         </section>
 
 
@@ -197,12 +180,13 @@
         });
     </script>
 
-    <script src="../Javascript/sups.js"></script>
+    <script src="../Javascript/suits.js"></script>
 
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad();"
             onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
+
 
 
 </body>

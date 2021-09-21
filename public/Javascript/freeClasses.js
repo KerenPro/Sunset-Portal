@@ -6,4 +6,3 @@ const ClassesRef = db.collection("Classes");
 
 //Using Date
 const today = new Date();
-
