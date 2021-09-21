@@ -216,10 +216,12 @@ rentals.forEach(rental => {
     cancelButton.appendChild(cancelButtonText);
     cancelButton.onclick = function(event) {
         db.collection("Orders").doc(rental.id).delete();
-        // add toast deleted rental successfully
+        if(rentalData.eventId != "") 
+        {
+            var resource ={};
+            makeRequest(resource,rentalData.eventId);
+        }
         swal("ההשכרה בוטלה בהצלחה", "", "success");
-       
-   
         rentalsTable.innerHTML = '';
         getRentals().then(newRentals => buildRentals(newRentals));
     }
