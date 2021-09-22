@@ -75,14 +75,13 @@ function myFunction(xml) {
   document.getElementById("demo").innerHTML = table;
 }
 
-//change date cell color in table to green due to condition of waves height and create an option in "date" select element//
+// create an option in "date" select element//
 function color() {
   var tds = document.getElementById("demo").getElementsByTagName("td");
   var selectList = document.getElementById("taarih-azmana");
 
   for (i = 0; i < tds.length; i++) {
-    if (tds[i].innerHTML <= 0.5) {
-      tds[i - 1].style.backgroundColor = "#90EE90";
+    if (tds[i].innerHTML > 0) {
       var option = document.createElement("option");
       option.value = tds[i - 1].innerHTML;
       option.text = tds[i - 1].innerHTML;
@@ -138,6 +137,7 @@ function makeRequest(resource) {
           body: resource,
         })
         .then(function (resp) {
+          setProgressBar();
           $("#event-id").val("" + resp.result.id);
           console.log("from resp api");
           console.log(resp.result.id);
@@ -205,12 +205,7 @@ $(document).ready(function () {
     } else {
       $("#errtaz").html("");
     }
-    if ($("#leida").val() === "") {
-      $("#errleida").html("יש להזין תאריך לידה");
-      isError = true;
-    } else {
-      $("#errleida").html("");
-    }
+
     if ($("#taarih-azmana").val() === "") {
       $("#errtaarih-azmana").html("יש לבחור תאריך השכרה");
       isError = true;
@@ -225,21 +220,15 @@ $(document).ready(function () {
       $("#errfrom").html("");
     }
 
-    if ($("#mida").val() === "") {
-      $("#errmida").html("יש לבחור מידה");
+    if ($("#mida-suite").val() === "") {
+      $("#errmidasuite").html("יש לבחור מידה");
       isError = true;
     } else {
-      $("#errmida").html("");
-    }
-
-    if (!$("#azhara").prop("checked")) {
-      $("#err-azhara").html("יש לסמן הצהרת בריאות");
-      isError = true;
-    } else {
-      $("#err-azhara").html("");
+      $("#errmidasuite").html("");
     }
 
     if (isError) {
+      document.getElementById("mida-suite").scrollIntoView();
       return;
     }
 
@@ -254,7 +243,7 @@ $(document).ready(function () {
         " " +
         "מידה:" +
         " " +
-        $("#mida").val();
+        $("#mida-suite").val();
       var supportDate = document.getElementById("taarih-azmana");
       var eventStart = document.getElementById("from");
       var eventEnd = ("0" + eventStart.value).slice(-2);
@@ -289,27 +278,15 @@ function showPrice() {
   stockRef.get().then((snap) => {
     let supPrice, suitPrice;
     snap.forEach((doc) => {
-      if (doc.id === "Sup") {
-        supPrice = doc.data().rentPrice;
-        console.log(supPrice);
-        return supPrice;
-      }
       if (doc.id === "Clothing") {
         suitPrice = doc.data().rentPrice;
-        console.log(suitPrice);
         return suitPrice;
       }
     });
     if ($("#mida-suite").val() === "") {
-      $("#final-price").html(supPrice + " " + "₪");
+      $("#final-price").html("0" + " " + "₪");
     } else {
-      $("#final-price").html(supPrice + suitPrice + " " + "₪");
-    }
-    if ($("#mida-suite").val() === "" && $("#mida").val() === "") {
-      $("#final-price").html("0" + " " + "₪");
-    }
-    if ($("#mida").val() === "") {
-      $("#final-price").html("0" + " " + "₪");
+      $("#final-price").html(suitPrice + " " + "₪");
     }
   });
 }
@@ -327,12 +304,8 @@ function addOrder() {
 
   //What items are checked
   const items = [];
-  const itemType = document.getElementById("mida").value;
   const suit = document.getElementById("mida-suite").value;
   //if the itemType isn't empty - push it to items array
-  if (itemType) {
-    items.push(itemType);
-  }
   if (suit) {
     items.push(suit);
   }
@@ -341,24 +314,14 @@ function addOrder() {
   const firstName = document.getElementById("fname").value;
   const lastName = document.getElementById("lname").value;
   const id = document.getElementById("taz").value;
-  const birthday = document.getElementById("leida").value;
   const phoneNumber = document.getElementById("phone").value;
-  const health = document.getElementById("azhara");
-  const issues = document.getElementById("reshimat-migbalot").value;
   const date = document.getElementById("taarih-azmana").value;
   const timeID = document.getElementById("from");
   const time = timeID.options[timeID.selectedIndex].text;
   const orderDate = new Date(`${date} ; ${time}`);
   const orderDateTime = `${today.toLocaleString()}`;
   const finalPrice = document.getElementById("final-price").textContent;
-  let isHealthy;
   const eventId = document.getElementById("event-id").value;
-
-  if (health.checked) {
-    isHealthy = true;
-  } else {
-    isHealthy = false;
-  }
 
   //Finalize order object
   const order = {
@@ -368,10 +331,7 @@ function addOrder() {
     firstName: firstName,
     lastName: lastName,
     id: id,
-    birthDate: birthday,
     phoneNumber: phoneNumber,
-    isHealthy: isHealthy,
-    knownIssues: issues,
     orderDateTime: orderDateTime,
     finalPrice: finalPrice,
     eventId: eventId,
@@ -380,6 +340,7 @@ function addOrder() {
   const orderID = `${today.getDate()}${
     today.getMonth() + 1
   }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
+
   ordersRef
     .doc(orderID)
     .set(order)
@@ -392,4 +353,28 @@ function addOrder() {
       //redirectToHomepage();
     });
   return false;
+}
+
+//progress bar//
+/* Set Container */
+var container = $("div.pp");
+
+/* Set Function */
+function setProgressBar() {
+  /* Set Progess Bar */
+  var progressBar = $('<div class="progress-bar"/>');
+
+  /* Append Progress Bar to Container and Queue Animation */
+  container.append(progressBar).queue("example", function () {
+    /* Animate Progress Bar */
+    progressBar.animate({ width: "100%" }, 10000, function () {
+      /* Run Next Queue */
+      container.dequeue("example");
+    });
+  });
+
+  /* Fall Back if Nothing is Animating */
+  if (!progressBar.prevAll(":animated").length) {
+    container.dequeue("example");
+  }
 }
