@@ -380,9 +380,13 @@ function cancelClass(id) {
         .then((res) => {
           console.log("1");
           console.log(res);
-          gapi.client
+          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          console.log(event);
+          console.log("2");
+          /*gapi.client
             .request({
-              path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
+              //path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
+              path: "/calendar/v3/calendars/primary/events/"+eventID,
               method: "POST",
               body: resource,
             })
@@ -394,7 +398,7 @@ function cancelClass(id) {
               console.log(resp.result.id);
               console.log("3");
               //writeResponse(resp.result);
-            });
+            });*/
         })
         .catch((res) => {
           console.log("google login failed");
