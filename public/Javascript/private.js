@@ -305,6 +305,7 @@ function cancelClass(id) {
        }
      }
      }
+     
 
      //connect to Google Calendar API with credantials(api key and client ID)//
       //API key from the Google Develoepr Console - to handle any unauthenticated
