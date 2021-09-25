@@ -271,6 +271,8 @@ function cancelClass(id) {
     xhttp.onload = function() {
       myFunction(this);
       color();
+      colorSup();
+      colorCloth();
     }
     xhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he");
     xhttp.send();
@@ -289,6 +291,8 @@ function cancelClass(id) {
     }
   
     document.getElementById("demo").innerHTML = table;
+    document.getElementById("demoSup").innerHTML = table;
+    document.getElementById("demoCloth").innerHTML = table;
   }
   //change date cell color in table to green due to condition of waves height and create an option in "date" select element//
   function color(){
@@ -305,6 +309,35 @@ function cancelClass(id) {
        }
      }
      }
+
+     function colorSup(){
+        var tds = document.getElementById('demoSup').getElementsByTagName('td');
+        var selectList = document.getElementById("taarih-azmanaSup");
+        
+        for (i = 0; i < tds.length; i++) {
+            if (tds[i].innerHTML <= 0.5) {
+              tds[i - 1].style.backgroundColor = "#90EE90";
+              var option = document.createElement("option");
+              option.value = tds[i - 1].innerHTML;
+              option.text = tds[i - 1].innerHTML;
+              selectList.add(option);
+            }
+          }
+        }
+
+        function colorCloth(){
+            var tds = document.getElementById('demoCloth').getElementsByTagName('td');
+            var selectList = document.getElementById("taarih-azmanaCloth");
+            
+            for (i = 0; i < tds.length; i++) {
+                if (tds[i].innerHTML > 0) {
+                  var option = document.createElement("option");
+                  option.value = tds[i - 1].innerHTML;
+                  option.text = tds[i - 1].innerHTML;
+                  selectList.add(option);
+                }
+              }
+            }
      
 
      //connect to Google Calendar API with credantials(api key and client ID)//
@@ -344,6 +377,7 @@ function cancelClass(id) {
         .getAuthInstance()
         .signIn({ prompt: "select_account" })
         .then((res) => {
+          console.log("1");
           console.log(res);
           gapi.client
             .request({
@@ -353,8 +387,10 @@ function cancelClass(id) {
             })
             .then(function (resp) {
               $("#event-id").val("" + resp.result.id);
+              console.log("2");
               console.log("from resp api");
               console.log(resp.result.id);
+              console.log("3");
               writeResponse(resp.result);
             });
         })
@@ -366,6 +402,7 @@ function cancelClass(id) {
 		//This section code create a link to created event  //
 
       function writeResponse(response) {
+        console.log("4");
         console.log(response);
         var creator = response.creator.email;
         var calendarEntry = response.htmlLink;
@@ -387,22 +424,22 @@ function cancelClass(id) {
 
             function saveSurfUpdate() {
                 updateSurfRentalModal.style.display = "none";
-                saveUpdate(updateSurfRentalModal.getAttribute("rentalID"), updateSurfRentalModal.getAttribute("eventID"));
+                saveUpdate(updateSurfRentalModal.getAttribute("rentalID"), updateSurfRentalModal.getAttribute("eventID"),"");
             }
 
             function saveSupUpdate() {
                 updateSupRentalModal.style.display = "none";
-                saveUpdate(updateSupRentalModal.getAttribute("rentalID"),updateSupRentalModal.getAttribute("eventID"));
+                saveUpdate(updateSupRentalModal.getAttribute("rentalID"),updateSupRentalModal.getAttribute("eventID"),"Sup");
             }
 
             function saveClothingUpdate() {
                 updateClothingRentalModal.style.display = "none";
-                saveUpdate(updateClothingRentalModal.getAttribute("rentalID"),updateClothingRentalModal.getAttribute("eventID"));
+                saveUpdate(updateClothingRentalModal.getAttribute("rentalID"),updateClothingRentalModal.getAttribute("eventID"),"Cloth");
             }
 
-            function saveUpdate (rentalID, eventID) {
+            function saveUpdate (rentalID, eventID,eventType) {
                 //update in DB
-                var timeStamp = toTimeStamp();
+                var timeStamp = toTimeStamp(eventType);
                 var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
                 db.collection("Orders").doc(rentalID).update({orderDate:changeDate});
                 
@@ -411,8 +448,8 @@ function cancelClass(id) {
                 {
                     console.log("need to change!")
                     var subOne = (parseInt(document.getElementById("from").value) - 1).toString();
-                    var startTime = document.getElementById("taarih-azmana").value+"T"+subOne+":00:00.000+03:00";
-                    var endTime = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00.000+03:00";
+                    var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
+                    var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
                     var resource = {
                         end: { dateTime: endTime },
                         start: { dateTime: startTime },
@@ -430,10 +467,10 @@ function cancelClass(id) {
                 
 
             }
-            function toTimeStamp(){
-                var subOne = (parseInt(document.getElementById("from").value) - 1).toString();
+            function toTimeStamp(eventType){
+                var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
                 //var supportDate = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00";
-                var supportDate = document.getElementById("taarih-azmana").value+"T"+subOne+":00:00";
+                var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00";
                 var changeDate1 = Date.parse(supportDate);
                 return changeDate1;
             }
