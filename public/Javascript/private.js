@@ -351,6 +351,7 @@ function cancelClass(id) {
       // where you will be running the script.
       var clientId = "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com"
       var scopes = 'https://www.googleapis.com/auth/calendar';
+      var calanderId = "c3Vuc2V0c3VyZnBvcnRhbEBnbWFpbC5jb20";
 
       // The Calendar entry to create//
 	  
@@ -381,7 +382,7 @@ function cancelClass(id) {
           console.log(res);
           gapi.client
             .request({
-              path: "/calendar/v3/calendars/primary/events/"+eventID,
+              path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
               method: "POST",
               body: resource,
             })
