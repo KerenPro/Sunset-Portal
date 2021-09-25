@@ -387,9 +387,10 @@ function cancelClass(id) {
               body: resource,
             })
             .then(function (resp) {
-              $("#event-id").val("" + resp.result.id);
+              //$("#event-id").val("" + resp.result.id);
               console.log("2");
               console.log("from resp api");
+              console.log(resp);
               console.log(resp.result.id);
               console.log("3");
               //writeResponse(resp.result);
@@ -441,6 +442,7 @@ function cancelClass(id) {
             function saveUpdate (rentalID, eventID,eventType) {
                 //update in DB
                 var timeStamp = toTimeStamp(eventType);
+                //console.log(timeStamp);
                 var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
                 db.collection("Orders").doc(rentalID).update({orderDate:changeDate});
                 
@@ -470,10 +472,15 @@ function cancelClass(id) {
 
             }
             function toTimeStamp(eventType){
+                //console.log(eventType);
+                //console.log(document.getElementById("from"+eventType).value);
                 var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
+                //console.log(subOne);
                 //var supportDate = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00";
-                var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00";
+                var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T0"+subOne+":00:00";
+                //console.log(supportDate);
                 var changeDate1 = Date.parse(supportDate);
+                //console.log(changeDate1);
                 return changeDate1;
             }
 
