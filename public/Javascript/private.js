@@ -380,25 +380,36 @@ function cancelClass(id) {
         .then((res) => {
           console.log("1");
           console.log(res);
-          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-          console.log(event);
+          //var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          //console.log(event);
           console.log("2");
-          /*gapi.client
+          gapi.client
             .request({
               //path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
               path: "/calendar/v3/calendars/primary/events/"+eventID,
               method: "POST",
-              body: resource,
+              body: resource
             })
             .then(function (resp) {
               //$("#event-id").val("" + resp.result.id);
-              console.log("2");
               console.log("from resp api");
               console.log(resp);
-              console.log(resp.result.id);
+              //console.log(resp.result.id);
               console.log("3");
               //writeResponse(resp.result);
-            });*/
+            });
+
+            var request = gapi.client.calendar.events.patch({
+                'calendarId': 'primary',
+                'eventId': eventID,
+                'resource': resource
+            });
+            console.log("4")
+            console.log(request)
+            request.execute(function (event) {
+                console.log("5")
+                console.log(event);
+            });
         })
         .catch((res) => {
           console.log("google login failed");
