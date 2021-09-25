@@ -391,7 +391,7 @@ function cancelClass(id) {
               console.log("from resp api");
               console.log(resp.result.id);
               console.log("3");
-              writeResponse(resp.result);
+              //writeResponse(resp.result);
             });
         })
         .catch((res) => {
@@ -446,7 +446,7 @@ function cancelClass(id) {
                 //Update in google calander
                 if(eventID != "")
                 {
-                    console.log("need to change!")
+                    console.log("need to change!!!!")
                     var subOne = (parseInt(document.getElementById("from").value) - 1).toString();
                     var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
                     var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
@@ -454,6 +454,7 @@ function cancelClass(id) {
                         end: { dateTime: endTime },
                         start: { dateTime: startTime },
                       };
+                      console.log("0")
                     makeRequest(resource,eventID);
                 }
 
