@@ -48,6 +48,24 @@ submitBtn.addEventListener("click", (event) => {
           let createdUser = signUpUser;
           alert("ההרשמה עברה בהצלחה");
           redirectToHomepage();
+        })
+        .catch((error) => {
+          let errorCode = error.code;
+          let errorMsg = error.message;
+
+          //email already is use
+          if (errorCode === "auth/email-already-in-use") {
+            document.getElementById("email-error").innerHTML =
+              "האימייל שהוזן קיים במערכת";
+            console.log(errorMsg);
+          }
+
+          //Password under 6 characters
+          if (errorCode === "auth/weak-password") {
+            document.getElementById("password-error").innerHTML =
+              "הסיסמא צריכה להכיל יותר מ6 תוים";
+            console.log(errorMsg);
+          }
         });
     });
 
