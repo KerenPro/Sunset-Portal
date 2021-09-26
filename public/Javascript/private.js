@@ -99,6 +99,7 @@ classes.forEach(lesson => {
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
     changeButton.onclick = function (event) {
+        colorClass(classData.classType)
         classesModal.style.display = "none";
         updateClassModal.style.display = "block";
         event.stopPropagation();
@@ -219,7 +220,7 @@ rentals.forEach(rental => {
         if(rentalData.eventId != "") 
         {
             var resource ={};
-            makeRequest(resource,rentalData.eventId);
+            deleteRequest(resource,rentalData.eventId);
         }
         swal("ההשכרה בוטלה בהצלחה", "", "success");
         rentalsTable.innerHTML = '';
@@ -293,6 +294,7 @@ function cancelClass(id) {
     document.getElementById("demo").innerHTML = table;
     document.getElementById("demoSup").innerHTML = table;
     document.getElementById("demoCloth").innerHTML = table;
+    document.getElementById("demoClass").innerHTML = table;
   }
   //change date cell color in table to green due to condition of waves height and create an option in "date" select element//
   function color(){
@@ -309,6 +311,34 @@ function cancelClass(id) {
        }
      }
      }
+
+     function colorClass(eventType){
+        var tds = document.getElementById('demoClass').getElementsByTagName('td');
+        var selectList = document.getElementById("taarih-azmanaClass");
+        
+        if (eventType.includes("גלישה")){
+            for(i=0;i<tds.length;i++) {
+                if(tds[i].innerHTML >0.5 && tds[i].innerHTML<1){
+                    tds[i-1].style.backgroundColor ="#90EE90";
+                    var option = document.createElement("option");
+                    option.value = tds[i-1].innerHTML;
+                    option.text = tds[i-1].innerHTML;
+                    selectList.add(option);
+                 }
+               }
+        }else {
+            for (i = 0; i < tds.length; i++) {
+                if (tds[i].innerHTML <= 0.5) {
+                  tds[i - 1].style.backgroundColor = "#90EE90";
+                  var option = document.createElement("option");
+                  option.value = tds[i - 1].innerHTML;
+                  option.text = tds[i - 1].innerHTML;
+                  selectList.add(option);
+                }
+              }
+        }
+
+        }
 
      function colorSup(){
         var tds = document.getElementById('demoSup').getElementsByTagName('td');
@@ -380,36 +410,13 @@ function cancelClass(id) {
         .getAuthInstance()
         .signIn({ prompt: "select_account" })
         .then((res) => {
-          console.log("1");
-          console.log(res);
           var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-          console.log(event);
-          console.log("2");
-          /*gapi.client
-            .request({
-              //path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
-              path: "/calendar/v3/calendars/primary/events/"+eventID,
-              method: "POST",
-              body: resource
-            })
-            .then(function (resp) {
-              //$("#event-id").val("" + resp.result.id);
-              console.log("from resp api");
-              console.log(resp);
-              //console.log(resp.result.id);
-              console.log("3");
-              //writeResponse(resp.result);
-            });*/
-
-            var request = gapi.client.calendar.events.patch({
+          var request = gapi.client.calendar.events.patch({
                 'calendarId': 'primary',
                 'eventId': eventID,
                 'resource': resource
             });
-            console.log("3")
-            console.log(request)
             request.execute(function (event) {
-                console.log("5")
                 console.log(event);
             });
         })
@@ -418,24 +425,26 @@ function cancelClass(id) {
           console.log(res);
         });
     }
-		//This section code create a link to created event  //
 
-      function writeResponse(response) {
-        console.log("4");
-        console.log(response);
-        var creator = response.creator.email;
-        var calendarEntry = response.htmlLink;
-        var infoDiv = document.getElementById("info");
-        var infoMsg = document.createElement("P");
-        infoMsg.appendChild(
-          document.createTextNode("האירוע " + 'עודכן בהצלחה ע"י ' + creator)
-        );
-        infoDiv.appendChild(infoMsg);
-        var entryLink = document.createElement("A");
-        entryLink.href = calendarEntry;
-        entryLink.appendChild(document.createTextNode("צפה באירוע שעודכן ביומנך"));
-        infoDiv.appendChild(entryLink);
-      }
+    function deleteRequest(resource, eventID) {
+        gapi.auth2
+        .getAuthInstance()
+        .signIn({ prompt: "select_account" })
+        .then((res) => {
+          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          var request = gapi.client.calendar.events.delete({
+                'calendarId': 'primary',
+                'eventId': eventID
+            });
+            request.execute(function (event) {
+                console.log(event);
+            });
+        })
+        .catch((res) => {
+          console.log("google login failed");
+          console.log(res);
+        });
+    }
 
       $(document).ready(function () {
         loadDoc();
@@ -455,6 +464,7 @@ function cancelClass(id) {
                 updateClothingRentalModal.style.display = "none";
                 saveUpdate(updateClothingRentalModal.getAttribute("rentalID"),updateClothingRentalModal.getAttribute("eventID"),"Cloth");
             }
+          
 
             function saveUpdate (rentalID, eventID,eventType) {
                 //update in DB
@@ -466,7 +476,7 @@ function cancelClass(id) {
                 //Update in google calander
                 if(eventID != "")
                 {
-                    console.log("need to play??!!??")
+                    console.log("changes!")
                     var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
                     var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
                     var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
@@ -474,7 +484,6 @@ function cancelClass(id) {
                         end: { dateTime: endTime },
                         start: { dateTime: startTime },
                       };
-                      console.log("0")
                     makeRequest(resource,eventID);
                 }
 
