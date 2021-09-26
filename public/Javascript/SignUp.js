@@ -8,10 +8,13 @@ const today = new Date();
 const submitBtn = document.getElementById("submit");
 const form = document.getElementById("form");
 
+/**Functionality**/
+//Redirect back to Homepage
 const redirectToHomepage = () => {
   window.location.href = "../index.html";
 };
 
+//Add new user
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -71,35 +74,3 @@ submitBtn.addEventListener("click", (event) => {
 
   return false;
 });
-
-/****THIS HELPS ME ****/
-// Add a new document in collection "cities"
-// db.collection("cities").doc("LA").set({
-//     name: "Los Angeles",
-//     state: "CA",
-//     country: "USA"
-// })
-//     .then(() => {
-//         console.log("Document successfully written!");
-//     })
-//     .catch((error) => {
-//         console.error("Error writing document: ", error);
-//     });
-
-//Data types
-// var docData = {
-//     stringExample: "Hello world!",
-//     booleanExample: true,
-//     numberExample: 3.14159265,
-//     dateExample: firebase.firestore.Timestamp.fromDate(new Date("December 10, 1815")),
-//     arrayExample: [5, true, "hello"],
-//     nullExample: null,
-//     objectExample: {
-//         a: 5,
-//         b: {
-//             nested: "foo"
-//         }
-//     }
-// };
-// db.collection("data").doc("one").set(docData).then(() => {
-//     console.log("Document successfully written!");
