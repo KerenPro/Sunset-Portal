@@ -438,10 +438,22 @@ function cancelClass(id) {
         .getAuthInstance()
         .signIn({ prompt: "select_account" })
         .then((res) => {
-          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-          var request = gapi.client.calendar.events.delete({
+            var params = {
+                calendarId: 'primary',
+                eventId: eventID,
+              };
+        
+              calendar.events.delete(params, function(err) {
+                if (err) {
+                  console.log('The API returned an error: ' + err);
+                }
+                console.log('Event deleted.');
+              });
+          /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          var request = gapi.client.calendar.events.patch({
                 'calendarId': 'primary',
-                'eventId': eventID
+                'eventId': eventID,
+                'resource': resource
             });
             request.execute(function (event) {
                 console.log(event);
@@ -449,7 +461,7 @@ function cancelClass(id) {
         })
         .catch((res) => {
           console.log("google login failed");
-          console.log(res);
+          console.log(res);*/
         });
     }
 
