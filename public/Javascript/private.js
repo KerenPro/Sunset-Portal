@@ -352,6 +352,7 @@ function cancelClass(id) {
       var clientId = "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com"
       var scopes = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
       var calanderId = "c3Vuc2V0c3VyZnBvcnRhbEBnbWFpbC5jb20";
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
       // The Calendar entry to create//
 	  
@@ -364,6 +365,7 @@ function cancelClass(id) {
         gapi.client.init({
           apiKey: apiKey,
           clientId: clientId,
+          discoveryDocs: DISCOVERY_DOCS,
           scope: scopes
         }).then();
       }
@@ -464,7 +466,7 @@ function cancelClass(id) {
                 //Update in google calander
                 if(eventID != "")
                 {
-                    console.log("need to ??!!")
+                    console.log("need to ??!!??")
                     var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
                     var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
                     var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
