@@ -99,6 +99,8 @@ classes.forEach(lesson => {
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
     changeButton.onclick = function (event) {
+        updateClassModal.setAttribute("classId",lesson.id);
+        updateClassModal.setAttribute("classEventId",classData.eventId);
         colorClass(classData.classType)
         classesModal.style.display = "none";
         updateClassModal.style.display = "block";
@@ -112,6 +114,11 @@ classes.forEach(lesson => {
     cancelButton.appendChild(cancelButtonText);
     cancelButton.onclick = function(event) {
         db.collection("Classes").doc(lesson.id).delete();
+        if(classData.eventId != "") 
+        {
+            var resource ={};
+            deleteRequest(resource, classData.eventId);
+        }
         //add toast deleted class successfully
         swal("השיעור בוטל בהצלחה", "", "success");
 
@@ -450,6 +457,45 @@ function cancelClass(id) {
         loadDoc();
             });
 
+            function saveClassUpdate()
+            {
+                updateClassModal.style.display = "none";
+                var classId = updateClassModal.getAttribute("classId");
+                console.log(classId);
+                var subOne = (parseInt(document.getElementById("fromClass").value) - 1).toString();
+                console.log(subOne);
+                if(subOne<=9)
+                    var supportDate = document.getElementById("taarih-azmanaClass").value+"T0"+subOne+":00:00";
+                else
+                    var supportDate = document.getElementById("taarih-azmanaClass").value+"T"+subOne+":00:00";
+                console.log(supportDate);
+                var timeStamp = Date.parse(supportDate);
+                console.log(timeStamp);
+                var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
+                console.log(changeDate);
+                db.collection("Classes").doc(classId).update({classDateTime:changeDate});
+
+                if(eventID != "")
+                {
+                    console.log("ClassChanges!")
+                    var subOne = (parseInt(document.getElementById("fromClass").value) - 1).toString();
+                    var startTime = document.getElementById("taarih-azmanaClass").value+"T"+subOne+":00:00.000+03:00";
+                    var endTime = document.getElementById("taarih-azmanaClass").value+"T"+document.getElementById("fromClass").value+":00:00.000+03:00";
+                    var resource = {
+                        end: { dateTime: endTime },
+                        start: { dateTime: startTime },
+                      };
+                    makeRequest(resource,eventID);
+                }
+                
+
+                var classesUl = document.getElementById("classes");
+                classesUl.innerHTML = '';
+                swal("השיעור עודכן בהצלחה", "", "success");
+                getClasses().then(newClasses => buildClasses(newClasses));
+                classesModal.style.display = "block";
+
+            }
             function saveSurfUpdate() {
                 updateSurfRentalModal.style.display = "none";
                 saveUpdate(updateSurfRentalModal.getAttribute("rentalID"), updateSurfRentalModal.getAttribute("eventID"),"");
@@ -501,9 +547,15 @@ function cancelClass(id) {
                 //console.log(eventType);
                 //console.log(document.getElementById("from"+eventType).value);
                 var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
+                
+                if(subOne<=9)
+                    var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T0"+subOne+":00:00";
+                else
+                    var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00";
+                
                 //console.log(subOne);
                 //var supportDate = document.getElementById("taarih-azmana").value+"T"+document.getElementById("from").value+":00:00";
-                var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T0"+subOne+":00:00";
+                //var supportDate = document.getElementById("taarih-azmana"+eventType).value+"T0"+subOne+":00:00";
                 //console.log(supportDate);
                 var changeDate1 = Date.parse(supportDate);
                 //console.log(changeDate1);
