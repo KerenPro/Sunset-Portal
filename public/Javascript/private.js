@@ -399,19 +399,19 @@ function cancelClass(id) {
               //console.log(resp.result.id);
               console.log("3");
               //writeResponse(resp.result);
-            });
+            });*/
 
-            /*var request = gapi.client.calendar.events.patch({
+            var request = gapi.client.calendar.events.patch({
                 'calendarId': 'primary',
                 'eventId': eventID,
                 'resource': resource
             });
-            console.log("4")
+            console.log("3")
             console.log(request)
             request.execute(function (event) {
                 console.log("5")
                 console.log(event);
-            });*/
+            });
         })
         .catch((res) => {
           console.log("google login failed");
@@ -466,7 +466,7 @@ function cancelClass(id) {
                 //Update in google calander
                 if(eventID != "")
                 {
-                    console.log("need to ??!!??")
+                    console.log("need to play??!!??")
                     var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
                     var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
                     var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
