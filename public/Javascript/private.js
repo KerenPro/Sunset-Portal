@@ -350,7 +350,7 @@ function cancelClass(id) {
       // In your Developer Console project, add a JavaScript origin that corresponds to the domain
       // where you will be running the script.
       var clientId = "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com"
-      var scopes = 'https://www.googleapis.com/auth/calendar';
+      var scopes = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
       var calanderId = "c3Vuc2V0c3VyZnBvcnRhbEBnbWFpbC5jb20";
 
       // The Calendar entry to create//
@@ -380,10 +380,10 @@ function cancelClass(id) {
         .then((res) => {
           console.log("1");
           console.log(res);
-          //var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-          //console.log(event);
+          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          console.log(event);
           console.log("2");
-          gapi.client
+          /*gapi.client
             .request({
               //path: "/calendar/v3/calendars/"+calanderId+"/events/"+eventID,
               path: "/calendar/v3/calendars/primary/events/"+eventID,
@@ -399,7 +399,7 @@ function cancelClass(id) {
               //writeResponse(resp.result);
             });
 
-            var request = gapi.client.calendar.events.patch({
+            /*var request = gapi.client.calendar.events.patch({
                 'calendarId': 'primary',
                 'eventId': eventID,
                 'resource': resource
@@ -409,7 +409,7 @@ function cancelClass(id) {
             request.execute(function (event) {
                 console.log("5")
                 console.log(event);
-            });
+            });*/
         })
         .catch((res) => {
           console.log("google login failed");
@@ -464,7 +464,7 @@ function cancelClass(id) {
                 //Update in google calander
                 if(eventID != "")
                 {
-                    console.log("need to ??")
+                    console.log("need to ??!!")
                     var subOne = (parseInt(document.getElementById("from"+eventType).value) - 1).toString();
                     var startTime = document.getElementById("taarih-azmana"+eventType).value+"T"+subOne+":00:00.000+03:00";
                     var endTime = document.getElementById("taarih-azmana"+eventType).value+"T"+document.getElementById("from"+eventType).value+":00:00.000+03:00";
