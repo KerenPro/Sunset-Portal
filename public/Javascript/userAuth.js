@@ -1,6 +1,10 @@
 //variable
 const auth = firebase.auth();
 
+const redirectToHomepage = () => {
+  window.location.href = "../index.html";
+};
+
 /**Helper functions for signed out user redirection**/
 //User is signed out
 const signedOutRedirect = () => {

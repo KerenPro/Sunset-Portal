@@ -1,5 +1,6 @@
 //Firebase Reference
 const db = firebase.firestore();
+const auth = firebase.auth();
 
 //References to DB
 const userRef = db.collection("Users");
@@ -13,7 +14,7 @@ const redirectToHomepage = () => {
 //Variables
 const signInSubmitBtn = document.getElementById("signInSubmit");
 
-firebase.auth().onAuthStateChanged((user) => {
+auth.onAuthStateChanged((user) => {
   if (user) {
     const userEmail = firebase.auth().currentUser.email;
     userRef
