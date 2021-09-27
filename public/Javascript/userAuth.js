@@ -25,6 +25,7 @@ const signOut = () => {
     .signOut()
     .then(() => {
       alert("התנתקת בהצלחה");
+      redirectToHomepage();
     })
     .catch((error) => {
       // An error happened.

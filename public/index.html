@@ -18,13 +18,13 @@
 <body>
 <header>
     <div class="header_item">
+        <button class="bt" id="helloUser"></button>
         <a id="signup-link" href="Includes/SignUpForm.html">
             <button id="signup-btn" class="bt"> הרשמה</button>
         </a>
         <a id="signin-link" href="Includes/SignIn.html">
             <button id="signin-btn" class="bt"> התחברות</button>
         </a>
-        <button class="bt" id="helloUser">שלום משתמש</button>
         <a id="signout-link">
             <button id="signout-btn" class="bt" onclick="signOut()"> התנתקות</button>
         </a>
@@ -57,7 +57,7 @@
                 </a>
             </div>
         </div>
-        <div class="flex_item menu_item menu_item_outside"><a class="private-link" href="./Includes/private.html"
+        <div class="flex_item menu_item menu_item_outside" onclick="privateCheckUser()"><a class="private-link"
         >
             <p> אזור אישי</p></a>
         </div>
@@ -176,7 +176,7 @@
                 });
 
         } else {
-            document.getElementById("helloUser").innerHTML = "שלום משתמש"
+            document.getElementById("helloUser").innerHTML = "שלום אורח"
         }
     });
 </script>
