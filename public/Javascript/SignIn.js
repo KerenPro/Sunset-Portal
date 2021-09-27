@@ -1,5 +1,6 @@
 //Firebase Reference
 const db = firebase.firestore();
+const auth = firebase.auth();
 
 //References to DB
 const userRef = db.collection("Users");
@@ -17,11 +18,20 @@ submitBtn.addEventListener("click", (event) => {
   const email = document.getElementById("email").value;
   const pass = document.getElementById("pass").value;
 
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, pass)
+  auth
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      // Existing and future Auth states are now persisted in the current
+      // session only. Closing the window would clear any existing state even
+      // if a user forgets to sign out.
+      // ...
+      // New sign-in will be persisted with session persistence.
+      return auth.signInWithEmailAndPassword(email, pass);
+    })
     .then((userCredential) => {
       // Signed in
+      console.log(auth.currentUser);
+      console.log(auth);
       let user = userCredential.user;
       userRef
         .doc(`${email}`)
@@ -33,10 +43,16 @@ submitBtn.addEventListener("click", (event) => {
         });
     })
     .catch((error) => {
+      // Handle Errors here.
       let errorCode = error.code;
       let errorMessage = error.message;
-    });
 
+      if (errorCode === "auth/wrong-password") {
+        document.getElementById("error").innerHTML =
+          "אחד מהשדות שהוזנו לא תואם את פרטי המשתמש. נסה שנית";
+        console.log(errorMessage);
+      }
+    });
   return false;
 });
 
