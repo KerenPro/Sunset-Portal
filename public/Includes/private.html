@@ -26,42 +26,6 @@
             <button> התחברות</button>
         </a>
     </div>
-    <a name="top"></a>
-    <div id="change_class" class="flex_container section menu_section">
-        <div class="flex_item branding"><p></p></div>
-        <div class="flex_item menu_item dropdown">
-            <p> תפריט</p>
-            <div class="dropdown-content">
-                <a href="./Includes/private.html">
-                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> אזור אישי</p></a></div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside"><a href=""><p>שיעורים</p></a></div>
-                </a>
-                <a href="./Includes/RentMainPage.html">
-                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> השכרות</p></a></div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div>
-                </a>
-                <a href="./index.html">
-                    <div class="menu_item menu_item_inside"><a href="./index.html"><p> דף הבית</p></a></div>
-                </a>
-
-
-            </div>
-        </div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/private.html"><p> אזור אישי</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href=""><p>שיעורים</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./Includes/RentMainPage.html"><p>השכרות</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
-        <div class="flex_item menu_item menu_item_outside"><a href="./index.html"><p> דף הבית</p></a></div>
-
-    </div>
 </header>
 <div class="section page first_section" id="card1">
     <a name="private"></a>
@@ -128,7 +92,7 @@
                         <option value="16" id="day8">15:00</option>
                     </select><br>
                     <label id="errfrom" style="color:red"></label><br>
-                    <button onclick="saveClassUpdate()"> שמירה</button>
+                    <button class="saveBt" onclick="saveClassUpdate()"> שמירה</button>
                 </div>
             </div>
 
@@ -193,7 +157,7 @@
                             </select><br>
                             <label id="errfrom" style="color:red"></label><br>
                         </section>
-                        <button onclick="saveSurfUpdate()"> שמירה</button>
+                        <button class="saveBt" onclick="saveSurfUpdate()"> שמירה</button>
                     </div>
                 </div>
                 <div id="updateSupRentalModal" class="modal2">
@@ -225,7 +189,7 @@
                                 </select><br>
                                 <label id="errfrom" style="color:red"></label><br>
                         </section>
-                        <button onclick="saveSupUpdate()"> שמירה</button>
+                        <button class="saveBt" onclick="saveSupUpdate()"> שמירה</button>
                     </div>
                 </div>
                 <div id="updateClothingRentalModal" class="modal2">
@@ -257,7 +221,7 @@
                             </select><br>
                             <label id="errfrom" style="color:red"></label><br>
                         </section>
-                        <button onclick="saveClothingUpdate()"> שמירה</button>
+                        <button class="saveBt" onclick="saveClothingUpdate()"> שמירה</button>
                     </div>
                 </div>
             </div>
@@ -276,6 +240,18 @@
 <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+
+<script>
+    //load navigation bar from homepage
+    $("header").load("../index.html header", function () {
+        $(".homepage-link").attr("href", "../index.html");
+        $("#signup-link").attr("href", "./SignUpForm.html");
+        $("#signin-link").attr("href", "./SignIn.html");
+        $(".rent-homepage-link").attr("href", "./RentMainPage.html");
+        $(".private-link").attr("href", "./private.html");
+    });
+</script>
 
 <script src="../Javascript/private.js" rel="script">
 </script>

@@ -241,6 +241,8 @@ rentals.forEach(rental => {
 
 
 
+
+
 var classM = document.getElementById("classM");
 
 classM.onclick = function() {

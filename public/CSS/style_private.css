@@ -320,6 +320,7 @@ a:active {
 }
 
 /*MODAL*/
+
 .modal1 {
   display: none;
   position: fixed;
@@ -339,7 +340,7 @@ a:active {
   margin: auto;
   padding: 20px;
   border: 1px solid #b3ddd9;
-  width: 40%;
+  width: 45%;
 }
 
 .modal_content h2 {
@@ -393,4 +394,10 @@ th{
 
 .update {
   background-color: #ffffff;
+}
+
+.saveBt{
+  background-color: #ffffff;
+  
+
 }
