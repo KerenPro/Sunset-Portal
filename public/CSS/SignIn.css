@@ -33,6 +33,12 @@ body {
   text-align: right;
 }
 
+/*Error*/
+#error {
+  color: red;
+  padding-right: 20px;
+}
+
 /*Modal*/
 .modal {
   display: none;
