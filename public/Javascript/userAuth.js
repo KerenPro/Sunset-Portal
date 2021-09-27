@@ -43,7 +43,7 @@ const privateCheckUser = () => {
   });
 };
 
-//Private redirection
+//Lessons redirection
 const lessonsCheckUser = () => {
   console.log("I'm inside the check Auth User");
   const user = auth.currentUser;
@@ -60,6 +60,43 @@ const lessonsCheckUser = () => {
         "/Sunset-Portal/public/Includes/RentMainPage.html"
       ) {
         window.location.href = "./Lessons.html";
+      }
+      if (
+        window.location.pathname ===
+        "/Sunset-Portal/public/Includes/private.html"
+      ) {
+        window.location.href = "./Lessons.html";
+      }
+    } else {
+      console.log("I need to redirect");
+      signedOutRedirect();
+    }
+  });
+};
+
+//Rent Main Page redirection
+const rentMainPageCheckUser = () => {
+  console.log("I'm inside the check Auth User");
+  const user = auth.currentUser;
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      const userEmail = user.email;
+      console.log(`Sign in user is ${userEmail}`);
+      if (window.location.pathname === "/Sunset-Portal/public/index.html") {
+        window.location.href = "./Includes/RentMainPage.html";
+      }
+      if (
+        window.location.pathname ===
+        "/Sunset-Portal/public/Includes/Lessons.html"
+      ) {
+        window.location.href = "./RentMainPage.html";
+      }
+      if (
+        window.location.pathname ===
+        "/Sunset-Portal/public/Includes/private.html"
+      ) {
+        window.location.href = "./RentMainPage.html";
       }
     } else {
       console.log("I need to redirect");
