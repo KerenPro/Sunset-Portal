@@ -2,13 +2,13 @@
 const auth = firebase.auth();
 
 const redirectToHomepage = () => {
-  window.location.href = "../index.html";
+  window.location.href = "/";
 };
 
 /**Helper functions for signed out user redirection**/
 //User is signed out
 const signedOutRedirect = () => {
-  if (window.location.pathname === "/index.html") {
+  if (window.location.pathname === "/") {
     window.location.href = "/signUpSignIn.html";
   } else {
     window.location.href = "/signUpSignIn.html";
@@ -25,7 +25,7 @@ const privateCheckUser = () => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/index.html") {
+      if (window.location.pathname === "/") {
         window.location.href = "./private.html";
       }
       if (window.location.pathname === "/RentMainPage.html") {
@@ -50,7 +50,7 @@ const lessonsCheckUser = () => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/index.html") {
+      if (window.location.pathname === "/") {
         window.location.href = "/Lessons.html";
       }
       if (window.location.pathname === "/RentMainPage.html") {
@@ -75,7 +75,7 @@ const rentMainPageCheckUser = () => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/index.html") {
+      if (window.location.pathname === "/") {
         window.location.href = "/RentMainPage.html";
       }
       if (window.location.pathname === "/Lessons.html") {
@@ -104,5 +104,3 @@ const signOut = () => {
       // An error happened.
     });
 };
-
-//this is for a pull request
