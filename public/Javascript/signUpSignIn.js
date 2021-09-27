@@ -16,8 +16,14 @@ const signInSubmitBtn = document.getElementById("signInSubmit");
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     const userEmail = firebase.auth().currentUser.email;
-    document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
-    redirectToHomepage();
+    userRef
+      .doc(`${userEmail}`)
+      .get()
+      .then((doc) => {
+        const userName = doc.data().name;
+        document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
+        redirectToHomepage();
+      });
   } else {
     document.getElementById("helloUser").innerHTML = "שלום אורח";
   }
