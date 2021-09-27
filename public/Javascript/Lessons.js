@@ -2,11 +2,7 @@
 const db = firebase.firestore();
 
 //References to DB
-const stockRef = db.collection("Stock");
-const ordersRef = db.collection("Orders");
-const boardsDocRef = stockRef.doc("Boards");
-const supDocRef = stockRef.doc("Sup");
-const clothingDocRef = stockRef.doc("Clothing");
+const classRef = db.collection("Classes");
 
 //get current date and time//
 function getDate() {
@@ -49,7 +45,6 @@ function loadDoc() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
     myFunction(this);
-    
   };
   xhttp.open(
     "GET",
@@ -74,12 +69,6 @@ function myFunction(xml) {
 
   document.getElementById("demo").innerHTML = table;
 }
-
-
-
-
-
-
 
 //connect to Google Calendar API with credantials(api key and client ID)//
 //API key from the Google Develoepr Console - to handle any unauthenticated
@@ -196,7 +185,7 @@ $(document).ready(function () {
     } else {
       $("#errtaz").html("");
     }
-  
+
     if ($("#taarih-azmana").val() === "") {
       $("#errtaarih-azmana").html("יש לבחור תאריך השכרה");
       isError = true;
@@ -211,23 +200,18 @@ $(document).ready(function () {
       $("#errfrom").html("");
     }
 
+    if ($("#shiur").val() === "") {
+      $("#errSugShiur").html("יש לבחור סוג שיעור");
+      isError = true;
+    } else {
+      $("#errSugShiur").html("");
+    }
 
-    if($('#shiur').val() === ""){
-        $('#errSugShiur').html("יש לבחור סוג שיעור");
-        isError = true;
-    }
-    else{
-        
-        $('#errSugShiur').html("");
-    }
-    
-    if($('#ziud').val() === ""){
-        $('#errSugZiud').html("יש לבחור סוג ציוד");
-        isError = true;
-    }
-    else{
-        
-        $('#errSugZiud').html("");
+    if ($("#ziud").val() === "") {
+      $("#errSugZiud").html("יש לבחור סוג ציוד");
+      isError = true;
+    } else {
+      $("#errSugZiud").html("");
     }
 
     if (!$("#azhara").prop("checked")) {
@@ -237,15 +221,13 @@ $(document).ready(function () {
       $("#err-azhara").html("");
     }
 
-    if( $("#shiur").val()=== "קבוצתי"){
-      if($('#numOfPeople').val() === ""){
-        $('#errNumOF').html("יש לבחור מספר משתתפים");
+    if ($("#shiur").val() === "קבוצתי") {
+      if ($("#numOfPeople").val() === "") {
+        $("#errNumOF").html("יש לבחור מספר משתתפים");
         isError = true;
-    }
-    else{
-        
-        $('#errNumOF').html("");
-    }
+      } else {
+        $("#errNumOF").html("");
+      }
     }
 
     if (isError) {
@@ -256,13 +238,26 @@ $(document).ready(function () {
     //אם המשתמש סימן שהוא רוצה לשמור את האירוע ביון אז יתבצע //
     if ($("#calendar").prop("checked")) {
       console.log("writing to google calendar");
-      let summary =  " שיעור" + " " + $("#shiur").val() + " " + 
+      let summary =
+        " שיעור" +
+        " " +
+        $("#shiur").val() +
+        " " +
         "  במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: " +
         " " +
-        $("#ziud").val() + " " + "|" +
-         "פרטים נוספים:" + "  " + "עלות " + "  " + $("#final-price").text()
-         + " " +  ":מספר משתתפים" + " " + $("#numOfPeople").val() ;
-         
+        $("#ziud").val() +
+        " " +
+        "|" +
+        "פרטים נוספים:" +
+        "  " +
+        "עלות " +
+        "  " +
+        $("#final-price").text() +
+        " " +
+        ":מספר משתתפים" +
+        " " +
+        $("#numOfPeople").val();
+
       var supportDate = document.getElementById("taarih-azmana");
       var eventStart = document.getElementById("from");
       var eventEnd = ("0" + eventStart.value).slice(-2);
@@ -294,23 +289,22 @@ $(document).ready(function () {
 
 //show price //
 function showPrice() {
- const lesson = 150;
- 
-    if ($("#shiur").val() == "יחיד") {
-      $("#final-price").html(lesson + " " + "₪");
-    } 
-    if ($("#shiur").val() == "קבוצתי") {
-        if ($("#numOfPeople").val() === "2") {
-            $("#final-price").html(lesson +100 + " " + "₪");
-          }
-         if ($("#numOfPeople").val() === "3") {
-            $("#final-price").html(lesson +250 + " " + "₪");
-          }
+  const lesson = 150;
+
+  if ($("#shiur").val() == "יחיד") {
+    $("#final-price").html(lesson + " " + "₪");
+  }
+  if ($("#shiur").val() == "קבוצתי") {
+    if ($("#numOfPeople").val() === "2") {
+      $("#final-price").html(lesson + 100 + " " + "₪");
     }
-    if ($("#shiur").val() == "") {
-      $("#final-price").html( "0" + "₪");
-    } 
- 
+    if ($("#numOfPeople").val() === "3") {
+      $("#final-price").html(lesson + 250 + " " + "₪");
+    }
+  }
+  if ($("#shiur").val() == "") {
+    $("#final-price").html("0" + "₪");
+  }
 }
 
 /*******Add the order*****/
@@ -324,31 +318,32 @@ function addOrder() {
     window.location.href = "../index.html";
   };
 
-  //What items are checked
-  const items = [];
-  const itemType = document.getElementById("mida").value;
-  const suit = document.getElementById("mida-suite").value;
-  //if the itemType isn't empty - push it to items array
-  if (itemType) {
-    items.push(itemType);
+  //type of class
+  const equipmentType = document.getElementById("ziud").value;
+  const classType = document.getElementById("shiur").value;
+  const numOfPeople = document.getElementById("numOfPeople").value;
+
+  //participants
+  let participants;
+  if (classType === "יחיד") {
+    participants = 1;
   }
-  if (suit) {
-    items.push(suit);
+  if (classType === "קבוצתי") {
+    participants = numOfPeople;
   }
 
   //User details
   const firstName = document.getElementById("fname").value;
   const lastName = document.getElementById("lname").value;
   const id = document.getElementById("taz").value;
-  const birthday = document.getElementById("leida").value;
   const phoneNumber = document.getElementById("phone").value;
   const health = document.getElementById("azhara");
   const issues = document.getElementById("reshimat-migbalot").value;
   const date = document.getElementById("taarih-azmana").value;
   const timeID = document.getElementById("from");
   const time = timeID.options[timeID.selectedIndex].text;
-  const orderDate = new Date(`${date} ; ${time}`);
-  const orderDateTime = `${today.toLocaleString()}`;
+  const classDate = new Date(`${date} ; ${time}`);
+  const classOrderDateTime = `${today.toLocaleString()}`;
   const finalPrice = document.getElementById("final-price").textContent;
   let isHealthy;
   const eventId = document.getElementById("event-id").value;
@@ -360,116 +355,122 @@ function addOrder() {
   }
 
   //Finalize order object
-  const order = {
-    itemTypes: items,
-    orderType: "השכרה",
-    orderDate: orderDate,
+  const newClass = {
+    equipmentType: equipmentType,
+    classType: classType,
+    participants: participants,
+    classDate: classDate,
     firstName: firstName,
     lastName: lastName,
     id: id,
-    birthDate: birthday,
     phoneNumber: phoneNumber,
     isHealthy: isHealthy,
     knownIssues: issues,
-    orderDateTime: orderDateTime,
+    classOrderDateTime: classOrderDateTime,
     finalPrice: finalPrice,
     eventId: eventId,
   };
 
-  const orderID = `${today.getDate()}${
-    today.getMonth() + 1
-  }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
-  ordersRef
-    .doc(orderID)
-    .set(order)
-    .then((orderID) => {
-      const orderIdPrint = `${today.getDate()}${
-        today.getMonth() + 1
-      }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
-      alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
-      console.log(`Added order: ${orderIdPrint}`);
+  let equipId;
+  if (equipmentType === "סאפ") {
+    equipId = "sup";
+  }
+  if (equipmentType === "גלשן גלים") {
+    equipId = "surf";
+  }
+
+  const classID = `${equipId}${participants}${classDate.getDate()}${
+    classDate.getMonth() + 1
+  }${classDate.getFullYear()}${classDate.getHours()}${classDate.getMinutes()}`;
+  classRef
+    .doc(classID)
+    .set(newClass)
+    .then((classID) => {
+      const classIDPrint = `${equipId}${participants}${classDate}`;
+      alert("השיעור נוסף בהצלחה");
+      console.log(`Added class: ${classIDPrint}`);
       //redirectToHomepage();
     });
   return false;
 }
 
- //Manipulation on select element BORD KIND//
+//Manipulation on select element BORD KIND//
 
-    //FOR SUP - change date cell color in table to green due to condition of waves height and create an option in "date" select element//
-    function colorSup() {
-      var tds = document.getElementById("demo").getElementsByTagName("td");
-      var selectList = document.getElementById("taarih-azmana");
-      var count =0;
-      for (i = 0; i < tds.length; i++) {
-        if (tds[i].innerHTML <=0.5) {
-          tds[i - 1].style.backgroundColor = "#90EE90";
-          var option = document.createElement("option");
-          option.value = tds[i - 1].innerHTML;
-          option.text = tds[i - 1].innerHTML;
-          selectList.add(option);
-          count++;
-        } 
-        
-      }
-      if (count == 0){
-        alert("לצערנו כרגע אין ימים שמתאימים לסאפ בשבוע הקרוב, נסה מחר ואולי התחזית תחייך אלייך:)" );
-      }
+//FOR SUP - change date cell color in table to green due to condition of waves height and create an option in "date" select element//
+function colorSup() {
+  var tds = document.getElementById("demo").getElementsByTagName("td");
+  var selectList = document.getElementById("taarih-azmana");
+  var count = 0;
+  for (i = 0; i < tds.length; i++) {
+    if (tds[i].innerHTML <= 0.5) {
+      tds[i - 1].style.backgroundColor = "#90EE90";
+      var option = document.createElement("option");
+      option.value = tds[i - 1].innerHTML;
+      option.text = tds[i - 1].innerHTML;
+      selectList.add(option);
+      count++;
     }
+  }
+  if (count == 0) {
+    alert(
+      "לצערנו כרגע אין ימים שמתאימים לסאפ בשבוע הקרוב, נסה מחר ואולי התחזית תחייך אלייך:)"
+    );
+  }
+}
 
-    
-    //FOR SURF - change date cell color in table to green due to condition of waves height and create an option in "date" select element//
-    function colorSurf() {
-        var tds = document.getElementById("demo").getElementsByTagName("td");
-        var selectList = document.getElementById("taarih-azmana");
-        var count =0;
-        for (i = 0; i < tds.length; i++) {
-          if (tds[i].innerHTML > 0.5 && tds[i].innerHTML <= 1)  {
-            tds[i - 1].style.backgroundColor = "#90EE90";
-            var option = document.createElement("option");
-            option.value = tds[i - 1].innerHTML;
-            option.text = tds[i - 1].innerHTML;
-            selectList.add(option);
-            count++;
-          }
-        }
-        if (count == 0){
-          alert("לצערנו כרגע אין ימים שמתאימים לגלישת גלים בשבוע הקרוב, נסה מחר ואולי התחזית תחייך אלייך:)" );
-        }
+//FOR SURF - change date cell color in table to green due to condition of waves height and create an option in "date" select element//
+function colorSurf() {
+  var tds = document.getElementById("demo").getElementsByTagName("td");
+  var selectList = document.getElementById("taarih-azmana");
+  var count = 0;
+  for (i = 0; i < tds.length; i++) {
+    if (tds[i].innerHTML > 0.5 && tds[i].innerHTML <= 1) {
+      tds[i - 1].style.backgroundColor = "#90EE90";
+      var option = document.createElement("option");
+      option.value = tds[i - 1].innerHTML;
+      option.text = tds[i - 1].innerHTML;
+      selectList.add(option);
+      count++;
     }
-    //FOR CLEAR - change date cell color in table to "none"  and remove an options in "date" select element//
-    function colorSelectOptionNone() {
-        var tds = document.getElementById("demo").getElementsByTagName("td");
-        var selectList = document.getElementById("taarih-azmana");
-      
-        for (i = 0; i < tds.length; i++) {
-          if(tds[i].style.backgroundColor = "#90EE90"){
-            tds[i].style.backgroundColor = "#F0FFFF";
-            var option = document.createElement("option");
-            selectList.remove(option);
-          }
-        }
+  }
+  if (count == 0) {
+    alert(
+      "לצערנו כרגע אין ימים שמתאימים לגלישת גלים בשבוע הקרוב, נסה מחר ואולי התחזית תחייך אלייך:)"
+    );
+  }
+}
+
+//FOR CLEAR - change date cell color in table to "none"  and remove an options in "date" select element//
+function colorSelectOptionNone() {
+  var tds = document.getElementById("demo").getElementsByTagName("td");
+  var selectList = document.getElementById("taarih-azmana");
+
+  for (i = 0; i < tds.length; i++) {
+    if ((tds[i].style.backgroundColor = "#90EE90")) {
+      tds[i].style.backgroundColor = "#F0FFFF";
+      var option = document.createElement("option");
+      selectList.remove(option);
     }
-    
-    
-    function changeWaves () {
-    
-    if ($('#ziud').val() === 'גלשן גלים'){
-        colorSelectOptionNone();
-        colorSurf();
-    }
-    
-     if ($('#ziud').val() === ''){
-        colorSelectOptionNone();
-      
-    }
-      if ($('#ziud').val() === 'סאפ'){
-        colorSelectOptionNone();
-        colorSup();
-      }
-    }
+  }
+}
+
+function changeWaves() {
+  if ($("#ziud").val() === "גלשן גלים") {
+    colorSelectOptionNone();
+    colorSurf();
+  }
+
+  if ($("#ziud").val() === "") {
+    colorSelectOptionNone();
+  }
+  if ($("#ziud").val() === "סאפ") {
+    colorSelectOptionNone();
+    colorSup();
+  }
+}
 
 //progress bar//
-/* Set Container */ 
+/* Set Container */
 var container = $("div.pp");
 
 /* Set Function */
