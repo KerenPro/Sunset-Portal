@@ -9,45 +9,46 @@ const userRef = db.collection("Users");
 const submitBtn = document.getElementById("submit");
 
 const redirectToHomepage = () => {
-  window.location.href = "../index.html";
+    window.location.href = "../index.html";
 };
 
 submitBtn.addEventListener("click", (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const pass = document.getElementById("pass").value;
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("pass").value;
 
-  auth
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => {
-      return auth.signInWithEmailAndPassword(email, pass);
-    })
-    .then(() => {
-      // Signed in
-      console.log(auth.currentUser);
-      console.log(auth);
-      userRef
-        .doc(`${email}`)
-        .get()
-        .then((doc) => {
-          const userName = doc.data().name;
-          alert(`ברוכים הבאים, ${userName}`);
-          redirectToHomepage();
+    auth
+        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+            return auth.signInWithEmailAndPassword(email, pass);
+        })
+        .then(() => {
+            // Signed in
+            console.log(auth.currentUser);
+            console.log(auth);
+            console.log(auth.currentUser.email);
+            userRef
+                .doc(`${email}`)
+                .get()
+                .then((doc) => {
+                    const userName = doc.data().name;
+                    alert(`ברוכים הבאים, ${userName}`);
+                    redirectToHomepage();
+                });
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+
+            if (errorCode === "auth/wrong-password") {
+                document.getElementById("error").innerHTML =
+                    "אחד מהשדות שהוזנו לא תואם את פרטי המשתמש. נסה שנית";
+                console.log(errorMessage);
+            }
         });
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      let errorCode = error.code;
-      let errorMessage = error.message;
-
-      if (errorCode === "auth/wrong-password") {
-        document.getElementById("error").innerHTML =
-          "אחד מהשדות שהוזנו לא תואם את פרטי המשתמש. נסה שנית";
-        console.log(errorMessage);
-      }
-    });
-  return false;
+    return false;
 });
 
 /****THIS HELPS ME ****/

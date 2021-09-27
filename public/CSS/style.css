@@ -42,8 +42,7 @@ h2 {
   padding-left: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
-  max-width: 70px;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: bold;
   text-align: start;
   border: solid 1px #b3ddd9;
@@ -70,11 +69,14 @@ a:active {
 
 .header_item {
   direction: rtl;
-  padding-left: 1125px;
+  text-align: right;
+  padding-right: 147px;
+  padding-top: 10px;
 }
 
 /*GENERAL*/
 .section {
+  margin-top: 10px;
 }
 
 .section .header_text {
