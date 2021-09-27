@@ -34,7 +34,7 @@ h2 {
   color: #b3ddd9;
 }
 
-button {
+.bt {
   font-family: "Rubik", sans-serif;
   background-color: #b3ddd9;
   border-radius: 50px;
@@ -70,7 +70,7 @@ a:active {
 
 .header_item {
   direction: rtl;
-  padding-left: 1130px;
+  padding-left: 1125px;
 }
 
 /*GENERAL*/

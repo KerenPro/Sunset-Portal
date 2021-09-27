@@ -74,23 +74,19 @@ classes.forEach(lesson => {
     numberTd.appendChild(numberText);
     tr.appendChild(numberTd);
     var dateTd = document.createElement("td");
-    var dateText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleDateString("he-IL") : null);
+    var dateText = document.createTextNode(classData['classDate'] ? classData['classDate'].toDate().toLocaleDateString("he-IL") : null);
     dateTd.appendChild(dateText);
     tr.appendChild(dateTd);
     var timeTd = document.createElement("td");
-    var timeText = document.createTextNode(classData['classDateTime'] ? classData['classDateTime'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
+    var timeText = document.createTextNode(classData['classDate'] ? classData['classDate'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
     var itemTd = document.createElement("td");
     var itemText = document.createTextNode(classData.classType);
     itemTd.appendChild(itemText);
     tr.appendChild(itemTd);
-    var groupTd = document.createElement("td");
-    var groupText = document.createTextNode(classData.classParticipants);
-    groupTd.appendChild(groupText);
-    tr.appendChild(groupTd);
     var amountTd = document.createElement("td");
-    var amountText = document.createTextNode(classData.numOfParticipants);
+    var amountText = document.createTextNode(classData.participants);
     amountTd.appendChild(amountText);
     tr.appendChild(amountTd);
     var buttonTd = document.createElement("td");
@@ -238,6 +234,8 @@ rentals.forEach(rental => {
     rentalsTable.appendChild(tr);
 
 });
+
+
 
 
 
@@ -438,10 +436,22 @@ function cancelClass(id) {
         .getAuthInstance()
         .signIn({ prompt: "select_account" })
         .then((res) => {
-          var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-          var request = gapi.client.calendar.events.delete({
+            var params = {
+                calendarId: 'primary',
+                eventId: eventID,
+              };
+        
+              calendar.events.delete(params, function(err) {
+                if (err) {
+                  console.log('The API returned an error: ' + err);
+                }
+                console.log('Event deleted.');
+              });
+          /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+          var request = gapi.client.calendar.events.patch({
                 'calendarId': 'primary',
-                'eventId': eventID
+                'eventId': eventID,
+                'resource': resource
             });
             request.execute(function (event) {
                 console.log(event);
@@ -449,7 +459,7 @@ function cancelClass(id) {
         })
         .catch((res) => {
           console.log("google login failed");
-          console.log(res);
+          console.log(res);*/
         });
     }
 
