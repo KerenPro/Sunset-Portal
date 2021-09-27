@@ -19,20 +19,14 @@ submitBtn.addEventListener("click", (event) => {
   const pass = document.getElementById("pass").value;
 
   auth
-    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => {
-      // Existing and future Auth states are now persisted in the current
-      // session only. Closing the window would clear any existing state even
-      // if a user forgets to sign out.
-      // ...
-      // New sign-in will be persisted with session persistence.
       return auth.signInWithEmailAndPassword(email, pass);
     })
-    .then((userCredential) => {
+    .then(() => {
       // Signed in
       console.log(auth.currentUser);
       console.log(auth);
-      let user = userCredential.user;
       userRef
         .doc(`${email}`)
         .get()
