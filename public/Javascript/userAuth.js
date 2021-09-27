@@ -120,3 +120,4 @@ const signOut = () => {
       // An error happened.
     });
 };
+//updating for firebase
