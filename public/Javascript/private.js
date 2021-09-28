@@ -551,7 +551,7 @@ function saveClassUpdate() {
   console.log(timeStamp);
   var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
   console.log(changeDate);
-  db.collection("Classes").doc(classId).update({ classDateTime: changeDate });
+  db.collection("Classes").doc(classId).update({ classDate: changeDate });
 
   if (eventID != "") {
     console.log("ClassChanges!");
