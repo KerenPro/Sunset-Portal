@@ -210,6 +210,18 @@
             $("#signin-link").attr("href", "./SignIn.html");
             $(".rent-homepage-link").attr("href", "./RentMainPage.html");
             $(".private-link").attr("href", "./private.html");
+            $("#signout-btn").click(function () {
+                firebase
+                    .auth()
+                    .signOut()
+                    .then(() => {
+                        alert("התנתקת בהצלחה");
+                        window.location.href = "../index.html";
+                    })
+                    .catch((error) => {
+                        // An error happened.
+                    });
+            });
         });
     </script>
 
