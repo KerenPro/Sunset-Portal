@@ -16,7 +16,8 @@ const signedOutRedirect = () => {
 
 /**check user Authentication and Redirect**/
 //Private redirection
-const privateCheckUser = () => {
+const privateNav = document.getElementById("private-link");
+privateNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
   const user = auth.currentUser;
 
@@ -44,10 +45,11 @@ const privateCheckUser = () => {
       signedOutRedirect();
     }
   });
-};
+});
 
 //Lessons redirection
-const lessonsCheckUser = () => {
+const lessonsNav = document.getElementById("lessons-link");
+lessonsNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
   const user = auth.currentUser;
 
@@ -75,10 +77,11 @@ const lessonsCheckUser = () => {
       signedOutRedirect();
     }
   });
-};
+});
 
 //Rent Main Page redirection
-const rentMainPageCheckUser = () => {
+const rentHomepageNav = document.getElementById("rent-homepage-link");
+rentHomepageNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
   const user = auth.currentUser;
 
@@ -106,7 +109,7 @@ const rentMainPageCheckUser = () => {
       signedOutRedirect();
     }
   });
-};
+});
 
 /**Sign Out**/
 const signOut = () => {
