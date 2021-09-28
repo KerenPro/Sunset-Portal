@@ -90,4 +90,4 @@ signOutBtn.addEventListener("click", (event) => {
       // An error happened.
     });
 });
-//updating for firebase
+//auth removed
