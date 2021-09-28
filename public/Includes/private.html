@@ -12,9 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
     <script src="https://apis.google.com/js/client:platform.js"></script>
-    <!--Scripts-->
-    <script src="../Javascript/private.js" rel="script" type="text/javascript" async></script>
-    <script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
     <title>אזור אישי</title>
 
 </head>
@@ -22,10 +19,10 @@
 <header>
     <div class="header_item">
         <button class="bt" id="helloUser"></button>
-        <a id="signup-link" href="Includes/SignUpForm.html">
+        <a id="signup-link" href="./SignUpForm.html">
             <button id="signup-btn" class="bt"> הרשמה</button>
         </a>
-        <a id="signin-link" href="Includes/SignIn.html">
+        <a id="signin-link" href="./SignIn.html">
             <button id="signin-btn" class="bt"> התחברות</button>
         </a>
         <a id="signout-link">
@@ -281,7 +278,6 @@
     </div>
 
 </div>
-
 <!-- Script & Script link -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
@@ -322,12 +318,12 @@
         }
     });
 </script>
-
+<!--Scripts-->
+<script src="../Javascript/private.js"></script>
+<script src="../Javascript/userAuth.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"
-        onload="this.onload=function(){};handleClientLoad();"
+        onload="this.onload=function(){handleClientLoad()};"
         onreadystatechange="if (this.readyState === 'complete') this.onload();">
 </script>
-
-
 </body>
 </html>
