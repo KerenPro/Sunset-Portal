@@ -4,7 +4,7 @@
 const privateNav = document.getElementById("private-link");
 privateNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
