@@ -22,9 +22,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Scripts-->
-    <script src="../Javascript/Lessons.js" rel="script" type="text/javascript" async></script>
-    <script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
     <style>
         #info {
             border: 1px solid black;
@@ -35,7 +32,6 @@
     <title>קביעת שיעור סאפ/גלישה</title>
 </head>
 <body>
-
 
 <div class="container-fluid">
     <header>
@@ -199,7 +195,7 @@
             <br>
         </section>
         <section class="wheather-data">
-            <div class="section page third_section">
+            <div class="section third_section">
                 <a name="dateAndWeather"></a>
                 <div class="section_container third_section_container flex_container flex_center">
                     <div class="text header_text">
@@ -215,8 +211,6 @@
 
 
     </main>
-
-
     <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
@@ -261,7 +255,9 @@
         });
 
     </script>
-
+    <!--Scripts-->
+    <script src="../Javascript/Lessons.js" rel="script" type="text/javascript" async></script>
+    <script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad();"
             onreadystatechange="if (this.readyState === 'complete') this.onload();">
