@@ -12,19 +12,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
     <script src="https://apis.google.com/js/client:platform.js"></script>
-
+    <!--Scripts-->
+    <script src="../Javascript/private.js" rel="script" async></script>
+    <script src="../Javascript/userAuth.js" rel="script" async></script>
     <title>אזור אישי</title>
 
 </head>
 <body>
 <header>
     <div class="header_item">
-        <a href="SignUpForm.html">
-            <button> הרשמה</button>
+        <button class="bt" id="helloUser"></button>
+        <a id="signup-link" href="Includes/SignUpForm.html">
+            <button id="signup-btn" class="bt"> הרשמה</button>
         </a>
-        <a href="SignIn.html">
-            <button> התחברות</button>
+        <a id="signin-link" href="Includes/SignIn.html">
+            <button id="signin-btn" class="bt"> התחברות</button>
         </a>
+        <a id="signout-link">
+            <button id="signout-btn" class="bt" onclick="signOut()"> התנתקות</button>
+        </a>
+    </div>
+    <a name="top"></a>
+    <div id="change_class" class="flex_container section menu_section">
+        <div class="flex_item branding"><p></p></div>
+        <div class="flex_item menu_item dropdown">
+            <p> תפריט</p>
+            <div class="dropdown-content">
+                <a href="./Includes/private.html">
+                    <div class="menu_item menu_item_inside"><a class="private-link" href="Includes/private.html">
+                        <p> אזור אישי</p></a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href="./Includes/Lessons.html"><p>שיעורים</p></a></div>
+                </a>
+                <a href="./Includes/RentMainPage.html">
+                    <div class="menu_item menu_item_inside"><a class="rent-homepage-link" href="./Includes/RentMainPage.html"><p> השכרות</p>
+                    </a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div>
+                </a>
+                <a href="">
+                    <div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div>
+                </a>
+                <a href="./index.html">
+                    <div class="menu_item menu_item_inside"><a class="homepage-link" href="./index.html"><p> דף הבית</p></a></div>
+                </a>
+            </div>
+        </div>
+        <div class="flex_item menu_item menu_item_outside" onclick="privateCheckUser()"><a class="private-link"
+        >
+            <p> אזור אישי</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside"><a onclick="lessonsCheckUser()"><p>שיעורים</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a class="rent-homepage-link" onclick="rentMainPageCheckUser()"><p>השכרות</p>
+        </a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
+        <div class="flex_item menu_item menu_item_outside"><a class="homepage-link" href="../index.html"><p> דף הבית</p></a></div>
+
     </div>
 </header>
 <div class="section page first_section" id="card1">
@@ -68,7 +115,8 @@
                 <div class="modal_content">
                     <span class="close" id="closeClassUpdate">&times;</span>
                     <h2> עדכון שיעור</h2>
-                    <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם מומלץ
+                    <h3>לקוח יקר, לנוחיותך כאן מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים אשר בהם
+                        מומלץ
                         לקבוע שיעור בהתאם לציוד הנבחר. מחכים לך!</h3>
                     <br><br>
                     <table id="demoClass"></table>
@@ -78,7 +126,7 @@
                         <option value="" id="taarih-azmana1Class"></option>
                     </select><br>
                     <label id="errtaarih-azmana" style="color:red"></label><br>
-    
+
                     <label for="from">שעת השכרה</label>
                     <select id="fromClass" name="from">
                         <option value="" id="from1"></option>
@@ -133,7 +181,7 @@
                         <section class="wheather-data">
 
                             <h4>לקוח יקר, לנוחיותך מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים
-                                 בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h4>
+                                בהם מומלץ להשכיר גלשן גלים בהתאם לגובה הגלים באותו יום. מחכים לך!</h4>
                             <br><br>
                             <table id="demo"></table>
                             <br></br>
@@ -165,29 +213,30 @@
                         <span class="close" id="closeSupRentalUpdate">&times;</span>
                         <h2> עדכון השכרת סאפ</h2>
                         <section class="wheather-data">
-                            <h3>לקוח יקר, לנוחיותך מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים בהם מומלץ
+                            <h3>לקוח יקר, לנוחיותך מוצגת תחזית גובה הגלים לשבוע הקרוב, על מנת לייעל את התהליך סימנו עבורך את התאריכים בהם
+                                מומלץ
                                 להשכיר סאפ בהתאם לגובה הגלים באותו יום. מחכים לך!</h3>
                             <br><br>
                             <table id="demoSup"></table>
                             <br></br>
-                                <label for="taarih-azmana">תאריך הזמנה</label><br>
-                                <select name="taarih-azmana" id="taarih-azmanaSup">
-                                    <option value="" id="taarih-azmana1Sup"></option>
-                                </select><br>
-                                <label id="errtaarih-azmana" style="color:red"></label><br>
-                                <label for="from">שעת השכרה</label>
-                                <select id="fromSup" name="from">
-                                    <option value="" id="from1"></option>
-                                    <option value="9" id="day1">08:00</option>
-                                    <option value="10" id="day2">09:00</option>
-                                    <option value="11" id="day3">10:00</option>
-                                    <option value="12" id="day4">11:00</option>
-                                    <option value="13" id="day5">12:00</option>
-                                    <option value="14" id="day6">13:00</option>
-                                    <option value="15" id="day7">14:00</option>
-                                    <option value="16" id="day8">15:00</option>
-                                </select><br>
-                                <label id="errfrom" style="color:red"></label><br>
+                            <label for="taarih-azmana">תאריך הזמנה</label><br>
+                            <select name="taarih-azmana" id="taarih-azmanaSup">
+                                <option value="" id="taarih-azmana1Sup"></option>
+                            </select><br>
+                            <label id="errtaarih-azmana" style="color:red"></label><br>
+                            <label for="from">שעת השכרה</label>
+                            <select id="fromSup" name="from">
+                                <option value="" id="from1"></option>
+                                <option value="9" id="day1">08:00</option>
+                                <option value="10" id="day2">09:00</option>
+                                <option value="11" id="day3">10:00</option>
+                                <option value="12" id="day4">11:00</option>
+                                <option value="13" id="day5">12:00</option>
+                                <option value="14" id="day6">13:00</option>
+                                <option value="15" id="day7">14:00</option>
+                                <option value="16" id="day8">15:00</option>
+                            </select><br>
+                            <label id="errfrom" style="color:red"></label><br>
                         </section>
                         <button class="saveBt" onclick="saveSupUpdate()"> שמירה</button>
                     </div>
@@ -197,7 +246,8 @@
                         <span class="close" id="closeClothingRentalUpdate">&times;</span>
                         <h2> עדכון השכרת ביגוד</h2>
                         <section class="wheather-data">
-                            <h3>לקוח יקר, לנוחיותך מוצגת תחזית גובה הגלים לשבוע הקרוב, אנו מאפשרים להשכיר רק ביגוד ימי לאלו שיש להם ציוד משלהם</h3>
+                            <h3>לקוח יקר, לנוחיותך מוצגת תחזית גובה הגלים לשבוע הקרוב, אנו מאפשרים להשכיר רק ביגוד ימי לאלו שיש להם ציוד
+                                משלהם</h3>
                             <br><br>
                             <table id="demoCloth"></table>
                             <br></br>
@@ -226,13 +276,12 @@
                 </div>
             </div>
 
-          
+
         </a>
     </div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <!-- Script & Script link -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
@@ -240,20 +289,38 @@
 <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
-
-
 <script>
-    //load navigation bar from homepage
-    $("header").load("../index.html header", function () {
-        $(".homepage-link").attr("href", "../index.html");
-        $("#signup-link").attr("href", "./SignUpForm.html");
-        $("#signin-link").attr("href", "./SignIn.html");
-        $(".rent-homepage-link").attr("href", "./RentMainPage.html");
-        $(".private-link").attr("href", "./private.html");
-    });
-</script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+        apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+        authDomain: "sunset-portal.firebaseapp.com",
+        projectId: "sunset-portal",
+        storageBucket: "sunset-portal.appspot.com",
+        messagingSenderId: "861523328352",
+        appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+        measurementId: "G-S8K9RDWCP8",
+        databaseURL:
+            "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 
-<script src="../Javascript/private.js" rel="script">
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const userEmail = firebase.auth().currentUser.email;
+            firebase.firestore().collection("Users").doc(`${userEmail}`)
+                .get()
+                .then((doc) => {
+                    const userName = doc.data().name;
+                    document.getElementById("helloUser").innerHTML = `שלום ${userName}`
+                });
+
+        } else {
+            document.getElementById("helloUser").innerHTML = "שלום אורח"
+        }
+    });
 </script>
 
 <script async defer src="https://apis.google.com/js/api.js"
