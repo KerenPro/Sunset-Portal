@@ -30,8 +30,18 @@
     <!--Stylesheet-->
     <link href="../CSS/SignUp.css" rel="stylesheet" />
     <!--Scripts-->
-    <script src="../Javascript/SignUp.js"></script>
-    <script src="../Javascript/userAuth.js"></script>
+    <script
+      src="../Javascript/SignUp.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
+    <script
+      src="../Javascript/userAuth.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
 
     <meta charset="UTF-8" />
     <title>הרשמה</title>
@@ -96,22 +106,17 @@
             </a>
           </div>
         </div>
-        <div
-          class="flex_item menu_item menu_item_outside"
-          onclick="privateCheckUser()"
-        >
-          <a class="private-link"><p>אזור אישי</p></a>
+        <div class="flex_item menu_item menu_item_outside" id="private-link">
+          <a href="#" class="private-link"><p>אזור אישי</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside" id="lessons-link">
+          <a href="#"><p>שיעורים</p></a>
         </div>
         <div
           class="flex_item menu_item menu_item_outside"
-          onclick="lessonsCheckUser()"
+          id="rent-homepage-link"
         >
-          <a href="Includes/Lessons.html"><p>שיעורים</p></a>
-        </div>
-        <div class="flex_item menu_item menu_item_outside">
-          <a class="rent-homepage-link" onclick="rentMainPageCheckUser()"
-            ><p>השכרות</p>
-          </a>
+          <a href="#" class="rent-homepage-link"><p>השכרות</p></a>
         </div>
         <div class="flex_item menu_item menu_item_outside">
           <a href=""><p>מי אנחנו</p></a>
