@@ -26,11 +26,102 @@
     <!--Stylesheet-->
     <link href="../CSS/SignIn.css" rel="stylesheet" />
 
+    <!--Scripts-->
+    <script
+      src="../Javascript/SignIn.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
+    <script
+      src="../Javascript/userAuth.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
+
     <meta charset="UTF-8" />
     <title>התחברות</title>
   </head>
   <body>
-    <header></header>
+    <header>
+      <div class="header_item">
+        <button class="bt" id="helloUser"></button>
+        <a id="signup-link" href="./SignUpForm.html">
+          <button id="signup-btn" class="bt">הרשמה</button>
+        </a>
+        <a id="signin-link" href="./SignIn.html">
+          <button id="signin-btn" class="bt">התחברות</button>
+        </a>
+        <a id="signout-link">
+          <button id="signout-btn" class="bt">התנתקות</button>
+        </a>
+      </div>
+      <a name="top"></a>
+      <div id="change_class" class="flex_container section menu_section">
+        <div class="flex_item branding"><p></p></div>
+        <div class="flex_item menu_item dropdown">
+          <p>תפריט</p>
+          <div class="dropdown-content">
+            <a href="./private.html">
+              <div class="menu_item menu_item_inside">
+                <a class="private-link" href="./private.html">
+                  <p>אזור אישי</p></a
+                >
+              </div>
+            </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href="./Lessons.html"><p>שיעורים</p></a>
+              </div>
+            </a>
+            <a href="./RentMainPage.html">
+              <div class="menu_item menu_item_inside">
+                <a class="rent-homepage-link" href="./RentMainPage.html"
+                  ><p>השכרות</p>
+                </a>
+              </div>
+            </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href=""><p>מי אנחנו</p></a>
+              </div>
+            </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href=""><p>צור קשר</p></a>
+              </div>
+            </a>
+            <a href="../index.html">
+              <div class="menu_item menu_item_inside">
+                <a class="homepage-link" href="../index.html"><p>דף הבית</p></a>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="flex_item menu_item menu_item_outside" id="private-link">
+          <a class="private-link"><p>אזור אישי</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside" id="lessons-link">
+          <a class="lessons-link"><p>שיעורים</p></a>
+        </div>
+        <div
+          class="flex_item menu_item menu_item_outside"
+          id="rent-homepage-link"
+        >
+          <a class="rent-homepage-link"><p>השכרות</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside">
+          <a href=""><p>מי אנחנו</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside">
+          <a href=""><p>צור קשר</p></a>
+        </div>
+        <div class="flex_item menu_item menu_item_outside">
+          <a class="homepage-link" href="../index.html"><p>דף הבית</p></a>
+        </div>
+      </div>
+    </header>
     <div class="container form">
       <div class="row">
         <h1 class="form-header">התחברות</h1>
@@ -72,7 +163,7 @@
                   />
                 </div>
               </div>
-
+              <p id="error"></p>
               <input
                 type="submit"
                 id="submit"
@@ -92,7 +183,6 @@
   <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
-
   <script>
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -110,16 +200,22 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-  </script>
-  <script src="../Javascript/SignIn.js"></script>
-  <script>
-    //load navigation bar from homepage
-    $("header").load("../index.html header", function () {
-      $(".homepage-link").attr("href", "../index.html");
-      $("#signup-link").attr("href", "./SignUpForm.html");
-      $("#signin-link").attr("href", "./SignIn.html");
-      $(".rent-homepage-link").attr("href", "./RentMainPage.html");
-      $(".private-link").attr("href", "./private.html");
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = firebase.auth().currentUser.email;
+        firebase
+          .firestore()
+          .collection("Users")
+          .doc(`${userEmail}`)
+          .get()
+          .then((doc) => {
+            const userName = doc.data().name;
+            document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
+          });
+      } else {
+        document.getElementById("helloUser").innerHTML = "שלום אורח";
+      }
     });
   </script>
 </html>

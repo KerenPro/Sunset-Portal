@@ -60,9 +60,9 @@ header .logo {
 }
 
 /*Form*/
-.form {
-  margin-top: 10px;
-  background-color: white;
+.signUpForm {
+  margin-top: 20px;
+  background-color: white !important;
   border-radius: 40px;
   text-align: right;
 }
@@ -82,9 +82,9 @@ header .logo {
   padding: 5px;
 }
 
-#submit {
+.submitBtn {
   padding: 10px;
-
+  margin-bottom: 10px;
   color: white;
   background: #85a6a3;
   border-radius: 13px;
@@ -97,7 +97,7 @@ header .logo {
 }
 
 /***Header and Nav****/
-button {
+.bt {
   font-family: "Rubik", sans-serif;
   background-color: #b3ddd9;
   border-radius: 50px;
@@ -313,4 +313,10 @@ a:active {
 
 .flex_center {
   justify-content: center;
+}
+
+#lessons-link:hover,
+#private-link:hover,
+#rent-homepage-link:hover {
+  cursor: pointer;
 }

@@ -81,6 +81,10 @@ classes.forEach(lesson => {
     var timeText = document.createTextNode(classData['classDate'] ? classData['classDate'].toDate().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false}).split(" ")[0] : null );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
+    var equipTd = document.createElement("td");
+    var equipText = document.createTextNode(classData.equipmentType);
+    equipTd.appendChild(equipText);
+    tr.appendChild(equipTd);
     var itemTd = document.createElement("td");
     var itemText = document.createTextNode(classData.classType);
     itemTd.appendChild(itemText);
@@ -321,7 +325,7 @@ function cancelClass(id) {
         var tds = document.getElementById('demoClass').getElementsByTagName('td');
         var selectList = document.getElementById("taarih-azmanaClass");
         
-        if (eventType.includes("גלישה")){
+        if (eventType.includes("גלשן")){
             for(i=0;i<tds.length;i++) {
                 if(tds[i].innerHTML >0.5 && tds[i].innerHTML<1){
                     tds[i-1].style.backgroundColor ="#90EE90";
