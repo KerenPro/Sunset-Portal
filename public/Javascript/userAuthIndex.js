@@ -1,8 +1,5 @@
 //variable
 const auth = firebase.auth();
-const redirectToHomepage = () => {
-  window.location.href = "../index.html";
-};
 
 /**check user Authentication and Redirect**/
 //Private redirection
@@ -60,16 +57,17 @@ rentHomepageNav.addEventListener("click", (event) => {
 });
 
 /**Sign Out**/
-const signOut = () => {
+const signOutBtn = document.getElementById("signout-btn");
+signOutBtn.addEventListener("click", (event) => {
   firebase
     .auth()
     .signOut()
     .then(() => {
       alert("התנתקת בהצלחה");
-      redirectToHomepage();
+      window.location.href = "./index.html";
     })
     .catch((error) => {
       // An error happened.
     });
-};
+});
 //updating for firebase
