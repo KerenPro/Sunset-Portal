@@ -86,6 +86,10 @@ function buildClasses(newClasses) {
     );
     timeTd.appendChild(timeText);
     tr.appendChild(timeTd);
+    var equipTd = document.createElement("td");
+    var equipText = document.createTextNode(classData.equipmentType);
+    equipTd.appendChild(equipText);
+    tr.appendChild(equipTd);
     var itemTd = document.createElement("td");
     var itemText = document.createTextNode(classData.classType);
     itemTd.appendChild(itemText);
@@ -99,14 +103,16 @@ function buildClasses(newClasses) {
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = function (event) {
+    changeButton.onclick = changeUpdateClass(lesson.id,classData.eventId,classData.equipmentType);
+    /*changeButton.onclick = function (event) {
       updateClassModal.setAttribute("classId", lesson.id);
       updateClassModal.setAttribute("classEventId", classData.eventId);
-      colorClass(classData.classType);
+      updateClassModal.setAttribute("eventType", classData.equipmentType);
+      colorClass(classData.equipmentType);
       classesModal.style.display = "none";
       updateClassModal.style.display = "block";
       event.stopPropagation();
-    };
+    };*/
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -129,6 +135,20 @@ function buildClasses(newClasses) {
     tr.appendChild(buttonTd);
     classTable.appendChild(tr);
   });
+}
+
+function changeUpdateClass(lessonId, eventID, equipmentType)
+{
+  return () => {
+    classesModal.style.display = "none";
+    updateClassModal.setAttribute("classId", lessonId);
+    updateClassModal.setAttribute("classEventId", eventID);
+    updateClassModal.setAttribute("eventType", equipmentType);
+    colorClass(equipmentType);
+  //classesModal.style.display = "none";
+    updateClassModal.style.display = "block";
+  //event.stopPropagation();
+  }
 }
 
 function openChangeModal(itemTypes, rentalID, eventId) {
@@ -297,6 +317,7 @@ function loadDoc() {
     color();
     colorSup();
     colorCloth();
+    //colorClass(updateClassModal.getAttribute("eventType"));
   };
   xhttp.open(
     "GET",
@@ -342,12 +363,18 @@ function color() {
 }
 
 function colorClass(eventType) {
+  console.log(eventType);
   var tds = document.getElementById("demoClass").getElementsByTagName("td");
   var selectList = document.getElementById("taarih-azmanaClass");
+  for(i =0 ; i<tds.length; i++)
+  { 
+    tds[i].style.backgroundColor = "#b3ddd9";
+  }
+  selectList.innerHTML = "";
 
-  if (eventType.includes("גלישה")) {
+  if (eventType.includes("גלשן")) {
     for (i = 0; i < tds.length; i++) {
-      if (tds[i].innerHTML > 0.5 && tds[i].innerHTML < 1) {
+      if (tds[i].innerHTML > 0.5 && tds[i].innerHTML <= 1) {
         tds[i - 1].style.backgroundColor = "#90EE90";
         var option = document.createElement("option");
         option.value = tds[i - 1].innerHTML;
@@ -500,6 +527,8 @@ $(document).ready(function () {
 function saveClassUpdate() {
   updateClassModal.style.display = "none";
   var classId = updateClassModal.getAttribute("classId");
+  var eventID = updateClassModal.getAttribute("classEventId");
+  
   console.log(classId);
   var subOne = (
     parseInt(document.getElementById("fromClass").value) - 1
