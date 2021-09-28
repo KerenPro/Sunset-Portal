@@ -3,16 +3,6 @@ const auth = firebase.auth();
 const redirectToHomepage = () => {
   window.location.href = "../index.html";
 };
-/**Helper functions for signed out user redirection**/
-//User is signed out
-const signedOutRedirect = () => {
-  if (window.location.pathname === "/Sunset-Portal/public/index.html") {
-    window.location.href = "./Includes/signUpSignIn.html";
-  } else {
-    console.log("this is the else");
-    window.location.href = "./signUpSignIn.html";
-  }
-};
 
 /**check user Authentication and Redirect**/
 //Private redirection
@@ -25,24 +15,10 @@ privateNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/Sunset-Portal/public/index.html") {
-        window.location.href = "./Includes/private.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/RentMainPage.html"
-      ) {
-        window.location.href = "./private.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/Lessons.html"
-      ) {
-        window.location.href = "./private.html";
-      }
+      window.location.href = "./private.html";
     } else {
       console.log("I need to redirect");
-      signedOutRedirect();
+      window.location.href = "./signUpSignIn.html";
     }
   });
 });
@@ -57,24 +33,10 @@ lessonsNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/Sunset-Portal/public/index.html") {
-        window.location.href = "./Includes/Lessons.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/RentMainPage.html"
-      ) {
-        window.location.href = "./Lessons.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/private.html"
-      ) {
-        window.location.href = "./Lessons.html";
-      }
+      window.location.href = "./Lessons.html";
     } else {
       console.log("I need to redirect");
-      signedOutRedirect();
+      window.location.href = "./signUpSignIn.html";
     }
   });
 });
@@ -89,24 +51,10 @@ rentHomepageNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      if (window.location.pathname === "/Sunset-Portal/public/index.html") {
-        window.location.href = "./Includes/RentMainPage.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/Lessons.html"
-      ) {
-        window.location.href = "./RentMainPage.html";
-      }
-      if (
-        window.location.pathname ===
-        "/Sunset-Portal/public/Includes/private.html"
-      ) {
-        window.location.href = "./RentMainPage.html";
-      }
+      window.location.href = "./RentMainPage.html";
     } else {
       console.log("I need to redirect");
-      signedOutRedirect();
+      window.location.href = "./signUpSignIn.html";
     }
   });
 });
