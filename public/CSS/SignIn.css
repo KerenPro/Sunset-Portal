@@ -326,3 +326,15 @@ a:active {
 #rent-homepage-link:hover {
     cursor: pointer;
 }
+
+a,
+a:link,
+a:visited {
+    color: #111111 !important;
+    text-decoration: none !important;
+}
+
+a:hover,
+a:active {
+    color: #111111;
+}

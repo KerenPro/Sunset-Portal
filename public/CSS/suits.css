@@ -16,6 +16,18 @@ header {
   margin-bottom: 100px;
 }
 
+header a,
+header a:link,
+header a:visited {
+  color: #111111;
+  text-decoration: none;
+}
+
+header a:hover,
+header a:active {
+  color: #111111;
+}
+
 #demo {
   margin: auto;
   width: 50%;
@@ -115,6 +127,7 @@ th {
   border-radius: 10px;
   margin-top: 20px;
 }
+
 #price-exp {
   color: black;
 }

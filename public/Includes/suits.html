@@ -83,10 +83,10 @@
                 <label for="mida-suite"><b> יש לסמן מידה</b> </label><br>
                 <select name="mida-suite" id="mida-suite" onchange="showPrice()"><br>
                     <option value="" id="size5"></option>
-                    <option value="חליפה S" id="size6">S </option>
-                    <option value="חליפה M" id="size7">M </option>
+                    <option value="חליפה S" id="size6">S</option>
+                    <option value="חליפה M" id="size7">M</option>
                     <option value="חליפה L" id="size8">L</option>
-                    <option value="חליפה XL" id="size9">XL </option>
+                    <option value="חליפה XL" id="size9">XL</option>
                 </select><br>
                 <label id="errmidasuite" style="color:red"></label><br>
                 <label for="fname">שם פרטי</label><br>
@@ -109,14 +109,16 @@
                 <input type="submit" value="שלח הזמנה" id="submit">
                 <!-- hidden input that will keep The id of event that created in user calendar-->
                 <input type="text" id="event-id" value="" hidden>
-                
+
             </form>
             <div id="price">
                 <h2 id="price-exp">מחיר ההשכרה</h2><br>
                 <h1 id="final-price"> 0 ₪</h1>
-            </div><br>
-            <div class="pp"></div><br>
-        
+            </div>
+            <br>
+            <div class="pp"></div>
+            <br>
+
         </section>
         <section class="wheather-data">
             <div class="section page third_section">
@@ -130,11 +132,12 @@
                     </div>
                 </div>
 
-                
-                <div id="info"></div><br>
-             
 
-             <a class="suits-link" href="sups.html" target="_blank">לחץ כאן אם ברצונך להשכיר סאפ</a><br><br>
+                <div id="info"></div>
+                <br>
+
+
+                <a class="suits-link" href="sups.html" target="_blank">לחץ כאן אם ברצונך להשכיר סאפ</a><br><br>
                 <a class="suits-link" href="surfboards.html" target="_blank">לחץ כאן אם ברצונך להשכיר גלשן גלים</a>
         </section>
 
@@ -167,6 +170,22 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const userEmail = firebase.auth().currentUser.email;
+                firebase
+                    .firestore()
+                    .collection("Users")
+                    .doc(`${userEmail}`)
+                    .get()
+                    .then((doc) => {
+                        const userName = doc.data().name;
+                        document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
+                    });
+            } else {
+                document.getElementById("helloUser").innerHTML = "שלום אורח";
+            }
+        });
     </script>
 
     <script>
@@ -186,7 +205,6 @@
             onload="this.onload=function(){};handleClientLoad();"
             onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
-
 
 
 </body>
