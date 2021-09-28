@@ -44,16 +44,37 @@ rentHomepageNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
   const user = auth.currentUser;
 
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      const userEmail = user.email;
-      console.log(`Sign in user is ${userEmail}`);
-      window.location.href = "./RentMainPage.html";
-    } else {
-      console.log("I need to redirect");
-      window.location.href = "./signUpSignIn.html";
-    }
-  });
+  auth
+    .onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = user.email;
+        console.log(`Sign in user is ${userEmail}`);
+        window.location.href = "./RentMainPage.html";
+      } else {
+        console.log("I need to redirect");
+        window.location.href = "./signUpSignIn.html";
+      }
+    })
+    .then(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const userEmail = firebase.auth().currentUser.email;
+          firebase
+            .firestore()
+            .collection("Users")
+            .doc(`${userEmail}`)
+            .get()
+            .then((doc) => {
+              const userName = doc.data().name;
+              document.getElementById(
+                "helloUser"
+              ).innerHTML = `שלום ${userName}`;
+            });
+        } else {
+          document.getElementById("helloUser").innerHTML = "שלום אורח";
+        }
+      });
+    });
 });
 
 /**Sign Out**/
