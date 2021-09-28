@@ -82,7 +82,7 @@ header .logo {
   padding: 5px;
 }
 
-.submit {
+.submitBtn {
   padding: 10px;
   margin-bottom: 10px;
   color: white;
@@ -97,7 +97,7 @@ header .logo {
 }
 
 /***Header and Nav****/
-button {
+.bt {
   font-family: "Rubik", sans-serif;
   background-color: #b3ddd9;
   border-radius: 50px;
