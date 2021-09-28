@@ -1,349 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!--jQuery import-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
     />
     <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <!-- Bootstrap JS -->
     <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
     ></script>
     <!--Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
+      rel="stylesheet"
     />
     <!--Stylesheet-->
-    <link href="../CSS/SignUp.css" rel="stylesheet"/>
+    <link href="../CSS/SignUp.css" rel="stylesheet" />
     <!--Scripts-->
-    <script src="../Javascript/SignUp.js" async></script>
-    <script src="../Javascript/userAuth.js" async></script>
+    <script src="../Javascript/SignUp.js"></script>
+    <script src="../Javascript/userAuth.js"></script>
 
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>הרשמה</title>
-</head>
-<body>
-<header>
-    <div class="header_item">
+  </head>
+  <body>
+    <header>
+      <div class="header_item">
         <button class="bt" id="helloUser"></button>
         <a id="signup-link" href="./SignUpForm.html">
-            <button id="signup-btn" class="bt">הרשמה</button>
+          <button id="signup-btn" class="bt">הרשמה</button>
         </a>
         <a id="signin-link" href="./SignIn.html">
-            <button id="signin-btn" class="bt">התחברות</button>
+          <button id="signin-btn" class="bt">התחברות</button>
         </a>
         <a id="signout-link">
-            <button id="signout-btn" class="bt" onclick="signOut()">
-                התנתקות
-            </button>
+          <button id="signout-btn" class="bt" onclick="signOut()">
+            התנתקות
+          </button>
         </a>
-    </div>
-    <a name="top"></a>
-    <div id="change_class" class="flex_container section menu_section">
+      </div>
+      <a name="top"></a>
+      <div id="change_class" class="flex_container section menu_section">
         <div class="flex_item branding"><p></p></div>
         <div class="flex_item menu_item dropdown">
-            <p>תפריט</p>
-            <div class="dropdown-content">
-                <a href="./Includes/private.html">
-                    <div class="menu_item menu_item_inside">
-                        <a class="private-link" href="Includes/private.html">
-                            <p>אזור אישי</p></a
-                        >
-                    </div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside">
-                        <a href="./Includes/Lessons.html"><p>שיעורים</p></a>
-                    </div>
-                </a>
-                <a href="./Includes/RentMainPage.html">
-                    <div class="menu_item menu_item_inside">
-                        <a
-                                class="rent-homepage-link"
-                                href="./Includes/RentMainPage.html"
-                        ><p>השכרות</p>
-                        </a>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside">
-                        <a href=""><p>מי אנחנו</p></a>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="menu_item menu_item_inside">
-                        <a href=""><p>צור קשר</p></a>
-                    </div>
-                </a>
-                <a href="./index.html">
-                    <div class="menu_item menu_item_inside">
-                        <a class="homepage-link" href="./index.html"><p>דף הבית</p></a>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div
-                class="flex_item menu_item menu_item_outside"
-                onclick="privateCheckUser()"
-        >
-            <a class="private-link"><p>אזור אישי</p></a>
-        </div>
-        <div
-                class="flex_item menu_item menu_item_outside"
-                onclick="lessonsCheckUser()"
-        >
-            <a href="Includes/Lessons.html"><p>שיעורים</p></a>
-        </div>
-        <div class="flex_item menu_item menu_item_outside">
-            <a class="rent-homepage-link" onclick="rentMainPageCheckUser()"
-            ><p>השכרות</p>
+          <p>תפריט</p>
+          <div class="dropdown-content">
+            <a href="./Includes/private.html">
+              <div class="menu_item menu_item_inside">
+                <a class="private-link" href="Includes/private.html">
+                  <p>אזור אישי</p></a
+                >
+              </div>
             </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href="./Includes/Lessons.html"><p>שיעורים</p></a>
+              </div>
+            </a>
+            <a href="./Includes/RentMainPage.html">
+              <div class="menu_item menu_item_inside">
+                <a
+                  class="rent-homepage-link"
+                  href="./Includes/RentMainPage.html"
+                  ><p>השכרות</p>
+                </a>
+              </div>
+            </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href=""><p>מי אנחנו</p></a>
+              </div>
+            </a>
+            <a href="">
+              <div class="menu_item menu_item_inside">
+                <a href=""><p>צור קשר</p></a>
+              </div>
+            </a>
+            <a href="./index.html">
+              <div class="menu_item menu_item_inside">
+                <a class="homepage-link" href="./index.html"><p>דף הבית</p></a>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="flex_item menu_item menu_item_outside"
+          onclick="privateCheckUser()"
+        >
+          <a class="private-link"><p>אזור אישי</p></a>
+        </div>
+        <div
+          class="flex_item menu_item menu_item_outside"
+          onclick="lessonsCheckUser()"
+        >
+          <a href="Includes/Lessons.html"><p>שיעורים</p></a>
         </div>
         <div class="flex_item menu_item menu_item_outside">
-            <a href=""><p>מי אנחנו</p></a>
+          <a class="rent-homepage-link" onclick="rentMainPageCheckUser()"
+            ><p>השכרות</p>
+          </a>
         </div>
         <div class="flex_item menu_item menu_item_outside">
-            <a href=""><p>צור קשר</p></a>
+          <a href=""><p>מי אנחנו</p></a>
         </div>
         <div class="flex_item menu_item menu_item_outside">
-            <a class="homepage-link" href="../index.html"><p>דף הבית</p></a>
+          <a href=""><p>צור קשר</p></a>
         </div>
-    </div>
-</header>
-<div class="container form">
-    <div class="row">
+        <div class="flex_item menu_item menu_item_outside">
+          <a class="homepage-link" href="../index.html"><p>דף הבית</p></a>
+        </div>
+      </div>
+    </header>
+    <div class="container form">
+      <div class="row">
         <h1 class="form-header">הרשמה למועדון</h1>
-    </div>
-    <div class="row rtl">
+      </div>
+      <div class="row rtl">
         <div class="col-6">
-            <form id="form" dir="rtl">
-                <div class="form-fields-section">
-                    <!--Name-->
-                    <div id="user-name" class="row form-field">
-                        <div class="col-3">
-                            <label for="name" class="form-label col-form-label"
-                            >שם מלא</label
-                            >
-                        </div>
-                        <div class="col-7">
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="name"
-                                    name="name"
-                                    placeholder="שם פרטי ושם משפחה"
-                                    required
-                            />
-                        </div>
-                    </div>
-
-                    <!--ID-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="id" class="form-label col-form-label"
-                            >תעודת זהות</label
-                            >
-                        </div>
-                        <div class="col-7">
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="id"
-                                    name="id"
-                                    size="9"
-                            />
-                        </div>
-                    </div>
-
-                    <!--Birthday-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="bday" class="form-label col-form-label"
-                            >יום הולדת</label
-                            >
-                        </div>
-                        <div class="col-7">
-                            <input
-                                    type="date"
-                                    class="form-control"
-                                    id="bday"
-                                    name="bday"
-                                    required
-                            />
-                        </div>
-                    </div>
-
-                    <!--Password-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="pass" class="form-label col-form-label"
-                            >סיסמא</label
-                            >
-                        </div>
-                        <div class="col-7">
-                            <input
-                                    type="password"
-                                    class="form-control"
-                                    id="pass"
-                                    name="pass"
-                                    required
-                            />
-                        </div>
-                        <p id="password-error" class="error"></p>
-                    </div>
-
-                    <!--Phone-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="phone" class="form-label col-form-label"
-                            >טלפון</label
-                            >
-                        </div>
-                        <div class="col-5">
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="phone"
-                                    name="phone"
-                                    placeholder="050-1234567"
-                                    pattern="[0-9]{3}-[0-9]{7}"
-                                    required
-                            />
-                        </div>
-                    </div>
-
-                    <!--Address-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="address" class="form-label col-form-label"
-                            >כתובת מלאה</label
-                            >
-                        </div>
-                        <div class="col-9">
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="address"
-                                    name="address"
-                                    required
-                            />
-                        </div>
-                    </div>
-
-                    <!--Email-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="email" class="form-label col-form-label"
-                            >אימייל</label
-                            >
-                        </div>
-                        <div class="col-9">
-                            <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    name="email"
-                                    required
-                            />
-                        </div>
-                        <p id="email-error" class="error"></p>
-                    </div>
-
-                    <!--Surfing experience-->
-                    <div class="row form-field">
-                        <div class="col-3">
-                            <label for="surfExp" class="form-label col-form-label"
-                            >נסיון גלישה</label
-                            >
-                        </div>
-                        <div class="col-2">
-                            <input
-                                    type="number"
-                                    class="form-control"
-                                    id="surfExp"
-                                    name="surfExp"
-                                    required
-                            />
-                        </div>
-                    </div>
-
-                    <!--Submit-->
-                    <input
-                            type="submit"
-                            id="submit"
-                            class="btn center"
-                            value="הרשמה"
-                    />
+          <form id="form" dir="rtl">
+            <div class="form-fields-section">
+              <!--Name-->
+              <div id="user-name" class="row form-field">
+                <div class="col-3">
+                  <label for="name" class="form-label col-form-label"
+                    >שם מלא</label
+                  >
                 </div>
-            </form>
+                <div class="col-7">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="שם פרטי ושם משפחה"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--ID-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="id" class="form-label col-form-label"
+                    >תעודת זהות</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    name="id"
+                    size="9"
+                  />
+                </div>
+              </div>
+
+              <!--Birthday-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="bday" class="form-label col-form-label"
+                    >יום הולדת</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="bday"
+                    name="bday"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--Password-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="pass" class="form-label col-form-label"
+                    >סיסמא</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="pass"
+                    name="pass"
+                    required
+                  />
+                </div>
+                <p id="password-error" class="error"></p>
+              </div>
+
+              <!--Phone-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="phone" class="form-label col-form-label"
+                    >טלפון</label
+                  >
+                </div>
+                <div class="col-5">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="050-1234567"
+                    pattern="[0-9]{3}-[0-9]{7}"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--Address-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="address" class="form-label col-form-label"
+                    >כתובת מלאה</label
+                  >
+                </div>
+                <div class="col-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--Email-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="email" class="form-label col-form-label"
+                    >אימייל</label
+                  >
+                </div>
+                <div class="col-9">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <p id="email-error" class="error"></p>
+              </div>
+
+              <!--Surfing experience-->
+              <div class="row form-field">
+                <div class="col-3">
+                  <label for="surfExp" class="form-label col-form-label"
+                    >נסיון גלישה</label
+                  >
+                </div>
+                <div class="col-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="surfExp"
+                    name="surfExp"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--Submit-->
+              <input
+                type="submit"
+                id="submit"
+                class="btn center"
+                value="הרשמה"
+              />
+            </div>
+          </form>
         </div>
         <div class="col-6">
-            <img
-                    id="signUp-img"
-                    class="center"
-                    src="../Assets/Images/logo-2.png"
-                    alt="surfing-waves"
-            />
+          <img
+            id="signUp-img"
+            class="center"
+            src="../Assets/Images/logo-2.png"
+            alt="surfing-waves"
+          />
         </div>
+      </div>
     </div>
-</div>
-</body>
-<!-- Script & Script link -->
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+  </body>
+  <!-- Script & Script link -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
-<!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <!-- Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-<script>
+  <script>
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     let firebaseConfig = {
-        apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
-        authDomain: "sunset-portal.firebaseapp.com",
-        projectId: "sunset-portal",
-        storageBucket: "sunset-portal.appspot.com",
-        messagingSenderId: "861523328352",
-        appId: "1:861523328352:web:5319424c8a9ca6778ef205",
-        measurementId: "G-S8K9RDWCP8",
-        databaseURL:
-            "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
+      apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+      authDomain: "sunset-portal.firebaseapp.com",
+      projectId: "sunset-portal",
+      storageBucket: "sunset-portal.appspot.com",
+      messagingSenderId: "861523328352",
+      appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+      measurementId: "G-S8K9RDWCP8",
+      databaseURL:
+        "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/",
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
     firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            const userEmail = firebase.auth().currentUser.email;
-            firebase
-                .firestore()
-                .collection("Users")
-                .doc(`${userEmail}`)
-                .get()
-                .then((doc) => {
-                    const userName = doc.data().name;
-                    document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
-                });
-        } else {
-            document.getElementById("helloUser").innerHTML = "שלום אורח";
-        }
+      if (user) {
+        const userEmail = firebase.auth().currentUser.email;
+        firebase
+          .firestore()
+          .collection("Users")
+          .doc(`${userEmail}`)
+          .get()
+          .then((doc) => {
+            const userName = doc.data().name;
+            document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
+          });
+      } else {
+        document.getElementById("helloUser").innerHTML = "שלום אורח";
+      }
     });
-</script>
-
+  </script>
 </html>
