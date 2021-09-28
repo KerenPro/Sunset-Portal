@@ -90,4 +90,3 @@ signOutBtn.addEventListener("click", (event) => {
       // An error happened.
     });
 });
-//auth removed
