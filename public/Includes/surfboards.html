@@ -184,6 +184,22 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const userEmail = firebase.auth().currentUser.email;
+                firebase
+                    .firestore()
+                    .collection("Users")
+                    .doc(`${userEmail}`)
+                    .get()
+                    .then((doc) => {
+                        const userName = doc.data().name;
+                        document.getElementById("helloUser").innerHTML = `שלום ${userName}`;
+                    });
+            } else {
+                document.getElementById("helloUser").innerHTML = "שלום אורח";
+            }
+        });
     </script>
 
     <script>
