@@ -23,9 +23,10 @@ submitBtn.addEventListener("click", (event) => {
   const name = document.getElementById("name").value;
   const address = document.getElementById("address").value;
   const phoneNum = document.getElementById("phone").value;
-  const email = document.getElementById("email").value;
+  const emailField = document.getElementById("email").value;
   const surfExp = document.getElementById("surfExp").value;
   const bday = document.getElementById("bday").value;
+  const email = emailField.toLowerCase();
 
   const newUser = {
     signUpDate: signUpDate,
