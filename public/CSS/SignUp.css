@@ -60,9 +60,9 @@ header .logo {
 }
 
 /*Form*/
-.form {
-  margin-top: 10px;
-  background-color: white;
+.signUpForm {
+  margin-top: 20px;
+  background-color: white !important;
   border-radius: 40px;
   text-align: right;
 }
@@ -313,4 +313,10 @@ a:active {
 
 .flex_center {
   justify-content: center;
+}
+
+#lessons-link:hover,
+#private-link:hover,
+#rent-homepage-link:hover {
+  cursor: pointer;
 }

@@ -15,10 +15,10 @@ privateNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      window.location.href = "./private.html";
+      window.location.href = "./Includes/private.html";
     } else {
       console.log("I need to redirect");
-      window.location.href = "./signUpSignIn.html";
+      window.location.href = "./Includes/signUpSignIn.html";
     }
   });
 });
@@ -33,10 +33,10 @@ lessonsNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      window.location.href = "./Lessons.html";
+      window.location.href = "./Includes/Lessons.html";
     } else {
       console.log("I need to redirect");
-      window.location.href = "./signUpSignIn.html";
+      window.location.href = "./Includes/signUpSignIn.html";
     }
   });
 });
@@ -51,10 +51,10 @@ rentHomepageNav.addEventListener("click", (event) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
-      window.location.href = "./RentMainPage.html";
+      window.location.href = "./Includes/RentMainPage.html";
     } else {
       console.log("I need to redirect");
-      window.location.href = "./signUpSignIn.html";
+      window.location.href = "./Includes/signUpSignIn.html";
     }
   });
 });
