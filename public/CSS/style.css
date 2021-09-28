@@ -56,6 +56,10 @@ button:hover {
   z-index: 150;
 }
 
+a {
+  cursor: pointer;
+}
+
 a:link,
 a:visited {
   color: #111111;
