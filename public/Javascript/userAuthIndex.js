@@ -1,14 +1,11 @@
-//variable
-const auth = firebase.auth();
-
 /**check user Authentication and Redirect Navbar**/
 //Private redirection
 const privateNav = document.getElementById("private-link");
 privateNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
@@ -24,9 +21,9 @@ privateNav.addEventListener("click", (event) => {
 const lessonsNav = document.getElementById("lessons-link");
 lessonsNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
@@ -42,9 +39,10 @@ lessonsNav.addEventListener("click", (event) => {
 const rentHomepageNav = document.getElementById("rent-homepage-link");
 rentHomepageNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth
+  firebase
+    .auth()
     .onAuthStateChanged((user) => {
       if (user) {
         const userEmail = user.email;
@@ -82,9 +80,9 @@ rentHomepageNav.addEventListener("click", (event) => {
 const lessonsService1 = document.getElementById("lessons-link-service1");
 lessonsService1.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
@@ -100,7 +98,7 @@ lessonsService1.addEventListener("click", (event) => {
 const lessonsService2 = document.getElementById("lessons-link-service2");
 lessonsService2.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -120,9 +118,10 @@ const rentHomepageService = document.getElementById(
 );
 rentHomepageService.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth
+  firebase
+    .auth()
     .onAuthStateChanged((user) => {
       if (user) {
         const userEmail = user.email;
