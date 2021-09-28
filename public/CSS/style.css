@@ -209,6 +209,12 @@ a:active {
   margin-left: auto;
 }
 
+#lessons-link:hover,
+#private-link:hover,
+#rent-homepage-link:hover {
+  cursor: pointer;
+}
+
 /*MENU DROPDOWN */
 @media screen and (min-width: 720px) {
   .dropdown-content {
