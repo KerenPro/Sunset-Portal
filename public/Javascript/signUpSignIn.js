@@ -33,8 +33,9 @@ auth.onAuthStateChanged((user) => {
 signInSubmitBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const signInEmail = document.getElementById("signInEmail").value;
+  const signInEmailField = document.getElementById("signInEmail").value;
   const signInPass = document.getElementById("signInPass").value;
+  const signInEmail = signInEmailField.toLowerCase();
 
   auth
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -78,9 +79,10 @@ signUpSubmitBtn.addEventListener("click", (event) => {
   const name = document.getElementById("name").value;
   const address = document.getElementById("address").value;
   const phoneNum = document.getElementById("phone").value;
-  const signUpEmail = document.getElementById("signUpEmail").value;
+  const signUpEmailField = document.getElementById("signUpEmail").value;
   const surfExp = document.getElementById("surfExp").value;
   const bday = document.getElementById("bday").value;
+  const signUpEmail = signUpEmailField.toLowerCase();
 
   const newUser = {
     signUpDate: signUpDate,
