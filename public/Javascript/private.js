@@ -497,11 +497,13 @@ function initClient() {
 }
 
 function signIn() {
-  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+  gapi.auth2.getAuthInstance().signIn();
 }
 
 //API request//
 function makeRequest(resource, eventID) {
+  console.log(resource, eventID);
+  console.log("trying");
   gapi.auth2
     .getAuthInstance()
     .signIn({ prompt: "select_account" })
