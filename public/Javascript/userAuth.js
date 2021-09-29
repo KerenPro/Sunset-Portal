@@ -4,7 +4,7 @@
 const privateNav = document.getElementById("private-link");
 privateNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -22,7 +22,7 @@ privateNav.addEventListener("click", (event) => {
 const lessonsNav = document.getElementById("lessons-link");
 lessonsNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -40,7 +40,7 @@ lessonsNav.addEventListener("click", (event) => {
 const rentHomepageNav = document.getElementById("rent-homepage-link");
 rentHomepageNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
 
   firebase
     .auth()
@@ -90,3 +90,4 @@ signOutBtn.addEventListener("click", (event) => {
       // An error happened.
     });
 });
+//updating for firebase
