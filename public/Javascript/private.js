@@ -120,6 +120,7 @@ function buildClasses(newClasses) {
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
     cancelButton.onclick = function (event) {
+      console.log(classData.eventId);
       db.collection("Classes").doc(lesson.id).delete();
       if (classData.eventId != "") {
         var resource = {};
