@@ -524,6 +524,7 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
+  console.log(resource, eventID);
   gapi.auth2
     .getAuthInstance()
     .signIn({ prompt: "select_account" })
