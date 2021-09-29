@@ -471,7 +471,7 @@ var apiKey = "AIzaSyB4cxbY2LD7KADlNEX8Bd1NWOPQWqgZasQ";
 var clientId =
   "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com";
 var scopes =
-  "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
+  "https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
 var calanderId = "c3Vuc2V0c3VyZnBvcnRhbEBnbWFpbC5jb20";
 var DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
@@ -524,12 +524,10 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
-    console.log(resource, eventID);
     gapi.auth2
       .getAuthInstance()
       .signIn({ prompt: "select_account" })
       .then((res) => {
-
         gapi.client.load('calendar', 'v3', function() {
           var request = gapi.client.calendar.events.delete({
               'calendarId': 'primary',
@@ -670,7 +668,7 @@ function saveUpdate(rentalID, eventID, eventType) {
 
   //Update in google calander
   if (eventID != "") {
-    console.log("changes!!!????");
+    console.log("changes!!!????----");
     var subOne = (
       parseInt(document.getElementById("from" + eventType).value) - 1
     ).toString();
