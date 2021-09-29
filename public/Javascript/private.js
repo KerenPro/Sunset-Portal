@@ -142,7 +142,7 @@ function deleteClass(lessonId, eventId){
   return () => {
     //console.log(lessonId);
     //console.log(eventId);
-    db.collection("Classes").doc(lessonId).delete();
+    //db.collection("Classes").doc(lessonId).delete();
       if (eventId != "") {
         var resource = {};
         deleteRequest(resource, eventId);
@@ -303,7 +303,7 @@ function buildRentals(newRentals) {
 
   function deleteRental(rentalId, eventId){
     return () => {
-      db.collection("Orders").doc(rentalId).delete();
+      //db.collection("Orders").doc(rentalId).delete();
       if (eventId != "") {
         var resource = {};
         deleteRequest(resource, eventId);
@@ -524,35 +524,52 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
-  console.log(resource, eventID);
-  gapi.auth2
-    .getAuthInstance()
-    .signIn({ prompt: "select_account" })
-    .then((res) => {
-      var params = {
-        calendarId: "primary",
-        eventId: eventID,
-      };
-      gapi.client.calendar.events.delete(params, function (err) {
-        if (err) {
-          console.log("The API returned an error: " + err);
-        }
-        console.log("Event deleted.");
+    console.log(resource, eventID);
+    gapi.auth2
+      .getAuthInstance()
+      .signIn({ prompt: "select_account" })
+      .then((res) => {
+
+        gapi.client.load('calendar', 'v3', function() {
+          var request = gapi.client.calendar.events.delete({
+              'calendarId': 'primary',
+              'eventId': eventID
+          });
+          request.execute(function(response) {
+              if(response.error || response == false){
+                  console.log('Error');
+              }
+              else{
+                  console.log('Success');               
+              }
+          });
       });
-      /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-             var request = gapi.client.calendar.events.patch({
-             'calendarId': 'primary',
-             'eventId': eventID,
-             'resource': resource
-             });
-             request.execute(function (event) {
-             console.log(event);
-             });
-             })
-             .catch((res) => {
-             console.log("google login failed");
-             console.log(res);*/
-    });
+
+        /*var params = {
+          calendarId: "primary",
+          eventId: eventID,
+        };
+        calendar.events.delete(params, function (err) {
+          if (err) {
+            console.log("The API returned an error: " + err);
+          }
+          console.log("Event deleted.");
+        });*/
+        /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+              var request = gapi.client.calendar.events.patch({
+              'calendarId': 'primary',
+              'eventId': eventID,
+              'resource': resource
+              });
+              request.execute(function (event) {
+              console.log(event);
+              });
+              })
+              .catch((res) => {
+              console.log("google login failed");
+              console.log(res);*/
+      });
+  
 }
 
 $(document).ready(function () {
