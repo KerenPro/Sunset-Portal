@@ -1,3 +1,5 @@
+//29.09 Keren Changes
+
 var classes = [
   { id: 1, time: "1/9" },
   { id: 2, time: "3/9" },
@@ -8,16 +10,49 @@ var currentlyUpdatingId;
 
 //Firebase Reference
 const db = firebase.firestore();
+let userEmail;
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user.email);
+    userEmail = user.email;
+    console.log(userEmail);
+    return userEmail;
+  }
+});
 
 async function getClasses() {
-  const classesRef = await db.collection("Classes").get();
-  return classesRef.docs;
+  const classesRef = [];
+  await db
+    .collection("Classes")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().user === userEmail) {
+          classesRef.push(doc);
+          console.log(classesRef);
+          console.log(doc.id, " => ", doc.data().user);
+        }
+      });
+    });
+  return classesRef;
 }
 
 async function getRentals() {
   //References to DB
-  var ordersRef = await db.collection("Orders").get();
-  return ordersRef.docs;
+  const ordersRef = [];
+  await db
+    .collection("Orders")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().user === userEmail) {
+          ordersRef.push(doc);
+          console.log(ordersRef);
+          console.log(doc.id, " => ", doc.data().user);
+        }
+      });
+    });
+  return ordersRef;
 }
 
 getClasses().then((newClasses) => buildClasses(newClasses));
@@ -103,16 +138,20 @@ function buildClasses(newClasses) {
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = changeUpdateClass(lesson.id,classData.eventId,classData.equipmentType);
+    changeButton.onclick = changeUpdateClass(
+      lesson.id,
+      classData.eventId,
+      classData.equipmentType
+    );
     /*changeButton.onclick = function (event) {
-      updateClassModal.setAttribute("classId", lesson.id);
-      updateClassModal.setAttribute("classEventId", classData.eventId);
-      updateClassModal.setAttribute("eventType", classData.equipmentType);
-      colorClass(classData.equipmentType);
-      classesModal.style.display = "none";
-      updateClassModal.style.display = "block";
-      event.stopPropagation();
-    };*/
+         updateClassModal.setAttribute("classId", lesson.id);
+         updateClassModal.setAttribute("classEventId", classData.eventId);
+         updateClassModal.setAttribute("eventType", classData.equipmentType);
+         colorClass(classData.equipmentType);
+         classesModal.style.display = "none";
+         updateClassModal.style.display = "block";
+         event.stopPropagation();
+         };*/
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
@@ -137,18 +176,17 @@ function buildClasses(newClasses) {
   });
 }
 
-function changeUpdateClass(lessonId, eventID, equipmentType)
-{
+function changeUpdateClass(lessonId, eventID, equipmentType) {
   return () => {
     classesModal.style.display = "none";
     updateClassModal.setAttribute("classId", lessonId);
     updateClassModal.setAttribute("classEventId", eventID);
     updateClassModal.setAttribute("eventType", equipmentType);
     colorClass(equipmentType);
-  //classesModal.style.display = "none";
+    //classesModal.style.display = "none";
     updateClassModal.style.display = "block";
-  //event.stopPropagation();
-  }
+    //event.stopPropagation();
+  };
 }
 
 function openChangeModal(itemTypes, rentalID, eventId) {
@@ -366,8 +404,7 @@ function colorClass(eventType) {
   console.log(eventType);
   var tds = document.getElementById("demoClass").getElementsByTagName("td");
   var selectList = document.getElementById("taarih-azmanaClass");
-  for(i =0 ; i<tds.length; i++)
-  { 
+  for (i = 0; i < tds.length; i++) {
     tds[i].style.backgroundColor = "#b3ddd9";
   }
   selectList.innerHTML = "";
@@ -528,7 +565,7 @@ function saveClassUpdate() {
   updateClassModal.style.display = "none";
   var classId = updateClassModal.getAttribute("classId");
   var eventID = updateClassModal.getAttribute("classEventId");
-  
+
   console.log(classId);
   var subOne = (
     parseInt(document.getElementById("fromClass").value) - 1
