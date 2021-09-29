@@ -1,3 +1,5 @@
+//29.09 Keren Changes
+
 var classes = [
   { id: 1, time: "1/9" },
   { id: 2, time: "3/9" },
@@ -8,16 +10,49 @@ var currentlyUpdatingId;
 
 //Firebase Reference
 const db = firebase.firestore();
+let userEmail;
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user.email);
+    userEmail = user.email;
+    console.log(userEmail);
+    return userEmail;
+  }
+});
 
 async function getClasses() {
-  const classesRef = await db.collection("Classes").get();
-  return classesRef.docs;
+  const classesRef = [];
+  await db
+    .collection("Classes")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().user === userEmail) {
+          classesRef.push(doc);
+          console.log(classesRef);
+          console.log(doc.id, " => ", doc.data().user);
+        }
+      });
+    });
+  return classesRef;
 }
 
 async function getRentals() {
   //References to DB
-  var ordersRef = await db.collection("Orders").get();
-  return ordersRef.docs;
+  const ordersRef = [];
+  await db
+    .collection("Orders")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().user === userEmail) {
+          ordersRef.push(doc);
+          console.log(ordersRef);
+          console.log(doc.id, " => ", doc.data().user);
+        }
+      });
+    });
+  return ordersRef;
 }
 
 getClasses().then((newClasses) => buildClasses(newClasses));
@@ -103,24 +138,27 @@ function buildClasses(newClasses) {
     changeButton.setAttribute("class", "update");
     var changeButtonText = document.createTextNode("עדכון");
     changeButton.appendChild(changeButtonText);
-    changeButton.onclick = changeUpdateClass(lesson.id,classData.eventId,classData.equipmentType);
+    changeButton.onclick = changeUpdateClass(
+      lesson.id,
+      classData.eventId,
+      classData.equipmentType
+    );
     /*changeButton.onclick = function (event) {
-      updateClassModal.setAttribute("classId", lesson.id);
-      updateClassModal.setAttribute("classEventId", classData.eventId);
-      updateClassModal.setAttribute("eventType", classData.equipmentType);
-      colorClass(classData.equipmentType);
-      classesModal.style.display = "none";
-      updateClassModal.style.display = "block";
-      event.stopPropagation();
-    };*/
+         updateClassModal.setAttribute("classId", lesson.id);
+         updateClassModal.setAttribute("classEventId", classData.eventId);
+         updateClassModal.setAttribute("eventType", classData.equipmentType);
+         colorClass(classData.equipmentType);
+         classesModal.style.display = "none";
+         updateClassModal.style.display = "block";
+         event.stopPropagation();
+         };*/
     buttonTd.appendChild(changeButton);
     var cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_bu");
     cancelButton.setAttribute("class", "cancel");
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
-    cancelButton.onclick = deleteClass(lesson.id, classData.eventId);
-    /*cancelButton.onclick = function (event) {
+    cancelButton.onclick = function (event) {
       db.collection("Classes").doc(lesson.id).delete();
       if (classData.eventId != "") {
         var resource = {};
@@ -131,44 +169,24 @@ function buildClasses(newClasses) {
 
       classTable.innerHTML = "";
       getClasses().then((newClasses) => buildClasses(newClasses));
-    };*/
+    };
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     classTable.appendChild(tr);
   });
 }
 
-function deleteClass(lessonId, eventId){
-  return () => {
-    //console.log(lessonId);
-    //console.log(eventId);
-    //db.collection("Classes").doc(lessonId).delete();
-      if (eventId != "") {
-        var resource = {};
-        deleteRequest(resource, eventId);
-      }
-      //add toast deleted class successfully
-      swal("השיעור בוטל בהצלחה", "", "success");
-      
-      var classTable = document.getElementById("classes");
-      classTable.innerHTML = "";
-      getClasses().then((newClasses) => buildClasses(newClasses));
-  }
-}
-
-
-function changeUpdateClass(lessonId, eventID, equipmentType)
-{
+function changeUpdateClass(lessonId, eventID, equipmentType) {
   return () => {
     classesModal.style.display = "none";
     updateClassModal.setAttribute("classId", lessonId);
     updateClassModal.setAttribute("classEventId", eventID);
     updateClassModal.setAttribute("eventType", equipmentType);
     colorClass(equipmentType);
-  //classesModal.style.display = "none";
+    //classesModal.style.display = "none";
     updateClassModal.style.display = "block";
-  //event.stopPropagation();
-  }
+    //event.stopPropagation();
+  };
 }
 
 function openChangeModal(itemTypes, rentalID, eventId) {
@@ -285,8 +303,7 @@ function buildRentals(newRentals) {
     cancelButton.setAttribute("class", "cancel");
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
-    cancelButton.onclick = deleteRental(rental.id, rentalData.eventId);
-    /*cancelButton.onclick = function (event) {
+    cancelButton.onclick = function (event) {
       db.collection("Orders").doc(rental.id).delete();
       if (rentalData.eventId != "") {
         var resource = {};
@@ -295,25 +312,11 @@ function buildRentals(newRentals) {
       swal("ההשכרה בוטלה בהצלחה", "", "success");
       rentalsTable.innerHTML = "";
       getRentals().then((newRentals) => buildRentals(newRentals));
-    };*/
+    };
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     rentalsTable.appendChild(tr);
   });
-
-  function deleteRental(rentalId, eventId){
-    return () => {
-      //db.collection("Orders").doc(rentalId).delete();
-      if (eventId != "") {
-        var resource = {};
-        deleteRequest(resource, eventId);
-      }
-      swal("ההשכרה בוטלה בהצלחה", "", "success");
-      var rentalsTable = document.getElementById("rentals");
-      rentalsTable.innerHTML = "";
-      getRentals().then((newRentals) => buildRentals(newRentals));
-    }
-  }
 
   let classM = document.getElementById("classM");
 
@@ -401,8 +404,7 @@ function colorClass(eventType) {
   console.log(eventType);
   var tds = document.getElementById("demoClass").getElementsByTagName("td");
   var selectList = document.getElementById("taarih-azmanaClass");
-  for(i =0 ; i<tds.length; i++)
-  { 
+  for (i = 0; i < tds.length; i++) {
     tds[i].style.backgroundColor = "#b3ddd9";
   }
   selectList.innerHTML = "";
@@ -524,52 +526,35 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
-    console.log(resource, eventID);
-    gapi.auth2
-      .getAuthInstance()
-      .signIn({ prompt: "select_account" })
-      .then((res) => {
+  gapi.auth2
+    .getAuthInstance()
+    .signIn({ prompt: "select_account" })
+    .then((res) => {
+      var params = {
+        calendarId: "primary",
+        eventId: eventID,
+      };
 
-        gapi.client.load('calendar', 'v3', function() {
-          var request = gapi.client.calendar.events.delete({
-              'calendarId': 'primary',
-              'eventId': eventID
-          });
-          request.execute(function(response) {
-              if(response.error || response == false){
-                  console.log('Error');
-              }
-              else{
-                  console.log('Success');               
-              }
-          });
+      calendar.events.delete(params, function (err) {
+        if (err) {
+          console.log("The API returned an error: " + err);
+        }
+        console.log("Event deleted.");
       });
-
-        /*var params = {
-          calendarId: "primary",
-          eventId: eventID,
-        };
-        calendar.events.delete(params, function (err) {
-          if (err) {
-            console.log("The API returned an error: " + err);
-          }
-          console.log("Event deleted.");
-        });*/
-        /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
-              var request = gapi.client.calendar.events.patch({
-              'calendarId': 'primary',
-              'eventId': eventID,
-              'resource': resource
-              });
-              request.execute(function (event) {
-              console.log(event);
-              });
-              })
-              .catch((res) => {
-              console.log("google login failed");
-              console.log(res);*/
-      });
-  
+      /*var event = gapi.client.calendar.events.get({"calendarId": 'primary', "eventId": eventID});
+             var request = gapi.client.calendar.events.patch({
+             'calendarId': 'primary',
+             'eventId': eventID,
+             'resource': resource
+             });
+             request.execute(function (event) {
+             console.log(event);
+             });
+             })
+             .catch((res) => {
+             console.log("google login failed");
+             console.log(res);*/
+    });
 }
 
 $(document).ready(function () {
@@ -580,7 +565,7 @@ function saveClassUpdate() {
   updateClassModal.style.display = "none";
   var classId = updateClassModal.getAttribute("classId");
   var eventID = updateClassModal.getAttribute("classEventId");
-  
+
   console.log(classId);
   var subOne = (
     parseInt(document.getElementById("fromClass").value) - 1
@@ -603,7 +588,7 @@ function saveClassUpdate() {
   console.log(timeStamp);
   var changeDate = firebase.firestore.Timestamp.fromDate(new Date(timeStamp));
   console.log(changeDate);
-  db.collection("Classes").doc(classId).update({ classDate: changeDate });
+  db.collection("Classes").doc(classId).update({ classDateTime: changeDate });
 
   if (eventID != "") {
     console.log("ClassChanges!");
@@ -670,7 +655,7 @@ function saveUpdate(rentalID, eventID, eventType) {
 
   //Update in google calander
   if (eventID != "") {
-    console.log("changes!!!????");
+    console.log("changes!");
     var subOne = (
       parseInt(document.getElementById("from" + eventType).value) - 1
     ).toString();
