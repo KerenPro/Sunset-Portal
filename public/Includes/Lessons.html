@@ -33,16 +33,69 @@
 </head>
 <body>
 
-
 <div class="container-fluid">
     <header>
+        <div class="header_item">
+            <button class="bt" id="helloUser"></button>
+            <a id="signup-link" href="./SignUpForm.html">
+                <button id="signup-btn" class="bt"> הרשמה</button>
+            </a>
+            <a id="signin-link" href="./SignIn.html">
+                <button id="signin-btn" class="bt"> התחברות</button>
+            </a>
+            <a id="signout-link">
+                <button id="signout-btn" class="bt"> התנתקות</button>
+            </a>
+        </div>
+        <a name="top"></a>
+        <div id="change_class" class="flex_container section menu_section">
+            <div class="flex_item branding"><p></p></div>
+            <div class="flex_item menu_item dropdown">
+                <p> תפריט</p>
+                <div class="dropdown-content">
+                    <a href="./Includes/private.html">
+                        <div class="menu_item menu_item_inside"><a class="private-link" href="Includes/private.html">
+                            <p> אזור אישי</p></a></div>
+                    </a>
+                    <a href="">
+                        <div class="menu_item menu_item_inside"><a href="./Includes/Lessons.html"><p>שיעורים</p></a></div>
+                    </a>
+                    <a href="./Includes/RentMainPage.html">
+                        <div class="menu_item menu_item_inside"><a class="rent-homepage-link" href="./Includes/RentMainPage.html"><p>
+                            השכרות</p>
+                        </a></div>
+                    </a>
+                    <a href="">
+                        <div class="menu_item menu_item_inside"><a href=""><p> מי אנחנו</p></a></div>
+                    </a>
+                    <a href="">
+                        <div class="menu_item menu_item_inside"><a href=""><p> צור קשר</p></a></div>
+                    </a>
+                    <a href="./index.html">
+                        <div class="menu_item menu_item_inside"><a class="homepage-link" href="./index.html"><p> דף הבית</p></a></div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex_item menu_item menu_item_outside" id="private-link"><a class="private-link"
+            >
+                <p> אזור אישי</p></a>
+            </div>
+            <div class="flex_item menu_item menu_item_outside" id="lessons-link"><a class="lessons-link"><p>שיעורים</p></a></div>
+            <div class="flex_item menu_item menu_item_outside" id="rent-homepage-link"><a class="rent-homepage-link"><p>
+                השכרות</p>
+            </a>
+            </div>
+            <div class="flex_item menu_item menu_item_outside"><a href=""><p> מי אנחנו</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a href=""><p> צור קשר</p></a></div>
+            <div class="flex_item menu_item menu_item_outside"><a class="homepage-link" href="../index.html"><p> דף הבית</p></a></div>
 
+        </div>
     </header>
 
     <main id="shop-options" class="row">
 
         <section class="head">
-            <h1>קביעת שיעור סאפ/גלישה<h1>
+            <h1>קביעת שיעור סאפ/גלישה</h1>
         </section>
         <section class="wheather-data">
 
@@ -61,24 +114,25 @@
             <h1>מילוי פרטים לסיום ושליחת ההזמנה</h1><br>
             <form id="order-form">
                 <h2 id="details-header"> מילוי פרטים</h2>
-                <p id="explane"> השיעור הוא שעתי וניתן לקבוע שיעור קבוצתי עד 3 משתתפים , במידה ותרצו להרחיב מעבר לשעה יהיה ניתן לעשות זאת בתיאום עם המועדון ביום השיעור</p>
+                <p id="explane"> השיעור הוא שעתי וניתן לקבוע שיעור קבוצתי עד 3 משתתפים , במידה ותרצו להרחיב מעבר לשעה יהיה ניתן לעשות זאת
+                    בתיאום עם המועדון ביום השיעור</p>
                 <label for="ziud">יש לבחור סוג ציוד </label><br>
-                <select name="ziud" id="ziud" onchange ="changeWaves()" ><br><br>
+                <select name="ziud" id="ziud" onchange="changeWaves()"><br><br>
                     <option value="" id="sug-ziud"></option>
                     <option value="סאפ" id="sug-ziud-1">סאפ</option>
                     <option value="גלשן גלים" id="sug-ziud-2">גלשן גלים</option>
-  ----
---              </select><br>
+                    ----
+                    -- </select><br>
                 <label id="errSugZiud" style="color:red"></label><br>
-                <label for="shiur" >יש לבחור סוג שיעור </label><br>
-                <select name="shiur" id="shiur" onchange="showPrice()" ><br><br>
+                <label for="shiur">יש לבחור סוג שיעור </label><br>
+                <select name="shiur" id="shiur" onchange="showPrice()"><br><br>
                     <option value="" id="sug-shiur"></option>
                     <option value="יחיד" id="sug-shiur-1">יחיד</option>
                     <option value="קבוצתי" id="sug-shiur-2">קבוצתי</option>
                 </select><br>
                 <label id="errSugShiur" style="color:red"></label><br>
-                <label id="numOfLabel" for="numOfPeople"  >יש לבחור מספר משתתפים </label><br>
-                <select name="numOfPeople" id="numOfPeople" onchange="showPrice()" ><br>
+                <label id="numOfLabel" for="numOfPeople">יש לבחור מספר משתתפים </label><br>
+                <select name="numOfPeople" id="numOfPeople" onchange="showPrice()"><br>
                     <option value="" id="numOfPeople1"></option>
                     <option value="2" id="numOfPeople2">2</option>
                     <option value="3" id="numOfPeople3">3</option>
@@ -90,7 +144,7 @@
                 </select><br>
                 <label id="errtaarih-azmana" style="color:red"></label><br>
 
-                <label for="from">שעת השכרה</label>
+                <label for="from">שעת שיעור</label>
                 <select id="from" name="from">
                     <option value="" id="from1"></option>
                     <option value="9" id="day1">08:00</option>
@@ -134,12 +188,14 @@
             <div id="price">
                 <h2 id="price-exp">מחיר ההשכרה</h2><br>
                 <h1 id="final-price"> 0 ₪</h1>
-            </div><br>
+            </div>
+            <br>
 
-            <div class="pp"></div><br>
+            <div class="pp"></div>
+            <br>
         </section>
         <section class="wheather-data">
-            <div class="section page third_section">
+            <div class="section third_section">
                 <a name="dateAndWeather"></a>
                 <div class="section_container third_section_container flex_container flex_center">
                     <div class="text header_text">
@@ -151,71 +207,78 @@
                 </div>
 
                 <div id="info"></div>
+            </div>
         </section>
 
 
     </main>
+</div>
+<!-- Script & Script link -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-    <!-- Script & Script link -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+        apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+        authDomain: "sunset-portal.firebaseapp.com",
+        projectId: "sunset-portal",
+        storageBucket: "sunset-portal.appspot.com",
+        messagingSenderId: "861523328352",
+        appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+        measurementId: "G-S8K9RDWCP8",
+        databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const userEmail = firebase.auth().currentUser.email;
+            firebase
+                .firestore()
+                .collection("Users")
+                .doc(`${userEmail}`)
+                .get()
+                .then((doc) => {
+                    const userName = doc.data().name;
+                    document.getElementById(
+                        "helloUser"
+                    ).innerHTML = `שלום ${userName}`;
+                });
+        } else {
+            document.getElementById("helloUser").innerHTML = "שלום אורח";
+        }
+    });
 
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        let firebaseConfig = {
-            apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
-            authDomain: "sunset-portal.firebaseapp.com",
-            projectId: "sunset-portal",
-            storageBucket: "sunset-portal.appspot.com",
-            messagingSenderId: "861523328352",
-            appId: "1:861523328352:web:5319424c8a9ca6778ef205",
-            measurementId: "G-S8K9RDWCP8",
-            databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
+</script>
+<!--Scripts-->
+<script src="../Javascript/Lessons.js" rel="script" type="text/javascript" async></script>
+<script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad();"
+        onreadystatechange="if (this.readyState === 'complete') this.onload();">
+</script>
 
-    </script>
+<script>
+    $(function () {
+        $("#shiur").change(function () {
+            if ($("#shiur").val() === "קבוצתי") {
+                $('#numOfPeople').show();
+                $('#numOfLabel').show();
+            } else {
+                $('#numOfPeople').hide();
+                $('#numOfLabel').hide();
+            }
 
-    <script>
-        //load navigation bar from homepage
-        $("header").load("../index.html header", function () {
-            $(".homepage-link").attr("href", "../index.html");
-            $("#signup-link").attr("href", "./SignUpForm.html");
-            $("#signin-link").attr("href", "./SignIn.html");
-            $(".rent-homepage-link").attr("href", "./RentMainPage.html");
-            $(".private-link").attr("href", "./private.html");
         });
-    </script>
-
-    <script src="../Javascript/Lessons.js"></script>
-
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad();"
-            onreadystatechange="if (this.readyState === 'complete') this.onload();">
-    </script>
-
-    <script>
-    $(function() {
-       $("#shiur").change(function() {
-              if( $("#shiur").val()=== "קבוצתי"){
-                    $('#numOfPeople').show();
-                    $('#numOfLabel').show();
-                    } else {
-                    $('#numOfPeople').hide();
-                    $('#numOfLabel').hide();
-                    }
-                
-            });
-        });
-    </script>
-
+    });
+</script>
 
 
 </body>
