@@ -661,6 +661,7 @@ function saveUpdate(rentalID, eventID, eventType) {
     var subOne = (
       parseInt(document.getElementById("from" + eventType).value) - 1
     ).toString();
+    console.log(eventType);
     var startTime =
       document.getElementById("taarih-azmana" + eventType).value +
       "T" +
