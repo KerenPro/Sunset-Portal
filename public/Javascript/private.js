@@ -497,7 +497,7 @@ function initClient() {
 }
 
 function signIn() {
-  gapi.auth2.getAuthInstance().signIn();
+  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 }
 
 //API request//
