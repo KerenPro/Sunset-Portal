@@ -532,8 +532,7 @@ function deleteRequest(resource, eventID) {
         calendarId: "primary",
         eventId: eventID,
       };
-
-      calendar.events.delete(params, function (err) {
+      gapi.client.calendar.events.delete(params, function (err) {
         if (err) {
           console.log("The API returned an error: " + err);
         }
@@ -653,7 +652,7 @@ function saveUpdate(rentalID, eventID, eventType) {
 
   //Update in google calander
   if (eventID != "") {
-    console.log("changes!");
+    console.log("changes!!!????");
     var subOne = (
       parseInt(document.getElementById("from" + eventType).value) - 1
     ).toString();
