@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <!--making a responsive webpage-->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <style>
+        .head{
+
+            color:rgb(43, 104, 104);
+            margin:auto;
+            text-align: center;
+            
+        }
+    </style>
     <!-- Style sheet link -->
     <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="stylesheet" href="../CSS/Shop.css" />
@@ -31,12 +41,108 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
       rel="stylesheet"
     />
+    <!--Scripts-->
+    <script
+      src="../Javascript/Shop.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
+    <script
+      src="../Javascript/userAuth.js"
+      rel="script"
+      type="text/javascript"
+      async
+    ></script>
+
     <meta charset="UTF-8" />
-    <title>חנות</title>
+    <title>השכרת ציוד וביגוד ימי</title>
   </head>
   <body>
     <div class="container-fluid">
-      <header></header>
+      <!--Header Area-->
+      <header>
+        <div class="header_item">
+          <button class="bt" id="helloUser"></button>
+          <a id="signup-link" href="./SignUpForm.html">
+            <button id="signup-btn" class="bt">הרשמה</button>
+          </a>
+          <a id="signin-link" href="./SignIn.html">
+            <button id="signin-btn" class="bt">התחברות</button>
+          </a>
+          <a id="signout-link">
+            <button id="signout-btn" class="bt">התנתקות</button>
+          </a>
+        </div>
+        <a name="top"></a>
+        <div id="change_class" class="flex_container section menu_section">
+          <div class="flex_item branding"><p></p></div>
+          <div class="flex_item menu_item dropdown">
+            <p>תפריט</p>
+            <div class="dropdown-content">
+              <a href="./Includes/private.html">
+                <div class="menu_item menu_item_inside">
+                  <a class="private-link" href="Includes/private.html">
+                    <p>אזור אישי</p></a
+                  >
+                </div>
+              </a>
+              <a href="">
+                <div class="menu_item menu_item_inside">
+                  <a href="./Includes/Lessons.html"><p>שיעורים</p></a>
+                </div>
+              </a>
+              <a href="./Includes/RentMainPage.html">
+                <div class="menu_item menu_item_inside">
+                  <a
+                    class="rent-homepage-link"
+                    href="./Includes/RentMainPage.html"
+                    ><p>השכרות</p>
+                  </a>
+                </div>
+              </a>
+              <a href="">
+                <div class="menu_item menu_item_inside">
+                  <a href=""><p>מי אנחנו</p></a>
+                </div>
+              </a>
+              <a href="">
+                <div class="menu_item menu_item_inside">
+                  <a href=""><p>צור קשר</p></a>
+                </div>
+              </a>
+              <a href="./index.html">
+                <div class="menu_item menu_item_inside">
+                  <a class="homepage-link" href="./index.html"
+                    ><p>דף הבית</p></a
+                  >
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="flex_item menu_item menu_item_outside" id="private-link">
+            <a class="private-link"><p>אזור אישי</p></a>
+          </div>
+          <div class="flex_item menu_item menu_item_outside" id="lessons-link">
+            <a class="lessons-link"><p>שיעורים</p></a>
+          </div>
+          <div
+            class="flex_item menu_item menu_item_outside"
+            id="rent-homepage-link"
+          >
+            <a class="rent-homepage-link"><p>השכרות</p></a>
+          </div>
+          <div class="flex_item menu_item menu_item_outside">
+            <a href=""><p>מי אנחנו</p></a>
+          </div>
+          <div class="flex_item menu_item menu_item_outside">
+            <a href=""><p>צור קשר</p></a>
+          </div>
+          <div class="flex_item menu_item menu_item_outside">
+            <a class="homepage-link" href="../index.html"><p>דף הבית</p></a>
+          </div>
+        </div>
+      </header>
       <div class="row">
         <img
           class="shop-header"
@@ -44,7 +150,7 @@
           alt="surfing-header"
         />
       </div>
-
+  <h1 class="head">השכרת ציוד וביגוד ימי</h1>
       <main id="shop-options" class="row">
         <section
           class="shop-section col hover"
@@ -101,16 +207,6 @@
         </div>
       </div>
     </div>
-    <script>
-      //load navigation bar from homepage
-      $("header").load("../index.html header", function () {
-        $(".homepage-link").attr("href", "../index.html");
-        $("#signup-link").attr("href", "./SignUpForm.html");
-        $("#signin-link").attr("href", "./SignIn.html");
-        $(".rent-homepage-link").attr("href", "./RentMainPage.html");
-        $(".private-link").attr("href", "./private.html");
-      });
-    </script>
     <!-- Script & Script link -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
@@ -136,8 +232,25 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const userEmail = firebase.auth().currentUser.email;
+          firebase
+            .firestore()
+            .collection("Users")
+            .doc(`${userEmail}`)
+            .get()
+            .then((doc) => {
+              const userName = doc.data().name;
+              document.getElementById(
+                "helloUser"
+              ).innerHTML = `שלום ${userName}`;
+            });
+        } else {
+          document.getElementById("helloUser").innerHTML = "שלום אורח";
+        }
+      });
     </script>
-    <script src="../Javascript/Shop.js"></script>
   </body>
-  <script type="module" src="../Javascript/Shop.js"></script>
 </html>
