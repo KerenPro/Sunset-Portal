@@ -341,7 +341,7 @@ function buildRentals(newRentals) {
       db.collection("Orders").doc(rentalId).delete();
       if (eventId != "") {
         var resource = {};
-        deleteRequest(resource, rentalId);
+        deleteRequest(resource, eventId);
       }
       swal("ההשכרה בוטלה בהצלחה", "", "success");
       var rentalsTable = document.getElementById("rentals");
@@ -566,7 +566,7 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
-  console.log("try to solve deletion2!")
+  console.log("try to solve deletion3!!")
   gapi.auth2
     .getAuthInstance()
     .signIn({ prompt: "select_account" })
@@ -578,8 +578,8 @@ function deleteRequest(resource, eventID) {
 
       gapi.client.load('calendar', 'v3', function() {
         var request = gapi.client.calendar.events.delete({
-            'calendarId': 'primary',
-            'eventId': eventID
+             calendarId: "primary",
+             eventId : eventID
         });
         request.execute(function(response) {
             if(response.error || response == false){
