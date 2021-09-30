@@ -158,7 +158,8 @@ function buildClasses(newClasses) {
     cancelButton.setAttribute("class", "cancel");
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
-    cancelButton.onclick = function (event) {
+    cancelButton.onclick = deleteClass (lesson.id, classData.eventId);
+    /*cancelButton.onclick = function (event) {
       db.collection("Classes").doc(lesson.id).delete();
       if (classData.eventId != "") {
         var resource = {};
@@ -169,11 +170,27 @@ function buildClasses(newClasses) {
 
       classTable.innerHTML = "";
       getClasses().then((newClasses) => buildClasses(newClasses));
-    };
+    };*/
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     classTable.appendChild(tr);
   });
+}
+
+function deleteClass(lessonId, eventId){
+  return () => {
+    db.collection("Classes").doc(lessonId).delete();
+    if (eventId != "") {
+      var resource = {};
+      deleteRequest(resource, eventId);
+    }
+    //add toast deleted class successfully
+    swal("השיעור בוטל בהצלחה", "", "success");
+    
+    var classTable = document.getElementById("classes");
+    classTable.innerHTML = "";
+    getClasses().then((newClasses) => buildClasses(newClasses));
+  }
 }
 
 function changeUpdateClass(lessonId, eventID, equipmentType) {
@@ -303,7 +320,8 @@ function buildRentals(newRentals) {
     cancelButton.setAttribute("class", "cancel");
     var cancelButtonText = document.createTextNode("ביטול");
     cancelButton.appendChild(cancelButtonText);
-    cancelButton.onclick = function (event) {
+    cancelButton.onclick = deleteRental (rental.id, rentalData.eventId);
+    /*cancelButton.onclick = function (event) {
       db.collection("Orders").doc(rental.id).delete();
       if (rentalData.eventId != "") {
         var resource = {};
@@ -312,11 +330,25 @@ function buildRentals(newRentals) {
       swal("ההשכרה בוטלה בהצלחה", "", "success");
       rentalsTable.innerHTML = "";
       getRentals().then((newRentals) => buildRentals(newRentals));
-    };
+    };*/
     buttonTd.appendChild(cancelButton);
     tr.appendChild(buttonTd);
     rentalsTable.appendChild(tr);
   });
+
+  function deleteRental(rentalId, eventId){
+    return() =>{
+      db.collection("Orders").doc(rentalId).delete();
+      if (eventId != "") {
+        var resource = {};
+        deleteRequest(resource, reventId);
+      }
+      swal("ההשכרה בוטלה בהצלחה", "", "success");
+      var rentalsTable = document.getElementById("rentals");
+      rentalsTable.innerHTML = "";
+      getRentals().then((newRentals) => buildRentals(newRentals));
+    }
+  }
 
   let classM = document.getElementById("classM");
 
