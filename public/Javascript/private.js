@@ -504,10 +504,10 @@ function signIn() {
 //API request//
 function makeRequest(resource, eventID) {
   //console.log(resource, eventID);
-  console.log("trying to update after change!");
+  console.log("trying to update after last change!");
 
-  //var checkAuth =  gapi.auth2.getAuthInstance();
-  //console.log(checkAuth);
+  var checkAuth =  gapi.auth2.getAuthInstance();
+  console.log(checkAuth);
   //var checkAuth2 = checkAuth.signIn({prompt: "select_account"});
   //console.log(checkAuth2);
   gapi.auth2
