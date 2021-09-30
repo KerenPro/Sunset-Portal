@@ -603,14 +603,23 @@ function saveClassUpdate() {
     var subOne = (
       parseInt(document.getElementById("fromClass").value) - 1
     ).toString();
+
+    var timeZerosStart = "T";
+    var timeZeroEnd = "T";
+    
+    if (parseInt(document.getElementById("fromClass").value) - 1 <=9 )
+      timeZerosStart="T0";
+    if (parseInt(document.getElementById("fromClass").value) <=9)
+      timeZeroEnd = "T0"
+
     var startTime =
       document.getElementById("taarih-azmanaClass").value +
-      "T" +
+      timeZerosStart +
       subOne +
       ":00:00.000+03:00";
     var endTime =
       document.getElementById("taarih-azmanaClass").value +
-      "T" +
+      timeZeroEnd +
       document.getElementById("fromClass").value +
       ":00:00.000+03:00";
     var resource = {
@@ -668,14 +677,23 @@ function saveUpdate(rentalID, eventID, eventType) {
       parseInt(document.getElementById("from" + eventType).value) - 1
     ).toString();
     console.log(eventType);
+
+    var timeZerosStart = "T";
+    var timeZeroEnd = "T";
+    
+    if (parseInt(document.getElementById("from" + eventType).value) - 1 <=9 )
+      timeZerosStart="T0";
+    if (parseInt(document.getElementById("from" + eventType).value) <=9)
+      timeZeroEnd = "T0"
+
     var startTime =
       document.getElementById("taarih-azmana" + eventType).value +
-      "T" +
+      timeZerosStart +
       subOne +
       ":00:00.000+03:00";
     var endTime =
       document.getElementById("taarih-azmana" + eventType).value +
-      "T" +
+      timeZeroEnd+
       document.getElementById("from" + eventType).value +
       ":00:00.000+03:00";
     var resource = {
