@@ -534,6 +534,7 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
+  console.log("try to solve deletion!")
   gapi.auth2
     .getAuthInstance()
     .signIn({ prompt: "select_account" })
@@ -543,7 +544,7 @@ function deleteRequest(resource, eventID) {
         eventId: eventID,
       };
 
-      calendar.events.delete(params, function (err) {
+      gapi.client.calendar.events.delete(params, function (err) {
         if (err) {
           console.log("The API returned an error: " + err);
         }
