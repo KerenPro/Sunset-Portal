@@ -1,4 +1,4 @@
-//29.09 Keren Changes
+//30.09 Olesia Changes
 
 var classes = [
   { id: 1, time: "1/9" },
@@ -341,7 +341,7 @@ function buildRentals(newRentals) {
       db.collection("Orders").doc(rentalId).delete();
       if (eventId != "") {
         var resource = {};
-        deleteRequest(resource, reventId);
+        deleteRequest(resource, rentalId);
       }
       swal("ההשכרה בוטלה בהצלחה", "", "success");
       var rentalsTable = document.getElementById("rentals");
