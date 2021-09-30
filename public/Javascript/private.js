@@ -472,9 +472,9 @@ var apiKey = "AIzaSyB4cxbY2LD7KADlNEX8Bd1NWOPQWqgZasQ";
 // where you will be running the script.
 var clientId =
   "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com";
-//var scopes =
-//  "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.addons.execute";
-var scopes = "https://www.googleapis.com/auth/calendar";
+var scopes =
+  "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.addons.execute";
+//var scopes = "https://www.googleapis.com/auth/calendar";
 //var calanderId = "c3Vuc2V0c3VyZnBvcnRhbEBnbWFpbC5jb20";
 var DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
@@ -483,7 +483,7 @@ var DISCOVERY_DOCS = [
 // The Calendar entry to create//
 
 function handleClientLoad() {
-  gapi.load("client", initClient);
+  gapi.load("client:auth2", initClient);
 }
 
 function initClient() {
@@ -491,8 +491,8 @@ function initClient() {
     .init({
       apiKey: apiKey,
       clientId: clientId,
-      //discoveryDocs: DISCOVERY_DOCS,
-      scope: scopes,
+      discoveryDocs: DISCOVERY_DOCS,
+      scope: scopes
     })
     .then();
 }
@@ -503,13 +503,13 @@ function signIn() {
 
 //API request//
 function makeRequest(resource, eventID) {
-  console.log(resource, eventID);
-  console.log("trying to update2");
+  //console.log(resource, eventID);
+  console.log("trying to update after change!");
 
-  var checkAuth =  gapi.auth2.getAuthInstance();
-  console.log(checkAuth);
-  var checkAuth2 = checkAuth.signIn({prompt: "select_account"});
-  console.log(checkAuth2);
+  //var checkAuth =  gapi.auth2.getAuthInstance();
+  //console.log(checkAuth);
+  //var checkAuth2 = checkAuth.signIn({prompt: "select_account"});
+  //console.log(checkAuth2);
   gapi.auth2
   .getAuthInstance()
   .signIn({prompt: "select_account"})
