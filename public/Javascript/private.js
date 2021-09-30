@@ -566,17 +566,32 @@ function makeRequest(resource, eventID) {
 }
 
 function deleteRequest(resource, eventID) {
-  console.log("try to solve deletion!")
+  console.log("try to solve deletion2!")
   gapi.auth2
     .getAuthInstance()
     .signIn({ prompt: "select_account" })
     .then((res) => {
-      var params = {
+      /*var params = {
         calendarId: "primary",
         eventId: eventID,
-      };
+      };*/
 
-      gapi.client.calendar.events.delete(params, function (err) {
+      gapi.client.load('calendar', 'v3', function() {
+        var request = gapi.client.calendar.events.delete({
+            'calendarId': 'primary',
+            'eventId': eventID
+        });
+        request.execute(function(response) {
+            if(response.error || response == false){
+                console.log('Error');
+            }
+            else{
+                console.log('Success');               
+            }
+        });
+    });
+
+      /*gapi.client.calendar.events.delete(params, function (err) {
         if (err) {
           console.log("The API returned an error: " + err);
         }
