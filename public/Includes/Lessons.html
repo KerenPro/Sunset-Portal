@@ -22,9 +22,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Scripts-->
-    <script src="../Javascript/Lessons.js" rel="script" type="text/javascript" async></script>
-    <script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
     <style>
         #info {
             border: 1px solid black;
@@ -35,7 +32,6 @@
     <title>קביעת שיעור סאפ/גלישה</title>
 </head>
 <body>
-
 
 <div class="container-fluid">
     <header>
@@ -99,7 +95,7 @@
     <main id="shop-options" class="row">
 
         <section class="head">
-            <h1>קביעת שיעור סאפ/גלישה<h1>
+            <h1>קביעת שיעור סאפ/גלישה</h1>
         </section>
         <section class="wheather-data">
 
@@ -148,7 +144,7 @@
                 </select><br>
                 <label id="errtaarih-azmana" style="color:red"></label><br>
 
-                <label for="from">שעת השכרה</label>
+                <label for="from">שעת שיעור</label>
                 <select id="from" name="from">
                     <option value="" id="from1"></option>
                     <option value="9" id="day1">08:00</option>
@@ -199,7 +195,7 @@
             <br>
         </section>
         <section class="wheather-data">
-            <div class="section page third_section">
+            <div class="section third_section">
                 <a name="dateAndWeather"></a>
                 <div class="section_container third_section_container flex_container flex_center">
                     <div class="text header_text">
@@ -211,76 +207,78 @@
                 </div>
 
                 <div id="info"></div>
+            </div>
         </section>
 
 
     </main>
+</div>
+<!-- Script & Script link -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
 
-    <!-- Script & Script link -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    let firebaseConfig = {
+        apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
+        authDomain: "sunset-portal.firebaseapp.com",
+        projectId: "sunset-portal",
+        storageBucket: "sunset-portal.appspot.com",
+        messagingSenderId: "861523328352",
+        appId: "1:861523328352:web:5319424c8a9ca6778ef205",
+        measurementId: "G-S8K9RDWCP8",
+        databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const userEmail = firebase.auth().currentUser.email;
+            firebase
+                .firestore()
+                .collection("Users")
+                .doc(`${userEmail}`)
+                .get()
+                .then((doc) => {
+                    const userName = doc.data().name;
+                    document.getElementById(
+                        "helloUser"
+                    ).innerHTML = `שלום ${userName}`;
+                });
+        } else {
+            document.getElementById("helloUser").innerHTML = "שלום אורח";
+        }
+    });
 
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        let firebaseConfig = {
-            apiKey: "AIzaSyBsLq2Z1CMwKmEg0K47n9yCjnPeNhz4lqA",
-            authDomain: "sunset-portal.firebaseapp.com",
-            projectId: "sunset-portal",
-            storageBucket: "sunset-portal.appspot.com",
-            messagingSenderId: "861523328352",
-            appId: "1:861523328352:web:5319424c8a9ca6778ef205",
-            measurementId: "G-S8K9RDWCP8",
-            databaseURL: "https://sunset-portal-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
+</script>
+<!--Scripts-->
+<script src="../Javascript/Lessons.js" rel="script" type="text/javascript" async></script>
+<script src="../Javascript/userAuth.js" rel="script" type="text/javascript" async></script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad();"
+        onreadystatechange="if (this.readyState === 'complete') this.onload();">
+</script>
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                const userEmail = firebase.auth().currentUser.email;
-                firebase
-                    .firestore()
-                    .collection("Users")
-                    .doc(`${userEmail}`)
-                    .get()
-                    .then((doc) => {
-                        const userName = doc.data().name;
-                        document.getElementById(
-                            "helloUser"
-                        ).innerHTML = `שלום ${userName}`;
-                    });
+<script>
+    $(function () {
+        $("#shiur").change(function () {
+            if ($("#shiur").val() === "קבוצתי") {
+                $('#numOfPeople').show();
+                $('#numOfLabel').show();
             } else {
-                document.getElementById("helloUser").innerHTML = "שלום אורח";
+                $('#numOfPeople').hide();
+                $('#numOfLabel').hide();
             }
+
         });
-
-    </script>
-
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad();"
-            onreadystatechange="if (this.readyState === 'complete') this.onload();">
-    </script>
-
-    <script>
-        $(function () {
-            $("#shiur").change(function () {
-                if ($("#shiur").val() === "קבוצתי") {
-                    $('#numOfPeople').show();
-                    $('#numOfLabel').show();
-                } else {
-                    $('#numOfPeople').hide();
-                    $('#numOfLabel').hide();
-                }
-
-            });
-        });
-    </script>
+    });
+</script>
 
 
 </body>

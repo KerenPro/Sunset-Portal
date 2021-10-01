@@ -52,8 +52,8 @@ function loadDoc() {
     color();
   };
   xhttp.open(
-    "GET",
-    "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he"
+      "GET",
+      "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he"
   );
   xhttp.send();
 }
@@ -65,11 +65,11 @@ function myFunction(xml) {
   let table = "<tr><th>תאריך</th><th>גובה הגלים</th></tr>";
   for (let i = 0; i < x.length; i++) {
     table +=
-      "<tr><td>" +
-      x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue +
-      "</td><td>" +
-      x[i].getElementsByTagName("swellHeight_m")[0].childNodes[0].nodeValue +
-      "</td></tr>";
+        "<tr><td>" +
+        x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("swellHeight_m")[0].childNodes[0].nodeValue +
+        "</td></tr>";
   }
 
   document.getElementById("demo").innerHTML = table;
@@ -100,7 +100,7 @@ var apiKey = "AIzaSyB4cxbY2LD7KADlNEX8Bd1NWOPQWqgZasQ";
 // In your Developer Console project, add a JavaScript origin that corresponds to the domain
 // where you will be running the script.
 var clientId =
-  "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com";
+    "121390106151-e6s4een21lsq4f9jdj49p2h6bc0ng7sj.apps.googleusercontent.com";
 var scopes = "https://www.googleapis.com/auth/calendar";
 
 // The Calendar entry to create//
@@ -111,12 +111,12 @@ function handleClientLoad() {
 
 function initClient() {
   gapi.client
-    .init({
-      apiKey: apiKey,
-      clientId: clientId,
-      scope: scopes,
-    })
-    .then();
+      .init({
+        apiKey: apiKey,
+        clientId: clientId,
+        scope: scopes,
+      })
+      .then();
 }
 
 function signIn() {
@@ -126,31 +126,31 @@ function signIn() {
 //API request//
 function makeRequest(resource) {
   gapi.auth2
-    .getAuthInstance()
-    .signIn({ prompt: "select_account" })
-    .then((res) => {
-      console.log(res);
-      gapi.client
-        .request({
-          path: "/calendar/v3/calendars/primary/events",
-          method: "POST",
-          body: resource,
-        })
-        .then(function (resp) {
-          setProgressBar();
-          $("#event-id").val("" + resp.result.id);
-          console.log("from resp api");
-          console.log(resp.result.id);
-          writeResponse(resp.result);
-        })
-        .then((res) => {
-          addOrder();
-        });
-    })
-    .catch((res) => {
-      console.log("google login failed");
-      console.log(res);
-    });
+      .getAuthInstance()
+      .signIn({prompt: "select_account"})
+      .then((res) => {
+        console.log(res);
+        gapi.client
+            .request({
+              path: "/calendar/v3/calendars/primary/events",
+              method: "POST",
+              body: resource,
+            })
+            .then(function (resp) {
+              setProgressBar();
+              $("#event-id").val("" + resp.result.id);
+              console.log("from resp api");
+              console.log(resp.result.id);
+              writeResponse(resp.result);
+            })
+            .then((res) => {
+              addOrder();
+            });
+      })
+      .catch((res) => {
+        console.log("google login failed");
+        console.log(res);
+      });
 }
 
 //This section code create a link to created event  //
@@ -162,7 +162,7 @@ function writeResponse(response) {
   var infoDiv = document.getElementById("info");
   var infoMsg = document.createElement("P");
   infoMsg.appendChild(
-    document.createTextNode("האירוע " + 'נוצר בהצלחה ע"י ' + creator)
+      document.createTextNode("האירוע " + 'נוצר בהצלחה ע"י ' + creator)
   );
   infoDiv.appendChild(infoMsg);
   var entryLink = document.createElement("A");
@@ -237,27 +237,27 @@ $(document).ready(function () {
     if ($("#calendar").prop("checked")) {
       console.log("writing to google calendar");
       let summary =
-        " השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: " +
-        " " +
-        $("#parit").val() +
-        " " +
-        "מידה:" +
-        " " +
-        $("#mida-suite").val();
+          " השכרה במועדון גלישה SUNSET , ברחוב בן גוריון 162 עבור: " +
+          " " +
+          $("#parit").val() +
+          " " +
+          "מידה:" +
+          " " +
+          $("#mida-suite").val();
       var supportDate = document.getElementById("taarih-azmana");
       var eventStart = document.getElementById("from");
       var eventEnd = ("0" + eventStart.value).slice(-2);
       var start =
-        supportDate.value +
-        "T" +
-        eventStart.options[eventStart.selectedIndex].text +
-        ":00.000+03:00";
+          supportDate.value +
+          "T" +
+          eventStart.options[eventStart.selectedIndex].text +
+          ":00.000+03:00";
       var end = supportDate.value + "T" + eventEnd + ":00:00.000+03:00";
       var resource = {
         summary: summary,
         location: "Bat Yam, Israel",
-        end: { dateTime: end },
-        start: { dateTime: start },
+        end: {dateTime: end},
+        start: {dateTime: start},
       };
       console.log("start: " + start);
       console.log("end: " + end);
@@ -322,11 +322,13 @@ function addOrder() {
   const orderDateTime = `${today.toLocaleString()}`;
   const finalPrice = document.getElementById("final-price").textContent;
   const eventId = document.getElementById("event-id").value;
+  const user = firebase.auth().currentUser.email;
 
   //Finalize order object
   const order = {
     itemTypes: items,
     orderType: "השכרה",
+    user: user,
     orderDate: orderDate,
     firstName: firstName,
     lastName: lastName,
@@ -338,20 +340,24 @@ function addOrder() {
   };
 
   const orderID = `${today.getDate()}${
-    today.getMonth() + 1
+      today.getMonth() + 1
   }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
 
   ordersRef
-    .doc(orderID)
-    .set(order)
-    .then((orderID) => {
-      const orderIdPrint = `${today.getDate()}${
-        today.getMonth() + 1
-      }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
-      alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
-      console.log(`Added order: ${orderIdPrint}`);
-      //redirectToHomepage();
-    });
+      .doc(orderID)
+      .set(order)
+      .then((orderID) => {
+        const orderIdPrint = `${today.getDate()}${
+            today.getMonth() + 1
+        }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
+            swal(
+               `ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`,
+                "מחכים לך!",
+                "success",
+              );
+        console.log(`Added order: ${orderIdPrint}`);
+        //redirectToHomepage();
+      });
   return false;
 }
 
@@ -367,7 +373,7 @@ function setProgressBar() {
   /* Append Progress Bar to Container and Queue Animation */
   container.append(progressBar).queue("example", function () {
     /* Animate Progress Bar */
-    progressBar.animate({ width: "100%" }, 10000, function () {
+    progressBar.animate({width: "100%"}, 10000, function () {
       /* Run Next Queue */
       container.dequeue("example");
     });
