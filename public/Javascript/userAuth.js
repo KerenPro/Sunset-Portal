@@ -1,14 +1,12 @@
-//variable
-const auth = firebase.auth();
-
 /**check user Authentication and Redirect**/
+
 //Private redirection
 const privateNav = document.getElementById("private-link");
 privateNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
@@ -24,9 +22,9 @@ privateNav.addEventListener("click", (event) => {
 const lessonsNav = document.getElementById("lessons-link");
 lessonsNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userEmail = user.email;
       console.log(`Sign in user is ${userEmail}`);
@@ -42,18 +40,40 @@ lessonsNav.addEventListener("click", (event) => {
 const rentHomepageNav = document.getElementById("rent-homepage-link");
 rentHomepageNav.addEventListener("click", (event) => {
   console.log("I'm inside the check Auth User");
-  const user = auth.currentUser;
+  const user = firebase.auth().currentUser;
 
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      const userEmail = user.email;
-      console.log(`Sign in user is ${userEmail}`);
-      window.location.href = "./RentMainPage.html";
-    } else {
-      console.log("I need to redirect");
-      window.location.href = "./signUpSignIn.html";
-    }
-  });
+  firebase
+    .auth()
+    .onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = user.email;
+        console.log(`Sign in user is ${userEmail}`);
+        window.location.href = "./RentMainPage.html";
+      } else {
+        console.log("I need to redirect");
+        window.location.href = "./signUpSignIn.html";
+      }
+    })
+    .then(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const userEmail = firebase.auth().currentUser.email;
+          firebase
+            .firestore()
+            .collection("Users")
+            .doc(`${userEmail}`)
+            .get()
+            .then((doc) => {
+              const userName = doc.data().name;
+              document.getElementById(
+                "helloUser"
+              ).innerHTML = `שלום ${userName}`;
+            });
+        } else {
+          document.getElementById("helloUser").innerHTML = "שלום אורח";
+        }
+      });
+    });
 });
 
 /**Sign Out**/
@@ -70,4 +90,3 @@ signOutBtn.addEventListener("click", (event) => {
       // An error happened.
     });
 });
-//updating for firebase
