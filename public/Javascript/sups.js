@@ -79,7 +79,7 @@ function myFunction(xml) {
 function color() {
     var tds = document.getElementById("demo").getElementsByTagName("td");
     var selectList = document.getElementById("taarih-azmana");
-
+    var count=0;
     for (i = 0; i < tds.length; i++) {
         if (tds[i].innerHTML <= 0.5) {
             tds[i - 1].style.backgroundColor = "#90EE90";
@@ -87,8 +87,18 @@ function color() {
             option.value = tds[i - 1].innerHTML;
             option.text = tds[i - 1].innerHTML;
             selectList.add(option);
+          count++;
         }
     }
+  if(count === 0){
+  swal(
+     "מתנצלים :( ",
+      "לצערנו לפי התחזית כרגע אין ימים מתאימים עבור חתירה על סאפ, נסה/י מחר ואולי התחזית תחייך אלייך",
+      "info",
+      
+    )
+    
+}
 }
 
 //connect to Google Calendar API with credantials(api key and client ID)//
@@ -388,8 +398,12 @@ function addOrder() {
         .then((orderID) => {
             const orderIdPrint = `${today.getDate()}${
                 today.getMonth() + 1
-            }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
-            alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
+            }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`; 
+            swal(
+               `ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`,
+                "מחכים לך!",
+                "success",
+              );
             console.log(`Added order: ${orderIdPrint}`);
             //redirectToHomepage();
         });
