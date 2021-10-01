@@ -398,8 +398,12 @@ function addOrder() {
         .then((orderID) => {
             const orderIdPrint = `${today.getDate()}${
                 today.getMonth() + 1
-            }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`;
-            alert(`ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`);
+            }${today.getFullYear()}${today.getHours()}${today.getMinutes()}`; 
+            swal(
+               `ההזמנה נוספה בהצלחה. מספר הזמנה: ${orderIdPrint}`,
+                "מחכים לך!",
+                "success",
+              );
             console.log(`Added order: ${orderIdPrint}`);
             //redirectToHomepage();
         });
