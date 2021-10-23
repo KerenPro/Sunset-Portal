@@ -48,7 +48,7 @@ function loadDoc() {
   };
   xhttp.open(
     "GET",
-    "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=834d1631abe74c1bb86150430212508&format=xml&q=32.017136,34.745441&lang=he"
+    "https://api.worldweatheronline.com/premium/v1/marine.ashx?key=1b1e6966b5b6408e95e150055210210&format=xml&q=32.017136,34.745441&lang=he"
   );
   xhttp.send();
 }
